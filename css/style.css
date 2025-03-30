@@ -56,6 +56,15 @@ body {
   padding: 0 20px;
 }
 
+.popular-tools,
+.tools-category,
+.ai-news,
+.ai-evaluation,
+.learning-resources,
+.about-section {
+  width: 100%;
+}
+
 a {
   text-decoration: none;
   color: var(--primary-color);
@@ -76,6 +85,7 @@ header {
   width: 100%;
   z-index: 1000;
   transition: padding 0.3s, background-color 0.3s, box-shadow 0.3s;
+  border-bottom: 1px solid var(--border-color); /* 添加边框 */
 }
 
 header .container {
@@ -227,6 +237,7 @@ nav ul li a {
   padding: 8px 16px; /* 增大内边距 */
   border-radius: 4px;
   transition: all 0.3s;
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.2); /* 添加微弱发光效果 */
 }
 
 nav ul li a:hover, 
@@ -264,14 +275,55 @@ nav ul li a.active {
 /* 滚动时的导航栏样式 */
 header.header-scrolled {
   padding: 10px 0;
-  background-color: var(--header-bg);
-  opacity: 0.95;
-  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  background-color: rgba(var(--header-bg-rgb), 0.97); /* 增加不透明度 */
+  backdrop-filter: blur(10px); /* 添加模糊效果增强可读性 */
+  box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15); /* 增强阴影效果 */
+}
+
+[data-theme="light"] header.header-scrolled {
+  background-color: rgba(255, 255, 255, 0.97); /* 白色背景增加不透明度 */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* 添加更明显的边框 */
+}
+
+[data-theme="dark"] header.header-scrolled {
+  background-color: rgba(31, 41, 55, 0.97); /* 深色背景增加不透明度 */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* 添加更明显的边框 */
 }
 
 header.header-scrolled nav ul li a {
   font-size: 15px; /* 滚动时略微减小字体 */
   padding: 7px 14px; /* 减小内边距 */
+  color: var(--text-color); /* 确保文字颜色足够深 */
+  font-weight: 700; /* 增加字体粗细 */
+  text-shadow: 0 0 2px rgba(255, 255, 255, 0.4); /* 增强发光效果 */
+  letter-spacing: 0.02em; /* 增加字间距 */
+}
+
+/* 为导航菜单添加更明显的背景 */
+header.header-scrolled nav ul {
+  padding: 4px 8px;
+  background-color: rgba(248, 250, 252, 0.98);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+}
+
+[data-theme="light"] header.header-scrolled nav ul li a {
+  color: #000000; /* 使用黑色增加对比度 */
+}
+
+[data-theme="dark"] header.header-scrolled nav ul li a {
+  color: #ffffff !important; /* 深色模式使用白色增加对比度 */
+}
+
+[data-theme="dark"] header.header-scrolled nav ul {
+  background-color: rgba(31, 41, 55, 0.98);
+}
+
+header.header-scrolled nav ul li a:hover, 
+header.header-scrolled nav ul li a.active {
+  background-color: var(--primary-color);
+  color: white !important; /* 确保悬停和激活状态的文字是白色 */
+  font-weight: 700; /* 增加字体粗细 */
 }
 
 header.header-scrolled .search-box {
@@ -281,28 +333,6 @@ header.header-scrolled .search-box {
 header.header-scrolled .search-box input {
   padding: 8px 38px 8px 14px; /* 减小内边距 */
   font-size: 14px; /* 减小字体 */
-}
-
-header.header-scrolled .logo-container {
-  width: 40px;
-  height: 40px;
-}
-
-header.header-scrolled .logo-8r {
-  width: 40px;
-  height: 40px;
-}
-
-header.header-scrolled .logo-8r::before {
-  font-size: 22px;
-}
-
-header.header-scrolled .logo-text h1 {
-  font-size: 20px;
-}
-
-header.header-scrolled .logo-text p {
-  font-size: 12px;
 }
 
 /* 桌面版导航 */
@@ -426,6 +456,8 @@ body {
   transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s ease, color 0.3s ease;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .tool-card:hover {
@@ -719,15 +751,31 @@ body {
   background-color: var(--card-color);
   border-radius: 30px;
   cursor: pointer;
-  font-weight: 500;
+  font-weight: 600; /* 加粗字体 */
   transition: all 0.3s ease;
   box-shadow: var(--shadow);
-  font-size: 0.9rem;
+  font-size: 0.95rem; /* 增大字体 */
+  border: 1px solid var(--border-color); /* 添加边框提高对比度 */
 }
 
 .eval-category.active, .eval-category:hover {
   background-color: var(--primary-color);
   color: white;
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3); /* 添加有色阴影 */
+}
+
+/* 提高深色模式下按钮对比度 */
+[data-theme="dark"] .eval-category {
+  background-color: #2d3748;
+  color: #f9fafb;
+  border: 1px solid #4a5568;
+}
+
+[data-theme="dark"] .eval-category.active, 
+[data-theme="dark"] .eval-category:hover {
+  background-color: #6366f1;
+  color: white;
+  border-color: #6366f1;
 }
 
 /* 模型比较表格 */
@@ -942,6 +990,8 @@ body {
   transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s ease, color 0.3s ease;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .resource-card:hover {
@@ -987,6 +1037,13 @@ body {
   background-color: var(--background-color);
   padding: 4rem 0;
   transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.about-section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 .about-section h2 {
@@ -999,7 +1056,9 @@ body {
 .about-content {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2.5rem;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .brand-story {
@@ -1009,6 +1068,7 @@ body {
   margin-bottom: 2rem;
   box-shadow: var(--shadow);
   transition: background-color 0.3s ease, color 0.3s ease;
+  width: 100%;
 }
 
 .brand-story h3 {
@@ -1050,10 +1110,10 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
-  margin-top: 2rem;
+  margin: 2rem auto;
   max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .pillar {
@@ -1068,6 +1128,8 @@ body {
   align-items: center;
   justify-content: flex-start;
   border: 1px solid var(--border-color);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .pillar:hover {
@@ -1408,13 +1470,13 @@ footer {
   display: none;
 }
 
-/* 返回顶部按钮 */
+/* 回到顶部按钮 */
 #back-to-top {
   position: fixed;
-  bottom: 90px;
-  right: 30px;
-  width: 50px;
-  height: 50px;
+  bottom: 85px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
   background-color: var(--primary-color);
   color: white;
   border: none;
@@ -1423,7 +1485,7 @@ footer {
   z-index: 99;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
-  font-size: 20px;
+  font-size: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1449,22 +1511,66 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   cursor: pointer;
   background-color: var(--primary-color);
   color: white;
   border: none;
   transition: all 0.3s ease;
-  font-size: 20px;
+  font-size: 16px;
   position: fixed;
   bottom: 30px;
-  right: 30px;
+  right: 20px;
   z-index: 99;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
+/* 移动端按钮位置调整 */
+@media (max-width: 768px) {
+  #back-to-top {
+    width: 35px;
+    height: 35px;
+    bottom: 75px;
+    right: 15px;
+    font-size: 14px;
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .theme-toggle {
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
+    bottom: 25px;
+    right: 15px;
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@media (max-width: 480px) {
+  #back-to-top {
+    width: 32px;
+    height: 32px;
+    bottom: 70px;
+    right: 10px;
+    font-size: 12px;
+  }
+  
+  .theme-toggle {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+    bottom: 25px;
+    right: 10px;
+  }
+}
+
+/* 主题切换按钮 */
 .theme-toggle:hover {
   background-color: var(--secondary-color);
   color: white;
@@ -1610,18 +1716,18 @@ footer {
   
   /* 修改按钮位置，避免超出屏幕 */
   #back-to-top {
-    width: 42px;
-    height: 42px;
+    width: 40px;
+    height: 40px;
     bottom: 70px;
     right: 15px;
-    font-size: 18px;
+    font-size: 16px;
   }
   
   .theme-toggle {
-    width: 42px;
-    height: 42px;
-    font-size: 18px;
-    bottom: 15px;
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+    bottom: 20px;
     right: 15px;
   }
   
@@ -1760,19 +1866,19 @@ footer {
   
   /* 进一步调整按钮位置，避免超出屏幕 */
   #back-to-top {
-    width: 36px;
-    height: 36px;
-    bottom: 60px;
-    right: 10px;
-    font-size: 16px;
+    width: 35px;
+    height: 35px;
+    bottom: 65px;
+    right: 12px;
+    font-size: 14px;
   }
   
   .theme-toggle {
-    width: 36px;
-    height: 36px;
-    font-size: 16px;
-    bottom: 10px;
-    right: 10px;
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
+    bottom: 20px;
+    right: 12px;
   }
   
   .popular-tools h2, .tools-category h2, .ai-news h2, .learning-resources h2 {
@@ -1912,18 +2018,18 @@ header.mobile-view .desktop-nav {
   }
   
   header.header-scrolled.mobile-view .logo-container {
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     transition: all 0.3s ease;
   }
   
   header.header-scrolled.mobile-view .logo-8r {
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
   }
   
   header.header-scrolled.mobile-view .logo-8r::before {
-    font-size: 20px;
+    font-size: 22px;
   }
   
   header.header-scrolled.mobile-view .logo-text h1 {
@@ -1932,7 +2038,60 @@ header.mobile-view .desktop-nav {
   }
   
   header.header-scrolled.mobile-view .logo-text p {
-    font-size: 0.8rem;
+    font-size: 12px;
     transition: all 0.3s ease;
+  }
+}
+
+/* 移动端导航样式优化 */
+@media (max-width: 768px) {
+  header.header-scrolled nav ul li a {
+    font-size: 14px;
+    padding: 6px 10px;
+    font-weight: 700;
+    color: #000000; /* 确保移动端文字清晰可见 */
+  }
+
+  [data-theme="dark"] header.header-scrolled nav ul li a {
+    color: #ffffff !important;
+  }
+
+  header.header-scrolled nav ul {
+    background-color: rgba(248, 250, 252, 0.98);
+    border-radius: 4px;
+    padding: 3px 5px;
+  }
+
+  [data-theme="dark"] header.header-scrolled nav ul {
+    background-color: rgba(31, 41, 55, 0.98);
+  }
+
+  /* 修复移动视图下的logo样式 */
+  header.header-scrolled.mobile-view {
+    background-color: rgba(var(--header-bg-rgb), 0.97);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  header.header-scrolled.mobile-view .logo-container {
+    width: 36px;
+    height: 36px;
+  }
+
+  header.header-scrolled.mobile-view .logo-8r {
+    width: 36px;
+    height: 36px;
+  }
+
+  header.header-scrolled.mobile-view .logo-8r::before {
+    font-size: 20px;
+  }
+
+  header.header-scrolled.mobile-view .logo-text h1 {
+    font-size: 18px;
+  }
+
+  header.header-scrolled.mobile-view .logo-text p {
+    font-size: 0.75rem;
   }
 } 

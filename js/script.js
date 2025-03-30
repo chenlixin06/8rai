@@ -306,48 +306,80 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // 添加返回顶部功能
-    const createBackToTopButton = () => {
-        const button = document.createElement('button');
-        button.id = 'back-to-top';
-        button.innerHTML = '<i class="bi bi-arrow-up"></i>';
+    // 创建回到顶部按钮
+    function createBackToTopButton() {
+        const backToTopBtn = document.createElement('button');
+        backToTopBtn.id = 'back-to-top';
+        backToTopBtn.innerHTML = '<i class="bi bi-arrow-up"></i>';
+        backToTopBtn.title = '返回顶部';
         
-        document.body.appendChild(button);
+        document.body.appendChild(backToTopBtn);
         
-        button.addEventListener('mouseover', () => {
-            button.classList.add('back-to-top-hover');
+        // 当滚动超过300px显示按钮
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                if (!backToTopBtn.classList.contains('show')) {
+                    backToTopBtn.classList.add('show');
+                }
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+            
+            // 检查按钮是否超出屏幕边界
+            checkButtonPosition(backToTopBtn);
         });
         
-        button.addEventListener('mouseout', () => {
-            button.classList.remove('back-to-top-hover');
+        // 添加悬停效果
+        backToTopBtn.addEventListener('mouseenter', function() {
+            backToTopBtn.classList.add('back-to-top-hover');
         });
         
-        button.addEventListener('click', () => {
+        backToTopBtn.addEventListener('mouseleave', function() {
+            backToTopBtn.classList.remove('back-to-top-hover');
+        });
+        
+        // 点击返回顶部
+        backToTopBtn.addEventListener('click', function() {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
         });
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                button.classList.add('show');
-            } else {
-                button.classList.remove('show');
-                
-                // 确保动画完成后再隐藏
-                if (window.pageYOffset <= 300) {
-                    setTimeout(() => {
-                        if (window.pageYOffset <= 300) {
-                            button.classList.remove('show');
-                        }
-                    }, 300);
-                }
-            }
-        });
-    };
+    }
     
+    // 检查按钮位置是否超出屏幕边界并修正
+    function checkButtonPosition(button) {
+        if (!button) return;
+        
+        const rect = button.getBoundingClientRect();
+        const windowWidth = window.innerWidth;
+        
+        // 如果按钮超出右侧边界
+        if (rect.right > windowWidth) {
+            const newRight = Math.max(10, windowWidth - rect.width - 10); // 确保至少有10px的间距
+            button.style.right = newRight + 'px';
+        }
+    }
+    
+    // 在文档加载时创建回到顶部按钮
     createBackToTopButton();
+    
+    // 确保主题切换按钮位置也不会超出屏幕
+    function adjustThemeTogglePosition() {
+        const themeToggle = document.querySelector('.theme-toggle');
+        if (themeToggle) {
+            checkButtonPosition(themeToggle);
+        }
+    }
+    
+    // 在窗口调整大小时进行位置检查
+    window.addEventListener('resize', function() {
+        const backToTopBtn = document.getElementById('back-to-top');
+        const themeToggle = document.querySelector('.theme-toggle');
+        
+        if (backToTopBtn) checkButtonPosition(backToTopBtn);
+        if (themeToggle) checkButtonPosition(themeToggle);
+    });
     
     // 新闻标签切换功能
     const newsTabs = document.querySelectorAll('.news-tab');
