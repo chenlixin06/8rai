@@ -1113,9 +1113,27 @@ footer {
   display: none;
 }
 
-.footer-logo h2 {
+/* 修改尾部LOGO布局为水平排列 */
+.footer-logo-horizontal {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.footer-logo-horizontal .logo-container-small {
+  margin-bottom: 0;
+  margin-right: 12px;
+}
+
+.footer-logo-horizontal h2 {
+  margin: 0;
+  margin-right: 10px;
   font-size: 1.5rem;
-  margin-bottom: 0.5rem;
+}
+
+.footer-logo-horizontal p {
+  margin: 0;
+  color: var(--footer-text-light);
 }
 
 .footer-logo p {
@@ -1216,7 +1234,32 @@ footer {
   }
   
   .tools-grid, .news-grid, .resources-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+  }
+  
+  .tool-card, .resource-card {
+    padding: 1rem;
+  }
+  
+  .tool-card h3, .tool-card h4, .resource-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+  }
+  
+  .tool-card p, .resource-card p {
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .tool-icon, .resource-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .tool-link, .resource-link {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
   }
   
   .footer-content {
@@ -1236,6 +1279,36 @@ footer {
   .brand-story {
     grid-column: 1;
   }
+  
+  /* 确保移动端也保持水平排列的LOGO */
+  .footer-logo-horizontal {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .footer-logo-horizontal .logo-container-small {
+    width: 36px;
+    height: 36px;
+    margin-right: 10px;
+  }
+  
+  .footer-logo-horizontal .logo-8r-small {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .footer-logo-horizontal .logo-8r-small::before {
+    font-size: 20px;
+  }
+  
+  .footer-logo-horizontal h2 {
+    font-size: 1.3rem;
+  }
+  
+  .footer-logo-horizontal p {
+    font-size: 0.9rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1245,6 +1318,34 @@ footer {
   
   .category-section h3 {
     font-size: 1.2rem;
+  }
+  
+  .tools-grid, .news-grid, .resources-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+  }
+  
+  .tool-card, .resource-card {
+    padding: 0.8rem;
+  }
+  
+  .tool-card h3, .tool-card h4, .resource-card h3 {
+    font-size: 0.9rem;
+  }
+  
+  .tool-card p, .resource-card p {
+    font-size: 0.8rem;
+    margin-bottom: 0.6rem;
+  }
+  
+  .tool-icon, .resource-icon {
+    font-size: 1.3rem;
+    margin-bottom: 0.6rem;
+  }
+  
+  .tool-link, .resource-link {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
   }
   
   .brand-pillars {
@@ -1259,6 +1360,31 @@ footer {
   
   .pillar i {
     font-size: 1.5rem;
+  }
+  
+  /* 超小屏幕LOGO样式调整 */
+  .footer-logo-horizontal .logo-container-small {
+    width: 32px;
+    height: 32px;
+    margin-right: 8px;
+  }
+  
+  .footer-logo-horizontal .logo-8r-small {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .footer-logo-horizontal .logo-8r-small::before {
+    font-size: 18px;
+  }
+  
+  .footer-logo-horizontal h2 {
+    font-size: 1.2rem;
+    margin-right: 8px;
+  }
+  
+  .footer-logo-horizontal p {
+    font-size: 0.8rem;
   }
 }
 
