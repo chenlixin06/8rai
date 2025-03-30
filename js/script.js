@@ -189,13 +189,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (logoContainer) logoContainer.style.display = 'none';
                 if (logoText) logoText.style.display = 'none';
                 
-                // 移动端导航跟随滚动
+                // 移动端导航跟随滚动 - 使用新的固定导航类
                 if (nav) {
-                    nav.style.position = 'fixed';
-                    nav.style.top = '0';
-                    nav.style.left = '0';
-                    nav.style.width = '100%';
-                    nav.style.zIndex = '1000';
+                    nav.classList.add('nav-fixed');
                 }
             }
         } else {
@@ -208,12 +204,9 @@ document.addEventListener('DOMContentLoaded', function() {
             if (logoContainer) logoContainer.style.display = '';
             if (logoText) logoText.style.display = '';
             
-            // 移动端下重置导航位置
+            // 移动端下重置导航位置 - 移除固定导航类
             if (window.innerWidth <= 768 && nav) {
-                nav.style.position = '';
-                nav.style.top = '';
-                nav.style.left = '';
-                nav.style.width = '';
+                nav.classList.remove('nav-fixed');
             }
         }
         

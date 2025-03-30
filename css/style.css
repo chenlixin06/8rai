@@ -224,8 +224,9 @@ nav ul li a {
 
 nav ul li a:hover, 
 nav ul li a.active {
-  background-color: var(--primary-color);
+  background-color: #3730a3; /* 更深的蓝色背景提高对比度 */
   color: white;
+  font-weight: 600; /* 加粗字体 */
 }
 
 /* 滚动时的导航栏样式 */
@@ -262,10 +263,15 @@ header.header-scrolled .logo-text p {
 @media (max-width: 768px) {
   header {
     padding: 10px 0;
+    top: env(safe-area-inset-top); /* 使用安全区域插入来适应浏览器输入框 */
+  }
+  
+  body {
+    padding-top: 110px; /* 增加顶部内边距，为固定导航腾出更多空间 */
   }
   
   header.header-scrolled {
-    padding: 5px 0;
+    padding: 0;
   }
   
   header.header-scrolled .logo-container {
@@ -317,13 +323,16 @@ header.header-scrolled .logo-text p {
     display: none;
   }
   
+  /* 固定导航样式 */
   nav {
     width: 100%;
-    position: sticky;
-    top: 0;
-    z-index: 990;
+    position: fixed; /* 始终固定导航 */
+    top: 0; /* 固定在顶部 */
+    left: 0;
+    z-index: 1000;
   }
   
+  /* 初始状态下的导航 */
   nav ul {
     display: flex;
     justify-content: space-between;
@@ -338,17 +347,25 @@ header.header-scrolled .logo-text p {
   nav ul li {
     flex: 1;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px; /* 固定高度 */
   }
   
   nav ul li a {
-    display: block;
-    padding: 8px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
     font-size: 0.9rem;
     border-radius: 0;
     background-color: transparent;
     border-bottom: 2px solid transparent;
     white-space: nowrap;
     color: var(--text-color);
+    height: 100%;
+    width: 100%;
   }
   
   nav ul li a:hover, 
@@ -357,17 +374,20 @@ header.header-scrolled .logo-text p {
     color: var(--primary-color);
     border-bottom: 2px solid var(--primary-color);
   }
-  
-  body {
-    padding-top: 70px;
-  }
 }
 
 /* 移动端导航响应式微调 */
 @media (max-width: 480px) {
   nav ul li a {
     font-size: 0.8rem;
-    padding: 6px 2px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  nav ul li {
+    height: 40px; /* 稍微降低高度 */
   }
   
   .logo-text h1 {
@@ -386,6 +406,10 @@ header.header-scrolled .logo-text p {
   
   .logo-8r::before {
     font-size: 20px;
+  }
+  
+  body {
+    padding-top: 120px; /* 为更小的屏幕增加更多的顶部内边距 */
   }
 }
 
@@ -1251,6 +1275,32 @@ footer {
 }
 
 @media (max-width: 768px) {
+  .popular-tools {
+    padding-top: 6rem; /* 增加顶部内边距，避免被导航栏遮挡 */
+  }
+  
+  /* 这里是确保所有section都有足够间距的通用样式 */
+  section {
+    padding-top: 2rem;
+  }
+  
+  /* 修改按钮位置，避免超出屏幕 */
+  #back-to-top {
+    width: 42px;
+    height: 42px;
+    bottom: 70px;
+    right: 15px;
+    font-size: 18px;
+  }
+  
+  .theme-toggle {
+    width: 42px;
+    height: 42px;
+    font-size: 18px;
+    bottom: 15px;
+    right: 15px;
+  }
+  
   header .container {
     flex-direction: column;
     padding: 1rem;
@@ -1359,6 +1409,36 @@ footer {
 }
 
 @media (max-width: 480px) {
+  .popular-tools {
+    padding-top: 7rem; /* 在更小的屏幕上增加更多内边距 */
+  }
+  
+  body {
+    padding-top: 120px; /* 为更小的屏幕增加更多的顶部内边距 */
+  }
+  
+  nav ul li a {
+    font-size: 0.8rem;
+    padding: 6px 2px;
+  }
+  
+  /* 进一步调整按钮位置，避免超出屏幕 */
+  #back-to-top {
+    width: 36px;
+    height: 36px;
+    bottom: 60px;
+    right: 10px;
+    font-size: 16px;
+  }
+  
+  .theme-toggle {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+    bottom: 10px;
+    right: 10px;
+  }
+  
   .popular-tools h2, .tools-category h2, .ai-news h2, .learning-resources h2 {
     font-size: 1.5rem;
   }
@@ -1583,43 +1663,6 @@ footer {
   transform: translateY(-5px) rotate(30deg);
 }
 
-/* 按钮的媒体查询 */
-@media (max-width: 768px) {
-  #back-to-top {
-    width: 42px;
-    height: 42px;
-    bottom: 80px;
-    right: 20px;
-    font-size: 18px;
-  }
-  
-  .theme-toggle {
-    width: 42px;
-    height: 42px;
-    font-size: 18px;
-    bottom: 20px;
-    right: 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  #back-to-top {
-    width: 36px;
-    height: 36px;
-    bottom: 70px;
-    right: 15px;
-    font-size: 16px;
-  }
-  
-  .theme-toggle {
-    width: 36px;
-    height: 36px;
-    font-size: 16px;
-    bottom: 15px;
-    right: 15px;
-  }
-}
-
 /* 夜间模式下特别优化 */
 [data-theme="dark"] nav ul li a {
   color: #f9fafb !important;
@@ -1627,8 +1670,9 @@ footer {
 
 [data-theme="dark"] nav ul li a:hover, 
 [data-theme="dark"] nav ul li a.active {
-  background-color: var(--primary-color);
+  background-color: #4f46e5 !important; /* 在深色模式下使用较亮的颜色 */
   color: white !important;
+  font-weight: 600; /* 加粗字体 */
 }
 
 [data-theme="dark"] .search-box {
@@ -1704,8 +1748,9 @@ footer {
 
 [data-theme="dark"] nav ul li a:hover, 
 [data-theme="dark"] nav ul li a.active {
-  background-color: transparent;
-  color: var(--primary-color) !important;
+  background-color: #4f46e5 !important; /* 在深色模式下使用较亮的颜色 */
+  color: white !important;
+  font-weight: 600;
   border-bottom: 2px solid var(--primary-color);
 }
 
