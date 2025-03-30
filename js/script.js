@@ -125,11 +125,23 @@ document.addEventListener('DOMContentLoaded', function() {
         let scrollPosition = window.scrollY + 100; // 添加偏移量以提前高亮
         
         // 处理头部状态
+        const header = document.querySelector('header');
         if (scrollPosition > 100) {
             header.classList.add('header-scrolled');
-            // 移除搜索框收缩相关代码，保持搜索框始终展开状态
+            // 检查是否是移动端
+            if (window.innerWidth <= 768) {
+                const logoContainer = document.querySelector('.logo-container');
+                const logoText = document.querySelector('.logo-text');
+                if (logoContainer) logoContainer.style.display = 'none';
+                if (logoText) logoText.style.display = 'none';
+            }
         } else {
             header.classList.remove('header-scrolled');
+            // 恢复LOGO显示
+            const logoContainer = document.querySelector('.logo-container');
+            const logoText = document.querySelector('.logo-text');
+            if (logoContainer) logoContainer.style.display = '';
+            if (logoText) logoText.style.display = '';
         }
         
         // 默认移除所有链接的active类
@@ -155,9 +167,26 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    
+
     // 添加滚动事件监听
     window.addEventListener('scroll', onScroll);
+
+    // 窗口大小改变时检查
+    window.addEventListener('resize', function() {
+        const header = document.querySelector('header');
+        const logoContainer = document.querySelector('.logo-container');
+        const logoText = document.querySelector('.logo-text');
+        
+        if (header.classList.contains('header-scrolled')) {
+            if (window.innerWidth <= 768) {
+                if (logoContainer) logoContainer.style.display = 'none';
+                if (logoText) logoText.style.display = 'none';
+            } else {
+                if (logoContainer) logoContainer.style.display = '';
+                if (logoText) logoText.style.display = '';
+            }
+        }
+    });
     
     // 给logo链接添加点击事件
     const logoLink = document.querySelector('.logo-link');
