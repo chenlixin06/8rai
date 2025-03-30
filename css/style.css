@@ -2253,4 +2253,99 @@ header.mobile-view .desktop-nav {
     padding-top: 80px; /* 调整顶部内边距，确保不被头部遮挡 */
     overflow-x: hidden; /* 防止水平滚动 */
   }
+}
+
+/* 微信浏览器特定样式 */
+body.wechat-browser {
+  padding-top: 120px; /* 为微信浏览器增加更多的顶部空间 */
+}
+
+header.wechat-header {
+  padding-top: 40px; /* 为微信状态栏留出空间 */
+  min-height: 100px; /* 确保头部有足够高度 */
+}
+
+header.wechat-header.header-scrolled {
+  padding-top: 40px; /* 滚动时也保持顶部间距 */
+  min-height: 90px; /* 滚动时的最小高度 */
+}
+
+/* iOS微信浏览器特定样式 */
+body.wechat-ios {
+  padding-top: 140px; /* iOS设备上增加更多空间 */
+}
+
+header.wechat-ios-header {
+  padding-top: 45px; /* iOS微信状态栏通常更高 */
+}
+
+header.wechat-ios-header.header-scrolled {
+  padding-top: 45px;
+}
+
+@media screen and (max-width: 480px) {
+  body.wechat-browser {
+    padding-top: 100px;
+  }
+  
+  header.wechat-header {
+    padding-top: 35px;
+    min-height: 90px;
+  }
+  
+  header.wechat-header.header-scrolled {
+    padding-top: 35px;
+    min-height: 80px;
+  }
+  
+  body.wechat-ios {
+    padding-top: 120px;
+  }
+  
+  header.wechat-ios-header {
+    padding-top: 40px;
+  }
+  
+  header.wechat-ios-header.header-scrolled {
+    padding-top: 40px;
+  }
+}
+
+/* 微信滚动方向类样式 */
+header.wechat-scroll-down {
+  transform: translateY(0); /* 确保在向下滚动时头部完全可见 */
+  transition: transform 0.3s ease;
+}
+
+header.wechat-scroll-up {
+  transform: translateY(0); /* 确保在向上滚动时头部完全可见 */
+  transition: transform 0.3s ease;
+}
+
+/* 确保微信浏览器中标题栏固定且不透明 */
+.wechat-browser header {
+  position: fixed;
+  z-index: 1000;
+  background-color: rgba(var(--header-bg-rgb), 0.98);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  left: 0;
+  top: 0;
+  transition: all 0.3s ease;
+}
+
+/* 微信浏览器额外兼容性修复 */
+@media screen and (max-width: 768px) {
+  /* 防止默认的iOS橡皮筋效果导致头部移位 */
+  .wechat-browser {
+    overflow-x: hidden;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* 确保微信浏览器中内容不被头部遮挡 */
+  .wechat-browser section:first-of-type {
+    margin-top: 20px;
+  }
 } 

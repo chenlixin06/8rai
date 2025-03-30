@@ -1,4 +1,96 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // 检测微信浏览器并添加特定类
+    function detectWechatBrowser() {
+        const ua = navigator.userAgent.toLowerCase();
+        const isWechat = ua.indexOf('micromessenger') !== -1;
+        
+        if (isWechat) {
+            document.body.classList.add('wechat-browser');
+            document.querySelector('header').classList.add('wechat-header');
+            
+            // 检测iOS设备
+            const isIOS = /iphone|ipad|ipod/.test(ua);
+            if (isIOS) {
+                document.body.classList.add('wechat-ios');
+                document.querySelector('header').classList.add('wechat-ios-header');
+            }
+            
+            // 微信浏览器特定优化
+            optimizeForWechat();
+        }
+    }
+    
+    // 为微信浏览器优化头部
+    function optimizeForWechat() {
+        const header = document.querySelector('header');
+        if (!header) return;
+        
+        // 检测是否为iOS设备
+        const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent.toLowerCase());
+        
+        // 应用初始样式
+        if (isIOS) {
+            // iOS微信特定样式应用于JS（覆盖CSS中的样式）
+            document.body.style.paddingTop = '140px'; 
+            header.style.paddingTop = '45px';
+            header.style.minHeight = '100px';
+        } else {
+            // 普通微信样式
+            document.body.style.paddingTop = '120px';
+            header.style.paddingTop = '40px';
+            header.style.minHeight = '100px';
+        }
+
+        // 修改滚动监听器，添加微信特定处理
+        const originalOnScroll = window.onscroll;
+        
+        window.onscroll = function(e) {
+            // 调用原来的滚动监听器
+            if (typeof originalOnScroll === 'function') {
+                originalOnScroll(e);
+            }
+            
+            // 微信浏览器特定处理
+            if (window.scrollY > 50) {
+                if (isIOS) {
+                    header.style.paddingTop = '45px';
+                    header.style.minHeight = '90px';
+                } else {
+                    header.style.paddingTop = '40px';
+                    header.style.minHeight = '90px';
+                }
+            } else {
+                if (isIOS) {
+                    header.style.paddingTop = '45px';
+                    header.style.minHeight = '100px';
+                } else {
+                    header.style.paddingTop = '40px';
+                    header.style.minHeight = '100px';
+                }
+            }
+        };
+        
+        // 处理方向锁定和弹性滚动
+        document.body.style.overscrollBehavior = 'none';
+        document.documentElement.style.overscrollBehavior = 'none';
+        
+        // 防止微信上下滑动时的地址栏移动导致的布局跳动
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', function() {
+            const st = window.pageYOffset || document.documentElement.scrollTop;
+            if (st > lastScrollTop) {
+                // 向下滚动
+                header.classList.add('wechat-scroll-down');
+                header.classList.remove('wechat-scroll-up');
+            } else {
+                // 向上滚动
+                header.classList.add('wechat-scroll-up');
+                header.classList.remove('wechat-scroll-down');
+            }
+            lastScrollTop = st <= 0 ? 0 : st;
+        }, false);
+    }
+    
     // 创建主题切换按钮
     function createThemeToggle() {
         // 获取header-right元素
@@ -52,6 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
         navLinks.forEach(link => {
             // 重新应用样式
             link.style.color = '';
+            link.style.backgroundColor = '';
             
             // 检查是否为活跃状态的链接
             if (link.classList.contains('active')) {
@@ -63,13 +156,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 // 非活跃状态，白天模式时使用更深的文字颜色
                 link.style.color = '#1a202c';
                 link.style.fontWeight = '600';
+                link.style.backgroundColor = 'transparent';
             } else {
                 // 夜间模式
-                setTimeout(() => {
-                    link.style.color = getComputedStyle(document.documentElement).getPropertyValue('--text-color');
-                }, 10);
+                link.style.color = getComputedStyle(document.documentElement).getPropertyValue('--text-color');
+                link.style.fontWeight = '600';
+                link.style.backgroundColor = 'transparent';
             }
         });
+        
+        // 再次执行滚动检测，确保正确高亮当前所在板块
+        setTimeout(() => {
+            onScroll();
+        }, 50);
         
         // 强制刷新AI模型评测区域
         const modelsComparison = document.querySelector('.models-comparison');
@@ -182,9 +281,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
-        // 默认移除所有链接的active类
+        // 默认移除所有链接的active类和样式
         navLinks.forEach(link => {
             link.classList.remove('active');
+            link.style.backgroundColor = '';
+            link.style.color = '';
+            link.style.fontWeight = '';
         });
         
         // 检查每个板块的位置
@@ -196,14 +298,30 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // 如果当前滚动位置在这个板块内
             if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                // 给对应导航链接添加active类
+                // 给对应导航链接添加active类和样式
                 const correspondingLink = document.querySelector(`nav ul li a[href="#${sectionId}"]`);
                 if (correspondingLink) {
                     correspondingLink.classList.add('active');
+                    correspondingLink.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color');
+                    correspondingLink.style.color = 'white';
+                    correspondingLink.style.fontWeight = '600';
                     foundActive = true;
                 }
             }
         });
+        
+        // 如果没有找到活跃的板块，重新应用当前主题的默认样式
+        if (!foundActive) {
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            navLinks.forEach(link => {
+                if (currentTheme === 'light') {
+                    link.style.color = '#1a202c';
+                } else {
+                    link.style.color = getComputedStyle(document.documentElement).getPropertyValue('--text-color');
+                }
+                link.style.fontWeight = '600';
+            });
+        }
         
         // 处理回到顶部按钮
         const backToTopButton = document.getElementById('back-to-top');
@@ -520,6 +638,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 页面加载完成后初始化
     createBackToTopButton();
     initResponsiveStyles();
+    detectWechatBrowser(); // 添加微信浏览器检测
     
     // 处理新闻标签切换功能
     initNewsTabSwitching();
