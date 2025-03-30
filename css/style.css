@@ -1,18 +1,21 @@
 /* 全局样式 */
 :root {
-  --primary-color: #4f46e5;
-  --secondary-color: #7c3aed;
-  --background-color: #f9fafb;
-  --card-color: #ffffff;
-  --text-color: #1f2937;
-  --text-light: #6b7280;
-  --border-color: #e5e7eb;
+  --primary-color: #4F46E5;
+  --primary-dark: #4338CA; 
+  --secondary-color: #10B981;
+  --accent-color: #F59E0B;
+  --text-color: #374151;
+  --text-light: #6B7280;
+  --border-color: #E5E7EB;
+  --header-bg: #FFFFFF;
+  --header-bg-rgb: 255, 255, 255; /* 用于透明度计算 */
+  --footer-bg: #1F2937;
+  --footer-text: #F9FAFB;
+  --footer-text-light: #D1D5DB;
+  --card-color: #FFFFFF;
+  --background-color: #F3F4F6;
   --hover-color: #eff6ff;
   --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --header-bg: #ffffff;
-  --footer-bg: #1f2937;
-  --footer-text: #ffffff;
-  --footer-text-light: #d1d5db;
 }
 
 [data-theme="dark"] {
@@ -66,26 +69,26 @@ a:hover {
 /* 顶部导航栏 */
 header {
   background-color: var(--header-bg);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  padding: 15px 0;
+  padding: 15px 0; /* 增加上下内边距 */
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
-  transition: all 0.3s ease;
-  border-bottom: 1px solid var(--border-color); /* 添加细微边框 */
+  transition: padding 0.3s, background-color 0.3s, box-shadow 0.3s;
 }
 
 header .container {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem; /* 增加水平内边距 */
 }
 
 .logo {
   display: flex;
   align-items: center;
+  margin-right: 20px; /* 增加与右侧导航的间距 */
 }
 
 .logo-link {
@@ -160,37 +163,40 @@ header .container {
 .header-right {
   display: flex;
   align-items: center;
-  gap: 20px;
+  flex: 1;
+  justify-content: flex-end;
+  gap: 25px; /* 增加搜索框和导航之间的间距 */
 }
 
-/* 搜索框样式 */
+/* 搜索框设计 */
 .search-box {
+  display: flex;
+  align-items: center;
   position: relative;
-  width: 200px;
-  overflow: hidden;
-  border-radius: 50px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  width: 250px; /* 更宽的搜索框 */
+  transition: width 0.3s ease;
 }
 
 .search-box input {
   width: 100%;
-  padding: 8px 40px 8px 15px;
-  border: none;
-  outline: none;
-  font-size: 14px;
+  padding: 10px 40px 10px 16px; /* 增加内边距 */
+  border-radius: 8px; /* 更圆润的边角 */
+  border: 1px solid var(--border-color);
+  background-color: var(--card-color);
+  font-size: 15px; /* 增大字体 */
+  transition: all 0.3s;
 }
 
 .search-box button {
   position: absolute;
-  right: 0;
-  top: 0;
-  height: 100%;
-  width: 40px;
+  right: 10px;
   background: none;
   border: none;
+  color: var(--text-color);
+  font-size: 18px; /* 增大图标 */
   cursor: pointer;
-  color: #5a46ff;
+  padding: 0;
+  transition: color 0.3s;
 }
 
 /* 修改搜索框展开状态样式 */
@@ -210,15 +216,15 @@ nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: 15px;
+  gap: 20px; /* 增加导航项之间的间距 */
 }
 
 nav ul li a {
   text-decoration: none;
   color: var(--text-color);
   font-weight: 600; /* 加粗字体 */
-  font-size: 14px;
-  padding: 5px 10px;
+  font-size: 16px; /* 增大字体大小 */
+  padding: 8px 16px; /* 增大内边距 */
   border-radius: 4px;
   transition: all 0.3s;
 }
@@ -240,7 +246,7 @@ nav ul li a.active {
   background-color: #f8fafc; /* 略微灰白色背景 */
   border-radius: 6px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  padding: 3px;
+  padding: 4px 6px; /* 调整内部内边距 */
 }
 
 /* 修改白天模式下的导航文字颜色和对比度 */
@@ -257,10 +263,24 @@ nav ul li a.active {
 
 /* 滚动时的导航栏样式 */
 header.header-scrolled {
-  padding: 8px 0;
+  padding: 10px 0;
   background-color: var(--header-bg);
   opacity: 0.95;
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+header.header-scrolled nav ul li a {
+  font-size: 15px; /* 滚动时略微减小字体 */
+  padding: 7px 14px; /* 减小内边距 */
+}
+
+header.header-scrolled .search-box {
+  width: 230px; /* 略微减小搜索框宽度 */
+}
+
+header.header-scrolled .search-box input {
+  padding: 8px 38px 8px 14px; /* 减小内边距 */
+  font-size: 14px; /* 减小字体 */
 }
 
 header.header-scrolled .logo-container {
@@ -285,15 +305,19 @@ header.header-scrolled .logo-text p {
   font-size: 12px;
 }
 
-/* 移动端导航优化 */
+/* 桌面版导航 */
+.desktop-nav {
+  display: flex;
+}
+
 @media (max-width: 768px) {
   header {
     padding: 10px 0;
-    top: env(safe-area-inset-top); /* 使用安全区域插入来适应浏览器输入框 */
+    top: env(safe-area-inset-top);
   }
   
   body {
-    padding-top: 160px; /* 增加顶部内边距，为固定导航和LOGO腾出更多空间 */
+    padding-top: 80px; /* 减小顶部内边距，因为没有导航条 */
   }
   
   header.header-scrolled {
@@ -301,153 +325,83 @@ header.header-scrolled .logo-text p {
   }
   
   header.header-scrolled .logo-container {
-    display: none;
+    width: 32px;
+    height: 32px;
   }
   
   header.header-scrolled .logo-text {
-    display: none;
+    opacity: 0.8;
   }
   
   header .container {
     flex-direction: column;
     padding: 0.5rem 1rem;
     position: relative;
+    align-items: center; /* 将LOGO居中 */
   }
   
   .logo {
     margin-bottom: 0.5rem;
-    margin-top: 44px; /* 为导航条预留空间，确保LOGO在导航条下方 */
+    margin-top: 0; /* 移除为导航预留的空间 */
+    display: flex;
+    justify-content: center; /* 居中LOGO */
   }
 
   .logo-container {
-    width: 40px;
-    height: 40px;
+    width: 45px; /* 增大LOGO尺寸 */
+    height: 45px;
   }
 
   .logo-8r {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
   }
 
   .logo-8r::before {
-    font-size: 22px;
+    font-size: 24px;
   }
 
   .logo-text h1 {
-    font-size: 20px;
+    font-size: 24px; /* 增大字体尺寸 */
   }
 
   .logo-text p {
-    display: none;
+    display: block; /* 显示副标题 */
+    font-size: 0.9rem;
   }
   
   .header-right {
-    width: 100%;
-    align-items: center;
+    display: none; /* 在移动端隐藏导航和搜索框 */
   }
   
-  .search-box {
+  /* 移除固定导航样式 */
+  .desktop-nav {
     display: none;
-  }
-  
-  /* 固定导航样式 */
-  nav {
-    width: 100%;
-    position: fixed; /* 始终固定导航 */
-    top: 0; /* 固定在顶部 */
-    left: 0;
-    z-index: 1000;
-  }
-  
-  /* 初始状态下的导航 */
-  nav ul {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    background-color: var(--header-bg);
-    margin: 0;
-    padding: 8px 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    border-radius: 0;
-    border-bottom: 1px solid var(--border-color); /* 添加细微边框 */
-  }
-  
-  nav ul li {
-    flex: 1;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 44px; /* 固定高度 */
-  }
-  
-  nav ul li a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    font-size: 0.9rem;
-    border-radius: 4px; /* 确保按钮有圆角 */
-    background-color: transparent;
-    white-space: nowrap;
-    color: var(--text-color);
-    height: 100%;
-    width: 100%;
-    margin: 0 4px; /* 添加水平边距 */
-    border: none; /* 移除边框 */
-  }
-  
-  nav ul li a:hover {
-    background-color: rgba(79, 70, 229, 0.1); /* 悬停时的背景色为主色调的半透明版本 */
-    color: var(--primary-color);
-  }
-  
-  nav ul li a.active {
-    background-color: var(--primary-color);
-    color: white;
-    font-weight: 600;
-    border: none;
   }
 }
 
-/* 移动端导航响应式微调 */
+/* 移动端LOGO响应式微调 */
 @media (max-width: 480px) {
-  nav ul li a {
-    font-size: 0.8rem;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  nav ul li {
-    height: 40px; /* 稍微降低高度 */
-  }
-  
   .logo-text h1 {
-    font-size: 18px;
+    font-size: 22px;
   }
   
   .logo-container {
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
   }
   
   .logo-8r {
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
   }
   
   .logo-8r::before {
-    font-size: 20px;
+    font-size: 22px;
   }
   
   body {
-    padding-top: 150px; /* 为更小的屏幕增加更多的顶部内边距 */
-  }
-  
-  .logo {
-    margin-top: 40px; /* 为更小屏幕上的导航条预留空间 */
+    padding-top: 70px; /* 为更小的屏幕减少顶部内边距 */
   }
 }
 
@@ -1928,5 +1882,57 @@ footer {
   .footer-bottom {
     padding-top: 0.6rem;
     font-size: 0.75rem;
+  }
+}
+
+/* 移动端特定样式 */
+header.mobile-view .container {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+header.mobile-view .logo {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+header.mobile-view .desktop-nav {
+  display: none;
+}
+
+/* 滚动样式调整 */
+@media (max-width: 768px) {
+  header.header-scrolled.mobile-view {
+    padding: 5px 0;
+    background-color: rgba(var(--header-bg-rgb), 0.95);
+    backdrop-filter: blur(10px);
+  }
+  
+  header.header-scrolled.mobile-view .logo-container {
+    width: 36px;
+    height: 36px;
+    transition: all 0.3s ease;
+  }
+  
+  header.header-scrolled.mobile-view .logo-8r {
+    width: 36px;
+    height: 36px;
+  }
+  
+  header.header-scrolled.mobile-view .logo-8r::before {
+    font-size: 20px;
+  }
+  
+  header.header-scrolled.mobile-view .logo-text h1 {
+    font-size: 20px;
+    transition: all 0.3s ease;
+  }
+  
+  header.header-scrolled.mobile-view .logo-text p {
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
   }
 } 

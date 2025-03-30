@@ -454,4 +454,20 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.removeChild(toast);
         }, 2000);
     }
+
+    // 响应式检测 - 处理移动端和桌面端切换
+    function handleResponsiveLayout() {
+        const isMobile = window.innerWidth <= 768;
+        const header = document.querySelector('header');
+        
+        if (isMobile) {
+            header.classList.add('mobile-view');
+        } else {
+            header.classList.remove('mobile-view');
+        }
+    }
+    
+    // 页面加载和调整大小时检查
+    handleResponsiveLayout();
+    window.addEventListener('resize', handleResponsiveLayout);
 }); 
