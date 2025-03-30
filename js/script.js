@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // 获取搜索框元素
-    const searchInput = document.querySelector('.search-box input');
-    const searchButton = document.querySelector('.search-box button');
+    // 获取搜索框元素 - 从新位置获取
+    const searchInput = document.querySelector('.header-right .search-box input');
+    const searchButton = document.querySelector('.header-right .search-box button');
 
     // 获取所有工具卡片
     const allTools = document.querySelectorAll('.tool-card');
@@ -68,6 +68,33 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // 添加响应式导航菜单功能
+    const setupMobileNav = () => {
+        if (window.innerWidth <= 768) {
+            // 如果在移动设备上，可以添加一个汉堡菜单按钮
+            if (!document.querySelector('.mobile-menu-toggle')) {
+                const mobileMenuToggle = document.createElement('button');
+                mobileMenuToggle.className = 'mobile-menu-toggle';
+                mobileMenuToggle.innerHTML = '<i class="bi bi-list"></i>';
+                
+                const headerRight = document.querySelector('.header-right');
+                const nav = document.querySelector('nav');
+                
+                headerRight.insertBefore(mobileMenuToggle, nav);
+                
+                mobileMenuToggle.addEventListener('click', () => {
+                    nav.classList.toggle('active');
+                });
+            }
+        }
+    };
+    
+    // 初始化响应式导航
+    setupMobileNav();
+    
+    // 窗口大小改变时重新设置
+    window.addEventListener('resize', setupMobileNav);
+    
     // 滚动监听，更新导航高亮
     function onScroll() {
         // 获取所有内容板块
@@ -76,7 +103,13 @@ document.addEventListener('DOMContentLoaded', function() {
         // 获取当前滚动位置
         let scrollPosition = window.scrollY + 100; // 添加偏移量以提前高亮
         
+        // 默认移除所有链接的active类
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+        });
+        
         // 检查每个板块的位置
+        let foundActive = false;
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.offsetHeight;
@@ -84,30 +117,38 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // 如果当前滚动位置在这个板块内
             if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                // 移除所有导航链接的active类
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                });
-                
                 // 给对应导航链接添加active类
                 const correspondingLink = document.querySelector(`nav ul li a[href="#${sectionId}"]`);
                 if (correspondingLink) {
                     correspondingLink.classList.add('active');
+                    foundActive = true;
                 }
             }
         });
         
-        // 如果滚动到顶部，则激活首页链接
-        if (scrollPosition < 300) {
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-            });
-            document.querySelector('nav ul li a[href="#"]').classList.add('active');
-        }
+        // 如果滚动到顶部或没有找到活动的板块，不需要高亮任何导航项
+        // 因为首页选项已被移除
     }
     
     // 添加滚动事件监听
     window.addEventListener('scroll', onScroll);
+    
+    // 给logo链接添加点击事件
+    const logoLink = document.querySelector('.logo-link');
+    if (logoLink) {
+        logoLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            
+            // 移除所有链接的active类
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+        });
+    }
     
     // 初始化时执行一次滚动监听
     onScroll();
