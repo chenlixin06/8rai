@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // 获取搜索框元素 - 从新位置获取
     const searchInput = document.querySelector('.header-right .search-box input');
     const searchButton = document.querySelector('.header-right .search-box button');
+    const searchBox = document.querySelector('.header-right .search-box');
+    const header = document.querySelector('header');
 
     // 获取所有工具卡片
     const allTools = document.querySelectorAll('.tool-card');
@@ -31,8 +33,28 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // 添加搜索按钮点击事件
-    searchButton.addEventListener('click', performSearch);
+    // 搜索框展开/收起功能
+    searchButton.addEventListener('click', function(e) {
+        // 如果搜索框已收起，点击按钮时展开
+        if (header.classList.contains('header-scrolled') && !searchBox.classList.contains('expanded')) {
+            e.preventDefault(); // 阻止默认搜索行为
+            searchBox.classList.add('expanded');
+            searchInput.focus(); // 自动聚焦到输入框
+            return;
+        }
+        
+        // 已展开且有输入内容时，执行搜索
+        if (searchInput.value.trim() !== '') {
+            performSearch();
+        }
+    });
+    
+    // 当点击页面其他区域时，如果搜索框展开，则收起
+    document.addEventListener('click', function(e) {
+        if (!searchBox.contains(e.target) && searchBox.classList.contains('expanded')) {
+            searchBox.classList.remove('expanded');
+        }
+    });
     
     // 添加搜索框回车事件
     searchInput.addEventListener('keypress', function(e) {
@@ -68,13 +90,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // 滚动监听，更新导航高亮
+    // 滚动监听，更新导航高亮和搜索框状态
     function onScroll() {
         // 获取所有内容板块
         const sections = document.querySelectorAll('section[id]');
         
         // 获取当前滚动位置
         let scrollPosition = window.scrollY + 100; // 添加偏移量以提前高亮
+        
+        // 处理头部搜索框状态
+        if (scrollPosition > 100) {
+            header.classList.add('header-scrolled');
+            // 如果搜索框展开，则不改变状态
+            if (!searchBox.classList.contains('expanded')) {
+                searchBox.classList.remove('expanded');
+            }
+        } else {
+            header.classList.remove('header-scrolled');
+            searchBox.classList.remove('expanded');
+        }
         
         // 默认移除所有链接的active类
         navLinks.forEach(link => {
