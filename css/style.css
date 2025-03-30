@@ -966,8 +966,9 @@ body {
 
 /* 关于部分 */
 .about-section {
-  padding: 2rem 0;
-  background-color: white;
+  background-color: var(--background-color);
+  padding: 4rem 0;
+  transition: background-color 0.3s ease;
 }
 
 .about-section h2 {
@@ -985,10 +986,11 @@ body {
 
 .brand-story {
   background-color: var(--card-color);
-  border-radius: 10px;
   padding: 2rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
   box-shadow: var(--shadow);
-  width: 100%;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .brand-story h3 {
