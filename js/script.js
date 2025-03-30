@@ -279,4 +279,36 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+    
+    // 添加RSS订阅功能
+    const rssLink = document.querySelector('.rss-feed');
+    if (rssLink) {
+        rssLink.addEventListener('click', function(e) {
+            // 创建并显示一个临时提示
+            showToast('已打开RSS订阅源: 36kr.com/feed-ai');
+        });
+    }
+    
+    // 显示临时提示信息的函数
+    function showToast(message) {
+        const toast = document.createElement('div');
+        toast.textContent = message;
+        toast.style.position = 'fixed';
+        toast.style.bottom = '20px';
+        toast.style.left = '50%';
+        toast.style.transform = 'translateX(-50%)';
+        toast.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+        toast.style.color = 'white';
+        toast.style.padding = '10px 20px';
+        toast.style.borderRadius = '5px';
+        toast.style.zIndex = '1000';
+        toast.style.fontSize = '14px';
+        
+        document.body.appendChild(toast);
+        
+        // 2秒后移除提示
+        setTimeout(() => {
+            document.body.removeChild(toast);
+        }, 2000);
+    }
 }); 
