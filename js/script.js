@@ -52,8 +52,15 @@ document.addEventListener('DOMContentLoaded', function() {
         navLinks.forEach(link => {
             // 重新应用样式
             link.style.color = '';
-            if (theme === 'light') {
-                // 白天模式时使用更深的文字颜色
+            
+            // 检查是否为活跃状态的链接
+            if (link.classList.contains('active')) {
+                // 活跃状态链接需要显示为白色字体
+                link.style.color = 'white';
+                link.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color');
+                link.style.fontWeight = '600';
+            } else if (theme === 'light') {
+                // 非活跃状态，白天模式时使用更深的文字颜色
                 link.style.color = '#1a202c';
                 link.style.fontWeight = '600';
             } else {
@@ -163,6 +170,11 @@ document.addEventListener('DOMContentLoaded', function() {
             // 给当前点击的链接添加active类
             this.classList.add('active');
             
+            // 确保活跃链接样式一致
+            this.style.color = 'white';
+            this.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color');
+            this.style.fontWeight = '600';
+            
             const targetId = this.getAttribute('href');
             if (targetId === '#') return;
             
@@ -190,23 +202,29 @@ document.addEventListener('DOMContentLoaded', function() {
         if (scrollPosition > 100) {
             header.classList.add('header-scrolled');
             
-            // 检查是否是移动端
-            if (window.innerWidth <= 768) {
+            // 检查是否是移动端，且不是首次加载（避免闪烁）
+            if (window.innerWidth <= 768 && window.scrollY > 100) {
                 const logoContainer = document.querySelector('.logo-container');
                 const logoText = document.querySelector('.logo-text');
                 
-                if (logoContainer) logoContainer.style.display = 'none';
-                if (logoText) logoText.style.display = 'none';
+                // 在移动端滚动时不隐藏LOGO，移除原来的隐藏逻辑
+                // 仅在非移动端时应用隐藏逻辑
+                if (window.innerWidth > 768) {
+                    if (logoContainer) logoContainer.style.display = 'none';
+                    if (logoText) logoText.style.display = 'none';
+                }
             }
         } else {
             header.classList.remove('header-scrolled');
             
-            // 恢复LOGO显示
-            const logoContainer = document.querySelector('.logo-container');
-            const logoText = document.querySelector('.logo-text');
-            
-            if (logoContainer) logoContainer.style.display = '';
-            if (logoText) logoText.style.display = '';
+            // 恢复LOGO显示（仅非移动端）
+            if (window.innerWidth > 768) {
+                const logoContainer = document.querySelector('.logo-container');
+                const logoText = document.querySelector('.logo-text');
+                
+                if (logoContainer) logoContainer.style.display = '';
+                if (logoText) logoText.style.display = '';
+            }
         }
         
         // 默认移除所有链接的active类
@@ -242,14 +260,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const logoContainer = document.querySelector('.logo-container');
         const logoText = document.querySelector('.logo-text');
         
-        if (header.classList.contains('header-scrolled')) {
-            if (window.innerWidth <= 768) {
-                if (logoContainer) logoContainer.style.display = 'none';
-                if (logoText) logoText.style.display = 'none';
-            } else {
-                if (logoContainer) logoContainer.style.display = '';
-                if (logoText) logoText.style.display = '';
-            }
+        // 移除窗口大小改变时可能导致LOGO被隐藏的逻辑
+        // 仅在非移动端且已滚动时应用隐藏逻辑
+        if (header.classList.contains('header-scrolled') && window.innerWidth > 768) {
+            if (logoContainer) logoContainer.style.display = 'none';
+            if (logoText) logoText.style.display = 'none';
+        } else {
+            if (logoContainer) logoContainer.style.display = '';
+            if (logoText) logoText.style.display = '';
         }
         
         // 强制刷新一次主题样式
