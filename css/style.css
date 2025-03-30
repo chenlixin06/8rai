@@ -196,6 +196,10 @@ nav ul li a {
   border-radius: 4px;
   transition: all 0.3s;
   text-shadow: 0 0 1px rgba(255, 255, 255, 0.2); /* 添加微弱发光效果 */
+  display: block; /* 添加块级显示，确保所有元素一致 */
+  text-align: center; /* 居中文本 */
+  white-space: nowrap; /* 防止文本换行 */
+  min-width: 100px; /* 设置最小宽度，保证每个按钮宽度一致 */
 }
 
 nav ul li a:hover, 
@@ -203,6 +207,7 @@ nav ul li a.active {
   background-color: var(--primary-color); /* 使用主色调 */
   color: white;
   font-weight: 600; /* 加粗字体 */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
 }
 
 /* 统一导航样式，移除冗余规则 */
@@ -883,10 +888,12 @@ body {
 /* 模型比较表格 */
 .models-comparison {
   background-color: var(--card-color);
-  border-radius: 10px;
-  overflow: hidden;
+  border-radius: 8px;
   box-shadow: var(--shadow);
-  margin-bottom: 1.5rem;
+  width: 100%;
+  margin-top: 30px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
 }
 
 .comparison-header {
@@ -1685,14 +1692,20 @@ footer {
 
 /* 夜间模式下特别优化 */
 [data-theme="dark"] nav ul li a {
-  color: #f9fafb !important;
+  color: var(--text-color) !important;
 }
 
 [data-theme="dark"] nav ul li a:hover, 
 [data-theme="dark"] nav ul li a.active {
-  background-color: #4f46e5 !important; /* 在深色模式下使用较亮的颜色 */
+  background-color: var(--primary-color) !important;
   color: white !important;
-  font-weight: 600; /* 加粗字体 */
+  font-weight: 600;
+  border-bottom: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3) !important;
+}
+
+[data-theme="dark"] nav ul {
+  background-color: var(--header-bg);
 }
 
 [data-theme="dark"] .search-box {
@@ -1757,23 +1770,6 @@ footer {
   color: #d1d5db;
 }
 
-/* 夜间模式下导航样式优化 */
-[data-theme="dark"] nav ul {
-  background-color: var(--header-bg);
-}
-
-[data-theme="dark"] nav ul li a {
-  color: #f9fafb !important;
-}
-
-[data-theme="dark"] nav ul li a:hover, 
-[data-theme="dark"] nav ul li a.active {
-  background-color: #4f46e5 !important; /* 在深色模式下使用较亮的颜色 */
-  color: white !important;
-  font-weight: 600;
-  border-bottom: 2px solid var(--primary-color);
-}
-
 /* 移动端下热门工具部分额外顶部内边距 */
 @media (max-width: 768px) {
   .popular-tools {
@@ -1790,189 +1786,6 @@ footer {
   .popular-tools {
     padding-top: 5rem; /* 在更小的屏幕上增加更多内边距 */
   }
-}
-
-/* 响应式设计 */
-@media (max-width: 1024px) {
-  .header-right {
-    flex-direction: column;
-    align-items: flex-end;
-  }
-  
-  .search-box {
-    margin-bottom: 10px;
-  }
-  
-  .brand-pillars {
-    grid-template-columns: repeat(4, 1fr);
-    max-width: 800px;
-  }
-}
-
-/* 响应式设计 - 移动端优化 */
-@media (max-width: 768px) {
-  .popular-tools {
-    padding-top: 2rem; /* 重置顶部内边距，因为整体body已经有足够内边距 */
-  }
-  
-  /* 这里是确保所有section都有足够间距的通用样式 */
-  section {
-    padding-top: 2rem;
-  }
-  
-  /* 修改按钮位置，避免超出屏幕 */
-  #back-to-top {
-    width: 40px;
-    height: 40px;
-    bottom: 70px;
-    right: 15px;
-    font-size: 16px;
-  }
-  
-  .theme-toggle {
-    width: 40px;
-    height: 40px;
-    font-size: 16px;
-    bottom: 20px;
-    right: 15px;
-  }
-  
-  header .container {
-    flex-direction: column;
-    padding: 1rem;
-  }
-  
-  .logo {
-    margin-bottom: 1rem;
-  }
-  
-  .header-right {
-    width: 100%;
-    align-items: center;
-  }
-  
-  .search-box {
-    width: 100%;
-    margin-right: 0;
-    margin-bottom: 1rem;
-  }
-  
-  nav ul {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  nav ul li {
-    margin: 0.5rem;
-  }
-  
-  .tools-grid, .news-grid, .resources-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.8rem;
-  }
-  
-  .tool-card, .resource-card {
-    padding: 1rem;
-    height: 100%;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .tool-card h3, .tool-card h4, .resource-card h3 {
-    font-size: 1rem;
-    margin-bottom: 0.3rem;
-  }
-  
-  .tool-card p, .resource-card p {
-    font-size: 0.9rem;
-    margin-bottom: 0.8rem;
-    /* 确保文字不会溢出 */
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  
-  .tool-icon, .resource-icon {
-    font-size: 1.5rem;
-    margin-bottom: 0.8rem;
-  }
-  
-  .tool-link, .resource-link {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.9rem;
-  }
-  
-  .footer-content {
-    grid-template-columns: 1fr;
-    gap: 1rem; /* 在移动设备上减少间距 */
-  }
-  
-  .brand-pillars {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    max-width: 100%;
-    width: 100%;
-    box-sizing: border-box;
-    margin: 1rem auto;
-  }
-  
-  .about-content {
-    grid-template-columns: 1fr;
-  }
-  
-  .brand-story {
-    grid-column: 1;
-  }
-  
-  /* 底部样式调整 */
-  footer {
-    padding: 1.5rem 0 0.5rem; /* 在移动设备上减少内边距 */
-  }
-  
-  /* 确保移动端也保持水平排列的LOGO */
-  .footer-logo-horizontal {
-    display: flex;
-    align-items: center;
-    margin-bottom: 8px; /* 减少底部间距 */
-  }
-  
-  .footer-logo-horizontal .logo-container-small {
-    width: 32px;
-    height: 32px;
-    margin-right: 8px;
-  }
-  
-  .footer-logo-horizontal .logo-8r-small {
-    width: 32px;
-    height: 32px;
-  }
-  
-  .footer-logo-horizontal .logo-8r-small::before {
-    font-size: 18px;
-  }
-  
-  .footer-logo-horizontal h2 {
-    font-size: 1.2rem;
-    margin-right: 8px;
-  }
-  
-  .footer-logo-horizontal p {
-    font-size: 0.85rem;
-  }
-  
-  .footer-contact h3 {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .popular-tools {
-    padding-top: 5rem; /* 在更小的屏幕上增加更多内边距 */
-  }
   
   body {
     padding-top: 120px; /* 为更小的屏幕增加更多的顶部内边距 */
@@ -1981,6 +1794,7 @@ footer {
   nav ul li a {
     font-size: 0.8rem;
     padding: 6px 2px;
+    min-width: 80px; /* 在小屏幕上减小最小宽度 */
   }
   
   /* 进一步调整按钮位置，避免超出屏幕 */
@@ -2042,79 +1856,6 @@ footer {
     text-align: center;
     width: 100%;
     box-sizing: border-box;
-  }
-  
-  .brand-pillars {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    max-width: 100%;
-  }
-  
-  .pillar {
-    padding: 0.8rem;
-    /* 确保每个品牌核心元素大小一致 */
-    aspect-ratio: 1 / 1;
-    height: auto;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .pillar i {
-    font-size: 1.8rem;
-    margin-bottom: 0.6rem;
-  }
-  
-  .pillar h4 {
-    font-size: 0.95rem;
-    margin-bottom: 0.4rem;
-  }
-  
-  .pillar p {
-    font-size: 0.85rem;
-    /* 确保文字不会溢出 */
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  
-  /* 底部样式调整 */
-  footer {
-    padding: 1.2rem 0 0.5rem; /* 在更小屏幕上进一步减少内边距 */
-  }
-  
-  /* 超小屏幕LOGO样式调整 */
-  .footer-logo-horizontal .logo-container-small {
-    width: 28px; /* 更小尺寸 */
-    height: 28px; /* 更小尺寸 */
-    margin-right: 6px;
-  }
-  
-  .footer-logo-horizontal .logo-8r-small {
-    width: 28px;
-    height: 28px;
-  }
-  
-  .footer-logo-horizontal .logo-8r-small::before {
-    font-size: 16px;
-  }
-  
-  .footer-logo-horizontal h2 {
-    font-size: 1.1rem;
-    margin-right: 6px;
-  }
-  
-  .footer-logo-horizontal p {
-    font-size: 0.8rem;
-  }
-  
-  .footer-bottom {
-    padding-top: 0.6rem;
-    font-size: 0.75rem;
   }
 }
 

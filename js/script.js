@@ -142,27 +142,35 @@ document.addEventListener('DOMContentLoaded', function() {
         // 修复导航菜单颜色
         const navLinks = document.querySelectorAll('nav ul li a');
         navLinks.forEach(link => {
-            // 重新应用样式
-            link.style.color = '';
-            link.style.backgroundColor = '';
+            // 先完全重置所有内联样式，防止样式残留
+            link.style = '';
             
-            // 检查是否为活跃状态的链接
+            // 根据当前主题重新应用样式
             if (link.classList.contains('active')) {
-                // 活跃状态链接需要显示为白色字体
+                // 活跃状态链接样式
                 link.style.color = 'white';
                 link.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color');
                 link.style.fontWeight = '600';
+                link.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.1)';
             } else if (theme === 'light') {
-                // 非活跃状态，白天模式时使用更深的文字颜色
+                // 白天模式下的非活跃链接
                 link.style.color = '#1a202c';
                 link.style.fontWeight = '600';
                 link.style.backgroundColor = 'transparent';
+                link.style.boxShadow = 'none';
             } else {
-                // 夜间模式
+                // 夜间模式下的非活跃链接
                 link.style.color = getComputedStyle(document.documentElement).getPropertyValue('--text-color');
                 link.style.fontWeight = '600';
                 link.style.backgroundColor = 'transparent';
+                link.style.boxShadow = 'none';
             }
+            
+            // 确保所有导航按钮尺寸一致
+            link.style.minWidth = window.innerWidth <= 480 ? '80px' : '100px';
+            link.style.textAlign = 'center';
+            link.style.display = 'block';
+            link.style.whiteSpace = 'nowrap';
         });
         
         // 再次执行滚动检测，确保正确高亮当前所在板块
@@ -227,7 +235,13 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             
             // 移除所有链接的active类
-            navLinks.forEach(link => link.classList.remove('active'));
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                link.style.backgroundColor = '';
+                link.style.color = '';
+                link.style.fontWeight = '';
+                link.style.boxShadow = '';
+            });
             
             // 给当前点击的链接添加active类
             this.classList.add('active');
@@ -236,6 +250,7 @@ document.addEventListener('DOMContentLoaded', function() {
             this.style.color = 'white';
             this.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color');
             this.style.fontWeight = '600';
+            this.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.1)';
             
             const targetId = this.getAttribute('href');
             if (targetId === '#') return;
@@ -284,9 +299,14 @@ document.addEventListener('DOMContentLoaded', function() {
         // 默认移除所有链接的active类和样式
         navLinks.forEach(link => {
             link.classList.remove('active');
-            link.style.backgroundColor = '';
-            link.style.color = '';
-            link.style.fontWeight = '';
+            // 完全重置样式
+            link.style = '';
+            
+            // 恢复默认的尺寸样式
+            link.style.minWidth = window.innerWidth <= 480 ? '80px' : '100px';
+            link.style.textAlign = 'center';
+            link.style.display = 'block';
+            link.style.whiteSpace = 'nowrap';
         });
         
         // 检查每个板块的位置
@@ -305,6 +325,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     correspondingLink.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color');
                     correspondingLink.style.color = 'white';
                     correspondingLink.style.fontWeight = '600';
+                    correspondingLink.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.1)';
+                    // 保持基本样式
+                    correspondingLink.style.minWidth = window.innerWidth <= 480 ? '80px' : '100px';
+                    correspondingLink.style.textAlign = 'center';
+                    correspondingLink.style.display = 'block';
+                    correspondingLink.style.whiteSpace = 'nowrap';
                     foundActive = true;
                 }
             }
@@ -320,6 +346,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     link.style.color = getComputedStyle(document.documentElement).getPropertyValue('--text-color');
                 }
                 link.style.fontWeight = '600';
+                link.style.backgroundColor = 'transparent';
+                link.style.boxShadow = 'none';
+                // 保持基本样式
+                link.style.minWidth = window.innerWidth <= 480 ? '80px' : '100px';
+                link.style.textAlign = 'center';
+                link.style.display = 'block';
+                link.style.whiteSpace = 'nowrap';
             });
         }
         
