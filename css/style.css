@@ -359,16 +359,32 @@ header.header-scrolled nav ul li a.active {
   
   .about-section .container {
     padding: 0 15px; /* 适应移动端的内边距 */
+    width: 100%;
+    max-width: 100%;
   }
   
   .about-content {
     grid-template-columns: 1fr;
     gap: 1rem; /* 减少间距 */
+    width: 100%;
   }
   
   .brand-story {
     padding: 1.5rem; /* 减少内边距 */
     margin-bottom: 1rem; /* 减少底部间距 */
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .brand-story h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .brand-story p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1.2rem;
   }
   
   /* 确保标题尺寸与其他部分一致 */
@@ -451,12 +467,48 @@ header.header-scrolled nav ul li a.active {
   
   /* 确保关于8RAI部分与其他部分一致 */
   .about-section {
-    padding: 2rem 0;
+    padding: 1.5rem 0;
+  }
+  
+  .about-section .container {
+    padding: 0 12px;
+  }
+  
+  .brand-story {
+    padding: 1.2rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .brand-story h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .brand-story p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 1rem;
   }
   
   .brand-pillars {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.8rem;
+    margin: 1rem auto;
+  }
+  
+  .pillar {
+    padding: 0.8rem;
+    min-height: 80px;
+  }
+  
+  .pillar i {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .pillar span {
+    font-size: 0.75rem;
+    line-height: 1.2;
   }
   
   /* 确保所有部分的标题大小一致 */
@@ -495,7 +547,6 @@ header.header-scrolled .container {
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 100%; /* 确保容器不会超过可视区域 */
 }
 
 @media (max-width: 768px) {
@@ -505,22 +556,6 @@ header.header-scrolled .container {
     justify-content: center;
     width: 100%;
     min-height: 50px;
-    padding: 0 15px; /* 添加左右内边距 */
-    box-sizing: border-box; /* 确保内边距不会增加元素宽度 */
-  }
-  
-  /* 确保header的width受到正确控制 */
-  header {
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-  }
-  
-  header .container {
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-    padding: 0 15px;
   }
   
   /* 统一所有部分在移动端的垂直间距 */
@@ -531,143 +566,37 @@ header.header-scrolled .container {
   .learning-resources,
   .about-section {
     margin-bottom: 1rem;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-    overflow: hidden; /* 防止水平溢出 */
-  }
-  
-  /* 确保所有section的container都正确限制宽度 */
-  section .container {
-    width: 100%;
-    max-width: 100%;
-    padding: 0 15px;
-    box-sizing: border-box;
-    margin: 0 auto;
-  }
-  
-  /* 修复关于部分的特定样式 */
-  .about-section .container {
-    width: 100%;
-    max-width: 100%;
-    padding: 0 15px;
-    box-sizing: border-box;
-  }
-  
-  .about-content {
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-  }
-  
-  .brand-story, 
-  .brand-values, 
-  .brand-slogan {
-    width: 100%;
-    max-width: 100%;
-    padding: 1.5rem;
-    box-sizing: border-box;
-  }
-  
-  .brand-pillars {
-    width: 100%;
-    max-width: 100%;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.8rem;
-  }
-  
-  .pillar {
-    width: 100%;
-    box-sizing: border-box;
   }
 }
 
-/* 超小屏幕优化 */
+/* 移动端LOGO响应式微调 */
 @media (max-width: 480px) {
-  /* 修复头部在移动端上滑时只显示一半的问题 */
-  header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    height: auto;
-    min-height: 60px;
-    transform: translateY(0);
-    box-sizing: border-box;
-    background-color: rgba(var(--header-bg-rgb), 0.95);
-    backdrop-filter: blur(10px);
+  .logo-text h1 {
+    font-size: 22px;
   }
   
-  header .container {
-    width: 100%;
-    max-width: 100%;
-    padding: 0 12px;
-    box-sizing: border-box;
+  .logo-container {
+    width: 40px;
+    height: 40px;
   }
   
-  /* 确保关于部分在超小屏幕上也能正确显示 */
-  .about-section {
-    padding: 1.5rem 0;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-    overflow: hidden;
+  .logo-8r {
+    width: 40px;
+    height: 40px;
   }
   
-  .about-section .container {
-    padding: 0 12px;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-  }
-  
-  .about-section h2 {
-    font-size: 1.4rem;
-    margin-bottom: 1.2rem;
-  }
-  
-  .brand-story {
-    padding: 1.2rem;
-    margin-bottom: 1rem;
-  }
-  
-  .brand-story h3 {
-    font-size: 1.2rem;
-    margin-bottom: 0.8rem;
-  }
-  
-  .brand-story p {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    margin-bottom: 1rem;
-  }
-  
-  .brand-pillars {
-    margin: 1rem auto;
-  }
-  
-  .pillar {
-    padding: 1rem;
-  }
-  
-  .pillar i {
-    font-size: 1.6rem;
-    margin-bottom: 0.6rem;
-  }
-  
-  .pillar h4 {
-    font-size: 0.9rem;
-  }
-  
-  .pillar p {
-    font-size: 0.8rem;
+  .logo-8r::before {
+    font-size: 22px;
   }
   
   body {
-    padding-top: 80px; /* 调整顶部内边距，确保不被头部遮挡 */
-    overflow-x: hidden; /* 防止水平滚动 */
+    padding-top: 70px; /* 为更小的屏幕减少顶部内边距 */
   }
+}
+
+/* 修复页面内容上方间距 */
+body {
+  padding-top: 80px; /* 给固定导航腾出空间 */
 }
 
 /* 工具卡片通用样式 */
@@ -695,37 +624,33 @@ header.header-scrolled .container {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
-/* 修改工具卡片头部样式，使图标和标题在同一行 */
+.tool-icon {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+/* 热门工具的工具头部样式 */
 .tool-header {
   display: flex;
   align-items: center;
   margin-bottom: 0.8rem;
 }
 
-.tool-icon {
-  font-size: 1.8rem;
-  color: var(--primary-color);
+.tool-header .tool-icon {
+  margin-bottom: 0;
   margin-right: 0.8rem;
-  margin-bottom: 0; /* 移除底部间距 */
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-size: 1.8rem;
 }
 
-.tool-card h3 {
-  margin-bottom: 0; /* 移除底部间距，与图标对齐 */
-  font-weight: 600;
-  font-size: 1.1rem;
+.tool-header h3 {
+  margin-bottom: 0;
+  font-size: 1.2rem;
 }
 
-.tool-card h4 {
+.tool-card h3, .tool-card h4 {
   margin-bottom: 0.5rem;
   font-weight: 600;
-}
-
-/* 调整AI工具分类部分样式 */
-.tools-category .tool-card .tool-header {
-  margin-bottom: 0.6rem;
 }
 
 .tool-card p {
@@ -755,49 +680,6 @@ header.header-scrolled .container {
 .tools-category .tool-card h4 {
   font-size: 1rem; /* 减小标题字体大小 */
   margin-bottom: 0.5rem;
-  display: inline-flex; /* 使标题与图标并排 */
-  align-items: center;
-}
-
-/* 为分类部分的卡片添加图标前缀 */
-.tools-category .category-section:nth-child(2) .tool-card h4:before {
-  content: "\F332"; /* Bootstrap Icons 中的 bi-pencil 编码 */
-  font-family: "bootstrap-icons";
-  margin-right: 0.5rem;
-  color: var(--primary-color);
-  font-size: 1.1rem;
-}
-
-.tools-category .category-section:nth-child(3) .tool-card h4:before {
-  content: "\F30E"; /* Bootstrap Icons 中的 bi-image 编码 */
-  font-family: "bootstrap-icons";
-  margin-right: 0.5rem;
-  color: var(--primary-color);
-  font-size: 1.1rem;
-}
-
-.tools-category .category-section:nth-child(4) .tool-card h4:before {
-  content: "\F2D9"; /* Bootstrap Icons 中的 bi-camera-video 编码 */
-  font-family: "bootstrap-icons";
-  margin-right: 0.5rem;
-  color: var(--primary-color);
-  font-size: 1.1rem;
-}
-
-.tools-category .category-section:nth-child(5) .tool-card h4:before {
-  content: "\F2C8"; /* Bootstrap Icons 中的 bi-code 编码 */
-  font-family: "bootstrap-icons";
-  margin-right: 0.5rem;
-  color: var(--primary-color);
-  font-size: 1.1rem;
-}
-
-.tools-category .category-section:nth-child(6) .tool-card h4:before {
-  content: "\F2A2"; /* Bootstrap Icons 中的 bi-briefcase 编码 */
-  font-family: "bootstrap-icons";
-  margin-right: 0.5rem;
-  color: var(--primary-color);
-  font-size: 1.1rem;
 }
 
 .tools-category .tool-card p {
@@ -815,51 +697,12 @@ header.header-scrolled .container {
 
 /* 移动端工具卡片特定样式 */
 @media (max-width: 768px) {
-  .tool-header {
-    margin-bottom: 0.6rem;
-  }
-  
-  .tool-icon {
-    font-size: 1.5rem;
-    margin-right: 0.6rem;
-  }
-  
-  .tool-card h3 {
-    font-size: 1rem;
-  }
-  
   .tools-category .tool-card {
-    min-height: 170px; /* 移动端增加更多高度 */
+    min-height: 180px; /* 移动端增加更多高度 */
   }
   
   .tools-category .tool-card p {
     font-size: 0.8rem; /* 移动端进一步缩小字体 */
-  }
-  
-  /* 调整移动端图标大小 */
-  .tools-category .tool-card h4:before {
-    font-size: 1rem;
-  }
-}
-
-/* 超小屏幕优化 */
-@media (max-width: 480px) {
-  .tool-header {
-    margin-bottom: 0.4rem;
-  }
-  
-  .tool-icon {
-    font-size: 1.3rem;
-    margin-right: 0.5rem;
-  }
-  
-  .tool-card h3 {
-    font-size: 0.9rem;
-  }
-  
-  .tools-category .tool-card h4:before {
-    font-size: 0.9rem;
-    margin-right: 0.4rem;
   }
 }
 
@@ -1449,8 +1292,6 @@ header.header-scrolled .container {
   padding: 4rem 0;
   transition: background-color 0.3s ease;
   width: 100%;
-  box-sizing: border-box; /* 确保宽度计算正确 */
-  overflow: hidden; /* 防止水平溢出 */
 }
 
 .about-section .container {
@@ -1475,7 +1316,6 @@ header.header-scrolled .container {
   max-width: 1200px;
   margin: 0 auto;
   width: 100%; /* 确保宽度是100% */
-  box-sizing: border-box; /* 确保不会溢出 */
 }
 
 .brand-story {
@@ -1570,6 +1410,14 @@ header.header-scrolled .container {
   color: var(--text-light);
   font-size: 0.9rem;
   margin-bottom: 0;
+}
+
+.pillar span {
+  color: var(--text-color);
+  font-size: 0.9rem;
+  line-height: 1.3;
+  display: block;
+  font-weight: 500;
 }
 
 .values-list {
@@ -2291,7 +2139,6 @@ header.mobile-view .desktop-nav {
     height: auto;
     min-height: 60px;
     transform: translateY(0);
-    box-sizing: border-box;
     background-color: rgba(var(--header-bg-rgb), 0.95);
     backdrop-filter: blur(10px);
   }
@@ -2394,5 +2241,86 @@ header.wechat-scroll-up {
   /* 确保微信浏览器中内容不被头部遮挡 */
   .wechat-browser section:first-of-type {
     margin-top: 20px;
+  }
+}
+
+/* 平板尺寸下的品牌支柱调整 */
+@media (max-width: 768px) {
+  .brand-pillars {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 1.5rem auto;
+  }
+  
+  .pillar {
+    padding: 1rem;
+  }
+  
+  .pillar i {
+    font-size: 1.8rem;
+    margin-bottom: 0.6rem;
+  }
+  
+  .pillar span {
+    font-size: 0.85rem;
+  }
+}
+
+/* 超小屏幕优化 */
+@media (max-width: 380px) {
+  .brand-pillars {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+  }
+  
+  .pillar {
+    padding: 0.7rem;
+    min-height: 70px;
+  }
+  
+  .pillar i {
+    font-size: 1.3rem;
+    margin-bottom: 0.4rem;
+  }
+  
+  .pillar span {
+    font-size: 0.7rem;
+    line-height: 1.1;
+  }
+  
+  /* 关于8RAI部分超小屏幕优化 */
+  .about-section {
+    padding: 1.2rem 0;
+  }
+  
+  .about-section h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .brand-story {
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .brand-story h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.6rem;
+  }
+  
+  .brand-story p {
+    font-size: 0.85rem;
+    line-height: 1.3;
+    margin-bottom: 0.8rem;
+  }
+  
+  /* 确保内容不会横向溢出 */
+  .container, .about-section .container {
+    padding: 0 10px;
+    overflow-x: hidden;
+  }
+  
+  body {
+    overflow-x: hidden;
   }
 } 
