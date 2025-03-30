@@ -175,49 +175,7 @@ header .container {
   align-items: center;
   flex: 1;
   justify-content: flex-end;
-  gap: 25px; /* 增加搜索框和导航之间的间距 */
-}
-
-/* 搜索框设计 */
-.search-box {
-  display: flex;
-  align-items: center;
-  position: relative;
-  width: 250px; /* 更宽的搜索框 */
-  transition: width 0.3s ease;
-}
-
-.search-box input {
-  width: 100%;
-  padding: 10px 40px 10px 16px; /* 增加内边距 */
-  border-radius: 8px; /* 更圆润的边角 */
-  border: 1px solid var(--border-color);
-  background-color: var(--card-color);
-  font-size: 15px; /* 增大字体 */
-  transition: all 0.3s;
-}
-
-.search-box button {
-  position: absolute;
-  right: 10px;
-  background: none;
-  border: none;
-  color: var(--text-color);
-  font-size: 18px; /* 增大图标 */
-  cursor: pointer;
-  padding: 0;
-  transition: color 0.3s;
-}
-
-/* 修改搜索框展开状态样式 */
-.search-box.expanded {
-  width: 200px; /* 与正常状态一致 */
-}
-
-.search-box.expanded input {
-  width: 100%;
-  padding: 8px 40px 8px 15px;
-  opacity: 1;
+  gap: 25px; /* 增加元素之间的间距 */
 }
 
 /* 导航菜单 */
@@ -247,29 +205,16 @@ nav ul li a.active {
   font-weight: 600; /* 加粗字体 */
 }
 
-/* 修改白天模式下的导航背景和边框 */
-[data-theme="light"] header {
-  background-color: #ffffff;
-  border-bottom: 1px solid #e2e8f0;
+/* 统一导航样式，移除冗余规则 */
+header nav ul {
+  background-color: transparent; /* 移除背景，保持导航与头部一致 */
+  padding: 0; /* 移除内边距避免干扰间距 */
+  box-shadow: none; /* 移除阴影 */
 }
 
-[data-theme="light"] nav ul {
-  background-color: #f8fafc; /* 略微灰白色背景 */
-  border-radius: 6px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  padding: 4px 6px; /* 调整内部内边距 */
-}
-
-/* 修改白天模式下的导航文字颜色和对比度 */
-[data-theme="light"] nav ul li a {
-  color: #1a202c; /* 更深的文字颜色 */
-  font-weight: 600; /* 加粗字体 */
-}
-
-[data-theme="light"] nav ul li a:hover, 
-[data-theme="light"] nav ul li a.active {
-  background-color: var(--primary-color);
-  color: white;
+/* 移除[data-theme="light"] 特定样式，使用全局变量 */
+nav ul li a {
+  color: var(--text-color); /* 使用全局文本颜色 */
 }
 
 /* 滚动时的导航栏样式 */
@@ -290,49 +235,37 @@ header.header-scrolled {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* 添加更明显的边框 */
 }
 
+/* 统一滚动时的导航样式 */
 header.header-scrolled nav ul li a {
   font-size: 15px; /* 滚动时略微减小字体 */
   padding: 7px 14px; /* 减小内边距 */
-  color: var(--text-color); /* 确保文字颜色足够深 */
-  font-weight: 700; /* 增加字体粗细 */
-  text-shadow: 0 0 2px rgba(255, 255, 255, 0.4); /* 增强发光效果 */
-  letter-spacing: 0.02em; /* 增加字间距 */
+  font-weight: 600; /* 保持字体粗细一致 */
+  color: var(--text-color); /* 使用全局文本颜色 */
 }
 
-/* 为导航菜单添加更明显的背景 */
+/* 移除额外的背景样式，保持一致 */
 header.header-scrolled nav ul {
-  padding: 4px 8px;
-  background-color: rgba(248, 250, 252, 0.98);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 6px;
+  background-color: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
 }
 
-[data-theme="light"] header.header-scrolled nav ul li a {
-  color: #000000; /* 使用黑色增加对比度 */
-}
-
-[data-theme="dark"] header.header-scrolled nav ul li a {
-  color: #ffffff !important; /* 深色模式使用白色增加对比度 */
-}
-
-[data-theme="dark"] header.header-scrolled nav ul {
-  background-color: rgba(31, 41, 55, 0.98);
-}
-
+/* 简化悬停和活跃状态样式 */
 header.header-scrolled nav ul li a:hover, 
 header.header-scrolled nav ul li a.active {
   background-color: var(--primary-color);
-  color: white !important; /* 确保悬停和激活状态的文字是白色 */
-  font-weight: 700; /* 增加字体粗细 */
+  color: white;
 }
 
-header.header-scrolled .search-box {
-  width: 230px; /* 略微减小搜索框宽度 */
+/* 统一移除亮暗模式特定的导航样式，使用全局变量 */
+[data-theme="light"] header.header-scrolled nav ul li a,
+[data-theme="dark"] header.header-scrolled nav ul li a {
+  color: var(--text-color);
 }
 
-header.header-scrolled .search-box input {
-  padding: 8px 38px 8px 14px; /* 减小内边距 */
-  font-size: 14px; /* 减小字体 */
+[data-theme="dark"] header.header-scrolled nav ul {
+  background-color: transparent;
 }
 
 /* 桌面版导航 */

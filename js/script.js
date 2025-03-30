@@ -107,54 +107,11 @@ document.addEventListener('DOMContentLoaded', function() {
         refreshElementsStyle(currentTheme);
     }, 100);
     
-    // 获取搜索框元素 - 从新位置获取
-    const searchInput = document.querySelector('.header-right .search-box input');
-    const searchButton = document.querySelector('.header-right .search-box button');
-    const searchBox = document.querySelector('.header-right .search-box');
+    // 移除搜索相关代码
     const header = document.querySelector('header');
 
     // 获取所有工具卡片
     const allTools = document.querySelectorAll('.tool-card');
-    
-    // 实现搜索功能
-    function performSearch() {
-        const searchTerm = searchInput.value.toLowerCase().trim();
-        
-        if (searchTerm === '') {
-            // 如果搜索词为空，显示所有工具
-            allTools.forEach(tool => {
-                tool.style.display = 'flex';
-            });
-            return;
-        }
-        
-        // 过滤工具卡片
-        allTools.forEach(tool => {
-            const toolName = tool.querySelector('h3, h4').textContent.toLowerCase();
-            const toolDesc = tool.querySelector('p').textContent.toLowerCase();
-            
-            if (toolName.includes(searchTerm) || toolDesc.includes(searchTerm)) {
-                tool.style.display = 'flex';
-            } else {
-                tool.style.display = 'none';
-            }
-        });
-    }
-    
-    // 搜索框展开/收起功能
-    searchButton.addEventListener('click', function(e) {
-        // 如果有输入内容，直接执行搜索
-        if (searchInput.value.trim() !== '') {
-            performSearch();
-        }
-    });
-    
-    // 添加搜索框回车事件
-    searchInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            performSearch();
-        }
-    });
     
     // 获取所有导航链接
     const navLinks = document.querySelectorAll('nav ul li a');
@@ -202,29 +159,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (scrollPosition > 100) {
             header.classList.add('header-scrolled');
             
-            // 检查是否是移动端，且不是首次加载（避免闪烁）
-            if (window.innerWidth <= 768 && window.scrollY > 100) {
-                const logoContainer = document.querySelector('.logo-container');
-                const logoText = document.querySelector('.logo-text');
-                
-                // 在移动端滚动时不隐藏LOGO，移除原来的隐藏逻辑
-                // 仅在非移动端时应用隐藏逻辑
-                if (window.innerWidth > 768) {
-                    if (logoContainer) logoContainer.style.display = 'none';
-                    if (logoText) logoText.style.display = 'none';
-                }
-            }
+            // 移除隐藏LOGO的逻辑，保持LOGO始终可见
         } else {
             header.classList.remove('header-scrolled');
-            
-            // 恢复LOGO显示（仅非移动端）
-            if (window.innerWidth > 768) {
-                const logoContainer = document.querySelector('.logo-container');
-                const logoText = document.querySelector('.logo-text');
-                
-                if (logoContainer) logoContainer.style.display = '';
-                if (logoText) logoText.style.display = '';
-            }
         }
         
         // 默认移除所有链接的active类
@@ -257,18 +194,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // 窗口大小改变时检查
     window.addEventListener('resize', function() {
         const header = document.querySelector('header');
-        const logoContainer = document.querySelector('.logo-container');
-        const logoText = document.querySelector('.logo-text');
         
-        // 移除窗口大小改变时可能导致LOGO被隐藏的逻辑
-        // 仅在非移动端且已滚动时应用隐藏逻辑
-        if (header.classList.contains('header-scrolled') && window.innerWidth > 768) {
-            if (logoContainer) logoContainer.style.display = 'none';
-            if (logoText) logoText.style.display = 'none';
-        } else {
-            if (logoContainer) logoContainer.style.display = '';
-            if (logoText) logoText.style.display = '';
-        }
+        // 移除隐藏LOGO的逻辑，保持LOGO始终可见
         
         // 强制刷新一次主题样式
         const currentTheme = localStorage.getItem('theme') || 'light';
