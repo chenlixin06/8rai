@@ -671,38 +671,40 @@ body {
 
 /* AI模型评测部分 */
 .ai-evaluation {
-  padding: 2rem 0;
+  padding: 1.5rem 0;
   background-color: var(--background-color);
 }
 
 .ai-evaluation h2 {
   text-align: center;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.5rem;
   font-size: 1.8rem;
 }
 
 .section-desc {
   text-align: center;
   max-width: 700px;
-  margin: 0 auto 2rem;
+  margin: 0 auto 1rem;
   color: var(--text-light);
+  font-size: 0.9rem;
 }
 
 .eval-categories {
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
-  margin-bottom: 2.5rem;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .eval-category {
-  padding: 0.8rem 1.5rem;
+  padding: 0.5rem 1rem;
   background-color: var(--card-color);
   border-radius: 30px;
   cursor: pointer;
   font-weight: 500;
   transition: all 0.3s ease;
   box-shadow: var(--shadow);
+  font-size: 0.9rem;
 }
 
 .eval-category.active, .eval-category:hover {
@@ -716,22 +718,23 @@ body {
   border-radius: 10px;
   overflow: hidden;
   box-shadow: var(--shadow);
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
 }
 
 .comparison-header {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
-  padding: 1.2rem 1.5rem;
+  padding: 0.8rem 1rem;
   background-color: var(--primary-color);
   color: white;
   font-weight: 500;
+  font-size: 0.9rem;
 }
 
 .model-row {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
-  padding: 1.2rem 1.5rem;
+  padding: 0.8rem 1rem;
   border-bottom: 1px solid var(--border-color);
   align-items: center;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -747,34 +750,34 @@ body {
 
 .model-name {
   font-weight: 500;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .model-company {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: var(--text-light);
-  margin-top: 0.3rem;
+  margin-top: 0.2rem;
 }
 
 .score {
   font-weight: 700;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   color: var(--primary-color);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
 }
 
 .score-bar {
-  height: 6px;
+  height: 4px;
   background-color: var(--primary-color);
-  border-radius: 3px;
+  border-radius: 2px;
 }
 
 .view-details {
   display: inline-block;
-  padding: 0.5rem 1rem;
+  padding: 0.3rem 0.7rem;
   background-color: var(--hover-color);
-  border-radius: 5px;
-  font-size: 0.9rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
   transition: all 0.3s ease;
 }
 
@@ -786,92 +789,113 @@ body {
 /* 评测基准 */
 .benchmarks h3 {
   text-align: center;
-  margin-bottom: 1.5rem;
-  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
   color: var(--text-color);
 }
 
 .benchmark-items {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
 }
 
 .benchmark-item {
   background-color: var(--card-color);
-  border-radius: 10px;
-  padding: 1.5rem;
+  border-radius: 8px;
+  padding: 1rem;
   text-align: center;
   box-shadow: var(--shadow);
   transition: transform 0.3s;
 }
 
 .benchmark-item:hover {
-  transform: translateY(-5px);
+  transform: translateY(-3px);
 }
 
 .benchmark-icon {
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: var(--primary-color);
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .benchmark-name {
   font-weight: 600;
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
 }
 
 .benchmark-desc {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: var(--text-light);
 }
 
 .benchmark-detail {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--text-light);
-  margin-top: 0.5rem;
+  margin-top: 0.3rem;
 }
 
 /* 响应式调整 */
 @media (max-width: 768px) {
-  .news-controls {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-  
-  .news-tabs {
-    width: 100%;
-    overflow-x: auto;
-    padding-bottom: 0.5rem;
-  }
-  
-  .digest-content {
-    grid-template-columns: 1fr;
-  }
-  
   .eval-categories {
     flex-wrap: wrap;
+    gap: 0.5rem;
   }
   
   .comparison-header, .model-row {
     grid-template-columns: 1.5fr 1fr 0.8fr;
-    padding: 1rem;
-    font-size: 0.9rem;
+    padding: 0.7rem;
+    font-size: 0.85rem;
   }
   
   .model-name {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
   
   .score {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
   
   .view-details {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.75rem;
+  }
+  
+  .benchmarks {
+    margin-bottom: 1.2rem;
+  }
+  
+  .benchmark-items {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .benchmark-item {
+    padding: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .benchmark-items {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.7rem;
+  }
+  
+  .benchmark-icon {
+    font-size: 1.3rem;
+    margin-bottom: 0.3rem;
+  }
+  
+  .benchmark-name {
+    font-size: 0.9rem;
+  }
+  
+  .benchmark-desc {
+    font-size: 0.75rem;
+  }
+  
+  .benchmark-detail {
+    display: none;
   }
 }
 
