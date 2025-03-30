@@ -19,6 +19,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (currentTheme === 'dark') {
             document.documentElement.setAttribute('data-theme', 'dark');
             themeToggle.innerHTML = '<i class="bi bi-moon"></i>';
+        } else {
+            // 确保为light模式设置正确的data-theme属性
+            document.documentElement.setAttribute('data-theme', 'light');
         }
         
         // 添加点击事件
@@ -49,9 +52,16 @@ document.addEventListener('DOMContentLoaded', function() {
         navLinks.forEach(link => {
             // 重新应用样式
             link.style.color = '';
-            setTimeout(() => {
-                link.style.color = getComputedStyle(document.documentElement).getPropertyValue('--text-color');
-            }, 10);
+            if (theme === 'light') {
+                // 白天模式时使用更深的文字颜色
+                link.style.color = '#1a202c';
+                link.style.fontWeight = '600';
+            } else {
+                // 夜间模式
+                setTimeout(() => {
+                    link.style.color = getComputedStyle(document.documentElement).getPropertyValue('--text-color');
+                }, 10);
+            }
         });
         
         // 强制刷新AI模型评测区域

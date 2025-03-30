@@ -74,6 +74,7 @@ header {
   width: 100%;
   z-index: 1000;
   transition: all 0.3s ease;
+  border-bottom: 1px solid var(--border-color); /* 添加细微边框 */
 }
 
 header .container {
@@ -215,7 +216,7 @@ nav ul {
 nav ul li a {
   text-decoration: none;
   color: var(--text-color);
-  font-weight: 500;
+  font-weight: 600; /* 加粗字体 */
   font-size: 14px;
   padding: 5px 10px;
   border-radius: 4px;
@@ -224,9 +225,34 @@ nav ul li a {
 
 nav ul li a:hover, 
 nav ul li a.active {
-  background-color: #3730a3; /* 更深的蓝色背景提高对比度 */
+  background-color: var(--primary-color); /* 使用主色调 */
   color: white;
   font-weight: 600; /* 加粗字体 */
+}
+
+/* 修改白天模式下的导航背景和边框 */
+[data-theme="light"] header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+[data-theme="light"] nav ul {
+  background-color: #f8fafc; /* 略微灰白色背景 */
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  padding: 3px;
+}
+
+/* 修改白天模式下的导航文字颜色和对比度 */
+[data-theme="light"] nav ul li a {
+  color: #1a202c; /* 更深的文字颜色 */
+  font-weight: 600; /* 加粗字体 */
+}
+
+[data-theme="light"] nav ul li a:hover, 
+[data-theme="light"] nav ul li a.active {
+  background-color: var(--primary-color);
+  color: white;
 }
 
 /* 滚动时的导航栏样式 */
@@ -342,6 +368,7 @@ header.header-scrolled .logo-text p {
     padding: 8px 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 0;
+    border-bottom: 1px solid var(--border-color); /* 添加细微边框 */
   }
   
   nav ul li {
