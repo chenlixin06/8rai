@@ -601,6 +601,41 @@ body {
   transition: background-color 0.3s;
 }
 
+/* 修改AI工具分类部分的工具卡片样式 */
+.tools-category .tool-card {
+  padding: 1.2rem;
+  min-height: 160px; /* 增加卡片最小高度 */
+}
+
+.tools-category .tool-card h4 {
+  font-size: 1rem; /* 减小标题字体大小 */
+  margin-bottom: 0.5rem;
+}
+
+.tools-category .tool-card p {
+  font-size: 0.85rem; /* 减小介绍文字字体大小 */
+  line-height: 1.4; /* 减小行高 */
+  margin-bottom: 0.8rem; /* 减小底部边距 */
+  flex-grow: 1;
+  overflow: visible; /* 确保文字完全可见 */
+}
+
+.tools-category .tool-link {
+  padding: 0.4rem 0.8rem; /* 减小按钮内边距 */
+  font-size: 0.85rem; /* 减小按钮文字大小 */
+}
+
+/* 移动端工具卡片特定样式 */
+@media (max-width: 768px) {
+  .tools-category .tool-card {
+    min-height: 180px; /* 移动端增加更多高度 */
+  }
+  
+  .tools-category .tool-card p {
+    font-size: 0.8rem; /* 移动端进一步缩小字体 */
+  }
+}
+
 .tool-link:hover {
   background-color: var(--secondary-color);
   color: white;
@@ -1134,6 +1169,46 @@ body {
   margin-top: auto;
   text-align: center;
   transition: background-color 0.3s;
+}
+
+/* 修改学习资源部分的卡片样式 */
+.learning-resources .resource-card {
+  padding: 1.2rem;
+  min-height: 160px; /* 增加卡片最小高度 */
+}
+
+.learning-resources .resource-card h3 {
+  font-size: 1rem; /* 减小标题字体大小 */
+  margin-bottom: 0.5rem;
+}
+
+.learning-resources .resource-card p {
+  font-size: 0.85rem; /* 减小介绍文字字体大小 */
+  line-height: 1.4; /* 减小行高 */
+  margin-bottom: 0.8rem; /* 减小底部边距 */
+  flex-grow: 1;
+  overflow: visible; /* 确保文字完全可见 */
+}
+
+.learning-resources .resource-icon {
+  font-size: 1.8rem; /* 稍微减小图标大小 */
+  margin-bottom: 0.8rem; /* 减小底部边距 */
+}
+
+.learning-resources .resource-link {
+  padding: 0.4rem 0.8rem; /* 减小按钮内边距 */
+  font-size: 0.85rem; /* 减小按钮文字大小 */
+}
+
+/* 移动端学习资源卡片特定样式 */
+@media (max-width: 768px) {
+  .learning-resources .resource-card {
+    min-height: 180px; /* 移动端增加更多高度 */
+  }
+  
+  .learning-resources .resource-card p {
+    font-size: 0.8rem; /* 移动端进一步缩小字体 */
+  }
 }
 
 .resource-link:hover {
