@@ -35,14 +35,14 @@ AI导航是一个精选国内人工智能工具集合的网站，旨在帮助用
 
 要在本地运行项目，只需要以下步骤：
 
-1. 克隆仓库：`git clone https://chenlixin06.github.io.git`
+1. 克隆仓库：`git clone https://amylixing.github.io.git`
 2. 打开`index.html`文件即可
 
 由于项目仅使用HTML、CSS和JavaScript构建，无需安装其他依赖。
 
 ## 在线预览
 
-你可以访问[https://chenlixin06.github.io](https://chenlixin06.github.io)查看在线演示。
+你可以访问[https://8rai.com](https://8rai.com)查看在线演示。
 
 ## 许可证
 
