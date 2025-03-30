@@ -155,19 +155,39 @@ document.addEventListener('DOMContentLoaded', function() {
         button.id = 'back-to-top';
         button.innerHTML = '<i class="bi bi-arrow-up"></i>';
         button.style.position = 'fixed';
-        button.style.bottom = '20px';
-        button.style.right = '20px';
+        button.style.bottom = '30px';
+        button.style.right = '30px';
         button.style.display = 'none';
-        button.style.padding = '10px 15px';
+        button.style.width = '50px';
+        button.style.height = '50px';
         button.style.backgroundColor = 'var(--primary-color)';
         button.style.color = 'white';
         button.style.border = 'none';
         button.style.borderRadius = '50%';
         button.style.cursor = 'pointer';
         button.style.zIndex = '99';
-        button.style.boxShadow = 'var(--shadow)';
+        button.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.2)';
+        button.style.transition = 'all 0.3s ease';
+        button.style.fontSize = '20px';
+        button.style.display = 'flex';
+        button.style.alignItems = 'center';
+        button.style.justifyContent = 'center';
+        button.style.opacity = '0';
+        button.style.transform = 'scale(0.8)';
         
         document.body.appendChild(button);
+        
+        button.addEventListener('mouseover', () => {
+            button.style.backgroundColor = 'var(--secondary-color)';
+            button.style.transform = 'translateY(-5px) scale(1.05)';
+            button.style.boxShadow = '0 6px 16px rgba(0, 0, 0, 0.3)';
+        });
+        
+        button.addEventListener('mouseout', () => {
+            button.style.backgroundColor = 'var(--primary-color)';
+            button.style.transform = 'translateY(0) scale(1)';
+            button.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.2)';
+        });
         
         button.addEventListener('click', () => {
             window.scrollTo({
@@ -178,9 +198,17 @@ document.addEventListener('DOMContentLoaded', function() {
         
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 300) {
-                button.style.display = 'block';
+                button.style.display = 'flex';
+                button.style.opacity = '1';
+                button.style.transform = 'scale(1)';
             } else {
-                button.style.display = 'none';
+                button.style.opacity = '0';
+                button.style.transform = 'scale(0.8)';
+                setTimeout(() => {
+                    if (window.pageYOffset <= 300) {
+                        button.style.display = 'none';
+                    }
+                }, 300);
             }
         });
     };

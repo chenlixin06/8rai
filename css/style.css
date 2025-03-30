@@ -1350,4 +1350,25 @@ footer {
 
 .sub-category {
   display: none;
+}
+
+/* 返回顶部按钮的媒体查询 */
+@media (max-width: 768px) {
+  #back-to-top {
+    width: 42px !important;
+    height: 42px !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    font-size: 18px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  #back-to-top {
+    width: 36px !important;
+    height: 36px !important;
+    bottom: 15px !important;
+    right: 15px !important;
+    font-size: 16px !important;
+  }
 } 
