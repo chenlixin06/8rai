@@ -281,1508 +281,119 @@ header.header-scrolled nav ul li a.active {
 
 @media (max-width: 768px) {
   header {
-    padding: 10px 0;
-    top: env(safe-area-inset-top);
-    height: auto; /* 确保高度自适应内容 */
-    transform: translateY(0); /* 防止头部上滑时被部分隐藏 */
-    min-height: 70px; /* 确保最小高度，避免内容被截断 */
+    padding: 5px 0;
+    min-height: 60px; /* 减小最小高度 */
   }
   
   body {
-    padding-top: 100px; /* 增加顶部内边距，确保内容不被头部覆盖 */
+    padding-top: 70px; /* 减少顶部内边距 */
   }
   
   header.header-scrolled {
-    padding: 5px 0;
-    min-height: 60px; /* 滚动时确保最小高度 */
+    padding: 3px 0;
+    min-height: 45px; /* 进一步减小滚动时的最小高度 */
   }
   
   header.header-scrolled .logo-container {
-    width: 32px;
-    height: 32px;
+    width: 28px; /* 滚动时进一步减小LOGO尺寸 */
+    height: 28px;
   }
   
-  header.header-scrolled .logo-text {
-    opacity: 0.8;
-  }
-  
-  header .container {
-    flex-direction: column;
-    padding: 0.5rem 1rem;
-    position: relative;
-    align-items: center; /* 将LOGO居中 */
-    width: 100%; /* 确保宽度是100% */
-    max-width: 100%; /* 防止溢出 */
-  }
-  
-  .logo {
-    margin-bottom: 0.5rem;
-    margin-top: 0; /* 移除为导航预留的空间 */
-    display: flex;
-    justify-content: center; /* 居中LOGO */
-  }
-
-  .logo-container {
-    width: 45px; /* 增大LOGO尺寸 */
-    height: 45px;
-  }
-
-  .logo-8r {
-    width: 45px;
-    height: 45px;
-  }
-
-  .logo-8r::before {
-    font-size: 24px;
-  }
-
-  .logo-text h1 {
-    font-size: 24px; /* 增大字体尺寸 */
-  }
-
-  .logo-text p {
-    display: block; /* 显示副标题 */
-    font-size: 0.9rem;
-  }
-  
-  .header-right {
-    display: none; /* 在移动端隐藏导航和搜索框 */
-  }
-  
-  /* 移除固定导航样式 */
-  .desktop-nav {
-    display: none;
-  }
-  
-  .about-section {
-    padding: 2rem 0; /* 减少上下内边距，与其他部分保持一致 */
-  }
-  
-  .about-section .container {
-    padding: 0 15px; /* 适应移动端的内边距 */
-    width: 100%;
-    max-width: 100%;
-  }
-  
-  .about-content {
-    grid-template-columns: 1fr;
-    gap: 1rem; /* 减少间距 */
-    width: 100%;
-  }
-  
-  .brand-story {
-    padding: 1.5rem; /* 减少内边距 */
-    margin-bottom: 1rem; /* 减少底部间距 */
-    width: 100%;
-    box-sizing: border-box;
-  }
-  
-  .brand-story h3 {
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
-  }
-  
-  .brand-story p {
-    font-size: 0.95rem;
-    line-height: 1.5;
-    margin-bottom: 1.2rem;
-  }
-  
-  /* 确保标题尺寸与其他部分一致 */
-  .about-section h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  .brand-story h3 {
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
-  }
-  
-  /* 统一所有部分的容器样式 */
-  .container {
-    width: 100%;
-    max-width: 100%;
-    padding: 0 15px;
-    box-sizing: border-box;
-    margin: 0 auto;
-  }
-  
-  /* 统一所有部分的内边距 */
-  section {
-    padding: 2rem 0;
-  }
-  
-  section h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  /* 修复头部可能出现的遮挡问题 */
-  .popular-tools {
-    padding-top: 2rem;
-  }
-  
-  .pillar {
-    padding: 1rem;
-    min-height: 120px;
-  }
-}
-
-@media (max-width: 480px) {
-  .logo-text h1 {
-    font-size: 22px;
-  }
-  
-  .logo-container {
-    width: 40px;
-    height: 40px;
-  }
-  
-  .logo-8r {
-    width: 40px;
-    height: 40px;
-  }
-  
-  .logo-8r::before {
-    font-size: 22px;
-  }
-  
-  body {
-    padding-top: 70px; /* 为更小的屏幕减少顶部内边距 */
-  }
-  
-  /* 修复超小屏幕上的行为 */
-  header {
-    padding: 8px 0;
-    min-height: 60px; /* 更小的屏幕上减小最小高度 */
-    position: fixed;
-    width: 100%;
-    z-index: 1000;
-  }
-  
-  body {
-    padding-top: 80px; /* 调整为更合适的顶部内边距 */
-  }
-  
-  /* 确保所有部分顶部内边距一致 */
-  section {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-  }
-  
-  /* 确保关于8RAI部分与其他部分一致 */
-  .about-section {
-    padding: 1.5rem 0;
-  }
-  
-  .about-section .container {
-    padding: 0 12px;
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-  }
-  
-  .brand-story {
-    padding: 1.2rem;
-    margin-bottom: 0.8rem;
-    width: 100%;
-    max-width: 100%;
-    overflow: hidden;
-  }
-  
-  .brand-story h3 {
-    font-size: 1.2rem;
-    margin-bottom: 0.8rem;
-  }
-  
-  .brand-story p {
-    font-size: 0.9rem;
-    line-height: 1.4;
-    margin-bottom: 1rem;
-  }
-  
-  .brand-pillars {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.8rem;
-    margin: 1rem auto;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  
-  .pillar {
-    padding: 0.8rem;
-    min-height: 100px;
-  }
-  
-  .pillar i {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .pillar span {
-    font-size: 0.85rem;
-    line-height: 1.2;
-  }
-  
-  .pillar span:first-of-type {
-    font-size: 0.9rem;
-    margin-bottom: 0.1rem;
-  }
-  
-  .pillar span:last-of-type {
-    font-size: 0.8rem;
-  }
-  
-  /* 确保所有部分的标题大小一致 */
-  .about-section h2,
-  .popular-tools h2, 
-  .tools-category h2, 
-  .ai-news h2, 
-  .learning-resources h2,
-  .ai-evaluation h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1.2rem;
-  }
-  
-  /* 统一所有部分的容器样式 */
-  .container {
-    padding: 0 12px;
-  }
-  
-  .pillar span {
-    font-size: 0.75rem;
-    line-height: 1.2;
-    white-space: normal;
-    overflow-wrap: break-word;
-    word-break: break-word;
-    padding: 0 2px;
-  }
-  
-  .pillar span:first-of-type {
-    font-size: 0.8rem;
-    margin-bottom: 0.1rem;
-    color: var(--primary-color);
-  }
-  
-  .pillar span:last-of-type {
-    font-size: 0.7rem;
-  }
-  
-  .pillar {
-    padding: 0.8rem;
-    min-height: 110px;
-  }
-}
-
-/* 修复移动端上部分可能存在的问题 */
-header.header-scrolled.mobile-view {
-  padding: 5px 0;
-  background-color: rgba(var(--header-bg-rgb), 0.95);
-  backdrop-filter: blur(10px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  min-height: 60px;
-  transform: translateY(0); /* 防止上滑时头部被部分隐藏 */
-  box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15);
-}
-
-/* 确保头部容器在所有状态下都正常显示 */
-header.header-scrolled .container {
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-
-@media (max-width: 768px) {
-  header.header-scrolled .container {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    min-height: 50px;
-  }
-  
-  /* 统一所有部分在移动端的垂直间距 */
-  .popular-tools,
-  .tools-category,
-  .ai-news,
-  .ai-evaluation,
-  .learning-resources,
-  .about-section {
-    margin-bottom: 1rem;
-  }
-}
-
-/* 移动端LOGO响应式微调 */
-@media (max-width: 480px) {
-  .logo-text h1 {
-    font-size: 22px;
-  }
-  
-  .logo-container {
-    width: 40px;
-    height: 40px;
-  }
-  
-  .logo-8r {
-    width: 40px;
-    height: 40px;
-  }
-  
-  .logo-8r::before {
-    font-size: 22px;
-  }
-  
-  body {
-    padding-top: 70px; /* 为更小的屏幕减少顶部内边距 */
-  }
-}
-
-/* 修复页面内容上方间距 */
-body {
-  padding-top: 80px; /* 给固定导航腾出空间 */
-}
-
-/* 工具卡片通用样式 */
-.tools-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.tool-card {
-  background-color: var(--card-color);
-  border-radius: 10px;
-  padding: 1.2rem;
-  box-shadow: var(--shadow);
-  transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s ease, color 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.tool-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-}
-
-.tool-icon {
-  font-size: 2rem;
-  color: var(--primary-color);
-  margin-bottom: 1rem;
-}
-
-/* 热门工具的工具头部样式 */
-.tool-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 0.8rem;
-}
-
-.tool-header .tool-icon {
-  margin-bottom: 0;
-  margin-right: 0.8rem;
-  font-size: 1.8rem;
-}
-
-.tool-header h3 {
-  margin-bottom: 0;
-  font-size: 1.2rem;
-}
-
-.tool-card h3, .tool-card h4 {
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-}
-
-.tool-card p {
-  color: var(--text-light);
-  margin-bottom: 1rem;
-  flex-grow: 1;
-}
-
-.tool-link {
-  display: inline-block;
-  background-color: var(--primary-color);
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  font-weight: 500;
-  margin-top: auto;
-  text-align: center;
-  transition: background-color 0.3s;
-}
-
-/* 修改AI工具分类部分的工具卡片样式 */
-.tools-category .tool-card {
-  padding: 1.2rem;
-  min-height: 160px; /* 增加卡片最小高度 */
-}
-
-.tools-category .tool-card h4 {
-  font-size: 1rem; /* 减小标题字体大小 */
-  margin-bottom: 0.5rem;
-}
-
-.tools-category .tool-card p {
-  font-size: 0.85rem; /* 减小介绍文字字体大小 */
-  line-height: 1.4; /* 减小行高 */
-  margin-bottom: 0.8rem; /* 减小底部边距 */
-  flex-grow: 1;
-  overflow: visible; /* 确保文字完全可见 */
-}
-
-.tools-category .tool-link {
-  padding: 0.4rem 0.8rem; /* 减小按钮内边距 */
-  font-size: 0.85rem; /* 减小按钮文字大小 */
-}
-
-/* 移动端工具卡片特定样式 */
-@media (max-width: 768px) {
-  .tools-category .tool-card {
-    min-height: 180px; /* 移动端增加更多高度 */
-  }
-  
-  .tools-category .tool-card p {
-    font-size: 0.8rem; /* 移动端进一步缩小字体 */
-  }
-}
-
-.tool-link:hover {
-  background-color: var(--secondary-color);
-  color: white;
-}
-
-/* 热门工具部分 */
-.popular-tools {
-  padding: 2rem 0;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.popular-tools h2 {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  text-align: center;
-  color: var(--text-color);
-  transition: color 0.3s ease;
-}
-
-/* 工具分类部分 */
-.tools-category {
-  padding: 2rem 0;
-  background-color: var(--background-color);
-}
-
-.tools-category h2 {
-  text-align: center;
-  margin-bottom: 1.5rem;
-  font-size: 1.8rem;
-}
-
-.category-section {
-  margin-bottom: 2rem;
-}
-
-.category-section h3 {
-  border-left: 4px solid var(--primary-color);
-  padding-left: 1rem;
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  font-size: 1.4rem;
-}
-
-.category-section h3 i {
-  margin-right: 0.5rem;
-  color: var(--primary-color);
-}
-
-/* AI资讯部分 */
-.ai-news {
-  padding: 2rem 0;
-  background-color: white;
-  display: none; /* 隐藏AI资讯部分 */
-}
-
-.ai-news h2 {
-  text-align: center;
-  margin-bottom: 1.5rem;
-  font-size: 1.8rem;
-}
-
-.news-controls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-}
-
-.news-tabs {
-  display: flex;
-  gap: 1rem;
-}
-
-.news-tab {
-  padding: 0.6rem 1.2rem;
-  background: var(--hover-color);
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
-}
-
-.news-tab.active, .news-tab:hover {
-  background: var(--primary-color);
-  color: white;
-}
-
-.news-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.more-news, .rss-feed {
-  font-size: 0.9rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.rss-feed {
-  color: #f26522;
-  font-weight: 500;
-  transition: all 0.3s ease;
-}
-
-.rss-feed:hover {
-  color: #e74c3c;
-}
-
-.rss-feed i {
-  font-size: 1.1rem;
-}
-
-.news-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
-}
-
-.news-card {
-  background-color: var(--card-color);
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: var(--shadow);
-  transition: transform 0.3s, background-color 0.3s ease, color 0.3s ease;
-}
-
-.news-card:hover {
-  transform: translateY(-5px);
-}
-
-.news-img {
-  width: 100%;
-  height: 180px;
-  overflow: hidden;
-}
-
-.news-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s;
-}
-
-.news-card:hover .news-img img {
-  transform: scale(1.05);
-}
-
-.news-card h3 {
-  padding: 1rem 1.5rem 0.5rem;
-  font-size: 1.2rem;
-}
-
-.news-card .news-date {
-  padding: 0 1.5rem;
-  font-size: 0.8rem;
-  color: var(--text-light);
-}
-
-.news-card p {
-  padding: 0.5rem 1.5rem;
-  color: var(--text-light);
-}
-
-.news-card .read-more {
-  display: inline-block;
-  margin: 0.5rem 1.5rem 1.5rem;
-  color: var(--primary-color);
-  font-weight: 500;
-}
-
-/* 每周精选 */
-.weekly-digest {
-  margin-top: 3rem;
-  background-color: var(--hover-color);
-  border-radius: 10px;
-  padding: 2rem;
-}
-
-.weekly-digest h3 {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  margin-bottom: 1.5rem;
-  color: var(--text-color);
-}
-
-.digest-content {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
-}
-
-.digest-item {
-  background-color: var(--card-color);
-  border-radius: 8px;
-  padding: 1.5rem;
-  box-shadow: var(--shadow);
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.digest-date {
-  display: inline-block;
-  background-color: var(--primary-color);
-  color: white;
-  padding: 0.3rem 0.8rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  margin-bottom: 1rem;
-}
-
-.digest-item p {
-  margin-bottom: 1rem;
-  color: var(--text-color);
-}
-
-.digest-link {
-  display: inline-block;
-  color: var(--primary-color);
-  font-weight: 500;
-}
-
-/* AI模型评测部分 */
-.ai-evaluation {
-  padding: 1.5rem 0;
-  background-color: var(--background-color);
-}
-
-.ai-evaluation h2 {
-  text-align: center;
-  margin-bottom: 0.5rem;
-  font-size: 1.8rem;
-}
-
-.section-desc {
-  text-align: center;
-  max-width: 700px;
-  margin: 0 auto 1rem;
-  color: var(--text-light);
-  font-size: 0.9rem;
-}
-
-.eval-categories {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.eval-category {
-  padding: 0.5rem 1rem;
-  background-color: var(--card-color);
-  border-radius: 30px;
-  cursor: pointer;
-  font-weight: 600; /* 加粗字体 */
-  transition: all 0.3s ease;
-  box-shadow: var(--shadow);
-  font-size: 0.95rem; /* 增大字体 */
-  border: 1px solid var(--border-color); /* 添加边框提高对比度 */
-}
-
-.eval-category.active, .eval-category:hover {
-  background-color: var(--primary-color);
-  color: white;
-  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3); /* 添加有色阴影 */
-}
-
-/* 提高深色模式下按钮对比度 */
-[data-theme="dark"] .eval-category {
-  background-color: #2d3748;
-  color: #f9fafb;
-  border: 1px solid #4a5568;
-}
-
-[data-theme="dark"] .eval-category.active, 
-[data-theme="dark"] .eval-category:hover {
-  background-color: #6366f1;
-  color: white;
-  border-color: #6366f1;
-}
-
-/* 模型比较表格 */
-.models-comparison {
-  background-color: var(--card-color);
-  border-radius: 8px;
-  box-shadow: var(--shadow);
-  width: 100%;
-  margin-top: 30px;
-  overflow: hidden;
-  border: 1px solid var(--border-color);
-}
-
-.comparison-header {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  padding: 0.8rem 1rem;
-  background-color: var(--primary-color);
-  color: white;
-  font-weight: 500;
-  font-size: 0.9rem;
-}
-
-.model-row {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  padding: 0.8rem 1rem;
-  border-bottom: 1px solid var(--border-color);
-  align-items: center;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.model-row:last-child {
-  border-bottom: none;
-}
-
-.model-row:hover {
-  background-color: var(--hover-color);
-}
-
-.model-name {
-  font-weight: 500;
-  font-size: 1rem;
-}
-
-.model-company {
-  font-size: 0.8rem;
-  color: var(--text-light);
-  margin-top: 0.2rem;
-}
-
-.score {
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: var(--primary-color);
-  margin-bottom: 0.3rem;
-}
-
-.score-bar {
-  height: 4px;
-  background-color: var(--primary-color);
-  border-radius: 2px;
-}
-
-.view-details {
-  display: inline-block;
-  padding: 0.3rem 0.7rem;
-  background-color: var(--hover-color);
-  border-radius: 4px;
-  font-size: 0.8rem;
-  transition: all 0.3s ease;
-}
-
-.view-details:hover {
-  background-color: var(--primary-color);
-  color: white;
-}
-
-/* 评测基准 */
-.benchmarks h3 {
-  text-align: center;
-  margin-bottom: 1rem;
-  font-size: 1.3rem;
-  color: var(--text-color);
-}
-
-.benchmark-items {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 1rem;
-}
-
-.benchmark-item {
-  background-color: var(--card-color);
-  border-radius: 8px;
-  padding: 1rem;
-  text-align: center;
-  box-shadow: var(--shadow);
-  transition: transform 0.3s;
-}
-
-.benchmark-item:hover {
-  transform: translateY(-3px);
-}
-
-.benchmark-icon {
-  font-size: 1.5rem;
-  color: var(--primary-color);
-  margin-bottom: 0.5rem;
-}
-
-.benchmark-name {
-  font-weight: 600;
-  font-size: 1rem;
-  margin-bottom: 0.3rem;
-}
-
-.benchmark-desc {
-  font-size: 0.8rem;
-  color: var(--text-light);
-}
-
-.benchmark-detail {
-  font-size: 0.75rem;
-  color: var(--text-light);
-  margin-top: 0.3rem;
-}
-
-/* 响应式调整 */
-@media (max-width: 768px) {
-  .eval-categories {
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-  
-  .comparison-header, .model-row {
-    grid-template-columns: 1.5fr 1fr 0.8fr;
-    padding: 0.7rem;
-    font-size: 0.85rem;
-  }
-  
-  .model-name {
-    font-size: 0.9rem;
-  }
-  
-  .score {
-    font-size: 1rem;
-  }
-  
-  .view-details {
-    padding: 0.3rem 0.6rem;
-    font-size: 0.75rem;
-  }
-  
-  .benchmarks {
-    margin-bottom: 1.2rem;
-  }
-  
-  .benchmark-items {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .benchmark-item {
-    padding: 0.8rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .benchmark-items {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.7rem;
-  }
-  
-  .benchmark-icon {
-    font-size: 1.3rem;
-    margin-bottom: 0.3rem;
-  }
-  
-  .benchmark-name {
-    font-size: 0.9rem;
-  }
-  
-  .benchmark-desc {
-    font-size: 0.75rem;
-  }
-  
-  .benchmark-detail {
-    display: none;
-  }
-}
-
-/* 学习资源部分 */
-.learning-resources {
-  padding: 2rem 0;
-}
-
-.learning-resources h2 {
-  text-align: center;
-  margin-bottom: 1.5rem;
-  font-size: 1.8rem;
-}
-
-.resources-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 1.5rem;
-}
-
-.resource-card {
-  background-color: var(--card-color);
-  border-radius: 10px;
-  padding: 1.5rem;
-  box-shadow: var(--shadow);
-  transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s ease, color 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.resource-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-}
-
-.resource-icon {
-  font-size: 2rem;
-  color: var(--primary-color);
-  margin-bottom: 1rem;
-}
-
-.resource-card h3 {
-  margin-bottom: 0.5rem;
-}
-
-.resource-card p {
-  color: var(--text-light);
-  margin-bottom: 1rem;
-  flex-grow: 1;
-}
-
-.resource-link {
-  display: inline-block;
-  background-color: var(--primary-color);
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  font-weight: 500;
-  margin-top: auto;
-  text-align: center;
-  transition: background-color 0.3s;
-}
-
-/* 修改学习资源部分的卡片样式 */
-.learning-resources .resource-card {
-  padding: 1.2rem;
-  min-height: 160px; /* 增加卡片最小高度 */
-}
-
-.learning-resources .resource-card h3 {
-  font-size: 1rem; /* 减小标题字体大小 */
-  margin-bottom: 0.5rem;
-}
-
-.learning-resources .resource-card p {
-  font-size: 0.85rem; /* 减小介绍文字字体大小 */
-  line-height: 1.4; /* 减小行高 */
-  margin-bottom: 0.8rem; /* 减小底部边距 */
-  flex-grow: 1;
-  overflow: visible; /* 确保文字完全可见 */
-}
-
-.learning-resources .resource-icon {
-  font-size: 1.8rem; /* 稍微减小图标大小 */
-  margin-bottom: 0.8rem; /* 减小底部边距 */
-}
-
-.learning-resources .resource-link {
-  padding: 0.4rem 0.8rem; /* 减小按钮内边距 */
-  font-size: 0.85rem; /* 减小按钮文字大小 */
-}
-
-/* 移动端学习资源卡片特定样式 */
-@media (max-width: 768px) {
-  .learning-resources .resource-card {
-    min-height: 180px; /* 移动端增加更多高度 */
-  }
-  
-  .learning-resources .resource-card p {
-    font-size: 0.8rem; /* 移动端进一步缩小字体 */
-  }
-}
-
-.resource-link:hover {
-  background-color: var(--secondary-color);
-  color: white;
-}
-
-/* 关于部分 */
-.about-section {
-  background-color: var(--background-color);
-  padding: 4rem 0;
-  transition: background-color 0.3s ease;
-  width: 100%;
-}
-
-.about-section .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-  width: 100%; /* 确保宽度是100% */
-  box-sizing: border-box; /* 确保内边距不会增加元素总宽度 */
-}
-
-.about-section h2 {
-  text-align: center;
-  margin-bottom: 2rem;
-  font-size: 2rem;
-  color: var(--text-color);
-}
-
-.about-content {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%; /* 确保宽度是100% */
-}
-
-.brand-story {
-  background-color: var(--card-color);
-  padding: 2rem;
-  border-radius: 10px;
-  margin-bottom: 2rem;
-  box-shadow: var(--shadow);
-  transition: background-color 0.3s ease, color 0.3s ease;
-  width: 100%;
-  box-sizing: border-box; /* 确保内边距不会增加元素总宽度 */
-  max-width: 100%; /* 确保不超过父容器宽度 */
-  overflow: hidden; /* 防止内容溢出 */
-}
-
-.brand-story h3 {
-  margin-bottom: 1.2rem;
-  color: var(--primary-color);
-  font-size: 1.5rem;
-  text-align: center;
-}
-
-.brand-story p {
-  margin-bottom: 1.5rem;
-  line-height: 1.7;
-  text-align: center;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  color: var(--text-color);
-}
-
-.brand-values, .brand-slogan {
-  background-color: var(--card-color);
-  border-radius: 10px;
-  padding: 2rem;
-  box-shadow: var(--shadow);
-}
-
-.brand-values h3, .brand-slogan h3 {
-  margin-bottom: 1.2rem;
-  color: var(--primary-color);
-  font-size: 1.5rem;
-}
-
-.brand-values p, .brand-slogan p {
-  margin-bottom: 1.5rem;
-  line-height: 1.7;
-}
-
-.brand-pillars {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  margin: 2rem auto;
-  max-width: 900px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.pillar {
-  text-align: center;
-  padding: 1.2rem;
-  background-color: var(--card-color);
-  border-radius: 8px;
-  transition: transform 0.3s, background-color 0.3s ease, color 0.3s ease;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  border: 1px solid var(--border-color);
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.pillar:hover {
-  transform: translateY(-5px);
-}
-
-.pillar i {
-  font-size: 2rem;
-  color: var(--primary-color);
-  margin-bottom: 0.8rem;
-}
-
-.pillar h4 {
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: var(--text-color);
-}
-
-.pillar p {
-  color: var(--text-light);
-  font-size: 0.9rem;
-  margin-bottom: 0;
-}
-
-.pillar span {
-  color: var(--text-color);
-  font-size: 0.9rem;
-  line-height: 1.3;
-  display: block;
-  font-weight: 500;
-}
-
-.pillar span:first-of-type {
-  color: var(--primary-color);
-  font-weight: 600;
-  margin-bottom: 0.2rem;
-}
-
-.pillar span:last-of-type {
-  font-size: 0.85rem;
-}
-
-.values-list {
-  padding-left: 1.5rem;
-}
-
-.values-list li {
-  margin-bottom: 0.8rem;
-  line-height: 1.6;
-}
-
-.slogan-text {
-  font-size: 1.8rem;
-  font-weight: 700;
-  text-align: center;
-  margin: 1.5rem 0;
-  color: var(--primary-color);
-}
-
-.slogan-desc {
-  text-align: center;
-  font-size: 1.1rem;
-  line-height: 1.7;
-}
-
-@media (min-width: 768px) {
-  .about-content {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .brand-story {
-    grid-column: 1 / -1;
-  }
-}
-
-/* 页脚 */
-footer {
-  background-color: var(--footer-bg);
-  color: var(--footer-text);
-  padding: 2rem 0 0.5rem; /* 减少顶部和底部内边距 */
-}
-
-.footer-content {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem; /* 减少间距 */
-  margin-bottom: 1.5rem; /* 减少底部间距 */
-}
-
-.footer-logo {
-  position: relative;
-}
-
-.logo-container-small {
-  margin-bottom: 10px; /* 减少底部间距 */
-}
-
-/* 尾部LOGO样式统一 */
-.logo-8r-small {
-  position: relative;
-  width: 36px; /* 减小尺寸 */
-  height: 36px; /* 减小尺寸 */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--primary-color);
-  border-radius: 50%;
-  color: white;
-  font-weight: bold;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* 减小阴影 */
-  overflow: hidden;
-}
-
-.logo-8r-small::before {
-  content: "8R";
-  font-size: 20px; /* 减小字体大小 */
-  font-weight: bold;
-  position: relative;
-  top: 0px;
-  letter-spacing: -1px;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-.digit-8-small, .letter-r-small, .infinity-line-small {
-  display: none;
-}
-
-/* 修改尾部LOGO布局为水平排列 */
-.footer-logo-horizontal {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px; /* 减少底部间距 */
-}
-
-.footer-logo-horizontal .logo-container-small {
-  margin-bottom: 0;
-  margin-right: 10px; /* 减少右侧间距 */
-}
-
-.footer-logo-horizontal h2 {
-  margin: 0;
-  margin-right: 8px; /* 减少右侧间距 */
-  font-size: 1.3rem; /* 减小字体大小 */
-}
-
-.footer-logo-horizontal p {
-  margin: 0;
-  color: var(--footer-text-light);
-  font-size: 0.9rem; /* 减小字体大小 */
-}
-
-.footer-logo p {
-  color: var(--footer-text-light);
-  margin-bottom: 0.3rem; /* 减少底部间距 */
-  font-size: 0.9rem; /* 减小字体大小 */
-}
-
-.footer-contact h3 {
-  font-size: 1.1rem; /* 减小字体大小 */
-  margin-bottom: 0.7rem; /* 减少底部间距 */
-}
-
-.footer-contact p {
-  margin-bottom: 0.4rem; /* 减少底部间距 */
-  color: var(--footer-text-light);
-  font-size: 0.9rem; /* 减小字体大小 */
-}
-
-.footer-contact p i {
-  margin-right: 0.4rem; /* 减少右侧间距 */
-}
-
-.footer-contact a {
-  color: var(--footer-text-light);
-}
-
-.footer-contact a:hover {
-  color: white;
-}
-
-.footer-bottom {
-  text-align: center;
-  padding-top: 0.8rem; /* 减少顶部内边距 */
-  border-top: 1px solid var(--border-color);
-  color: var(--footer-text-light);
-  font-size: 0.8rem; /* 减小字体大小 */
-}
-
-/* 响应式设计 - 移动端优化 */
-@media (max-width: 768px) {
-  footer {
-    padding: 1.5rem 0 0.5rem; /* 在移动设备上进一步减少内边距 */
-  }
-
-  .footer-content {
-    grid-template-columns: 1fr;
-    gap: 1rem; /* 在移动设备上进一步减少间距 */
-  }
-  
-  /* 确保移动端也保持水平排列的LOGO */
-  .footer-logo-horizontal {
-    display: flex;
-    align-items: center;
-    margin-bottom: 8px; /* 减少底部间距 */
-  }
-  
-  .footer-logo-horizontal .logo-container-small {
-    width: 32px;
-    height: 32px;
-    margin-right: 8px;
-  }
-  
-  .footer-logo-horizontal .logo-8r-small {
-    width: 32px;
-    height: 32px;
-  }
-  
-  .footer-logo-horizontal .logo-8r-small::before {
-    font-size: 18px;
-  }
-  
-  .footer-logo-horizontal h2 {
-    font-size: 1.2rem;
-    margin-right: 8px;
-  }
-  
-  .footer-logo-horizontal p {
-    font-size: 0.85rem;
-  }
-  
-  .footer-contact h3 {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  footer {
-    padding: 1.2rem 0 0.5rem; /* 在更小屏幕上进一步减少内边距 */
-  }
-  
-  /* 超小屏幕LOGO样式调整 */
-  .footer-logo-horizontal .logo-container-small {
-    width: 28px; /* 更小尺寸 */
-    height: 28px; /* 更小尺寸 */
-    margin-right: 6px;
-  }
-  
-  .footer-logo-horizontal .logo-8r-small {
+  header.header-scrolled .logo-8r {
     width: 28px;
     height: 28px;
   }
   
-  .footer-logo-horizontal .logo-8r-small::before {
-    font-size: 16px;
+  header.header-scrolled .logo-8r::before {
+    font-size: 15px; /* 减小字体尺寸 */
   }
   
-  .footer-logo-horizontal h2 {
-    font-size: 1.1rem;
-    margin-right: 6px;
+  header.header-scrolled .logo-text h1 {
+    font-size: 16px; /* 减小字体尺寸 */
   }
   
-  .footer-logo-horizontal p {
-    font-size: 0.8rem;
+  header.header-scrolled .container {
+    padding: 0.2rem 1rem; /* 减少内边距 */
   }
   
-  .footer-bottom {
-    padding-top: 0.6rem;
-    font-size: 0.75rem;
-  }
-}
-
-/* 移动导航按钮 */
-.mobile-menu-toggle {
-  display: none; /* 完全隐藏汉堡菜单按钮 */
-}
-
-@media (max-width: 768px) {
-  .mobile-menu-toggle {
-    display: none; /* 确保在移动端也不显示汉堡菜单按钮 */
+  header.header-scrolled .logo {
+    margin-bottom: 0.1rem; /* 减少底部间距 */
   }
   
   header .container {
     flex-direction: column;
-    padding: 1rem;
+    padding: 0.3rem 1rem; /* 减少上下内边距 */
     position: relative;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
   }
   
   .logo {
-    margin-bottom: 1rem;
-  }
-  
-  .header-right {
-    width: 100%;
-    align-items: center;
+    margin-bottom: 0.2rem; /* 减少底部间距 */
+    margin-top: 0;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+  }
+
+  .logo-container {
+    width: 35px; /* 减小LOGO尺寸 */
+    height: 35px;
+  }
+
+  .logo-8r {
+    width: 35px;
+    height: 35px;
+  }
+
+  .logo-8r::before {
+    font-size: 18px; /* 减小字体尺寸 */
+  }
+
+  .logo-text h1 {
+    font-size: 18px; /* 减小字体尺寸 */
+  }
+
+  .logo-text p {
+    display: none; /* 隐藏副标题，节省空间 */
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding-top: 60px; /* 进一步减少顶部内边距 */
   }
   
-  .search-box {
-    width: 100%;
-    margin-right: 0;
-    margin-bottom: 1rem;
+  header {
+    padding: 5px 0;
+    min-height: 50px; /* 更小的屏幕上减小最小高度 */
   }
   
-  nav {
-    width: 100%;
-    height: auto;
-    visibility: visible;
-    max-height: none;
-    overflow: visible;
-    margin-top: 0.5rem;
+  .popular-tools {
+    padding-top: 1.5rem; /* 减少热门工具部分的顶部内边距 */
   }
   
-  nav ul {
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    flex-wrap: nowrap;
+  section {
+    padding-top: 1.5rem; /* 减少各部分顶部内边距 */
+    padding-bottom: 1.5rem; /* 减少各部分底部内边距 */
   }
   
-  nav ul li {
-    margin: 0;
-    width: auto;
-    text-align: center;
-    flex: 1;
+  .logo-container {
+    width: 30px; /* 进一步减小LOGO尺寸 */
+    height: 30px;
   }
   
-  nav ul li a {
-    display: block;
-    padding: 8px 5px;
-    font-size: 0.9rem;
-    white-space: nowrap;
-    background-color: transparent;
-    border-radius: 0;
-    border-bottom: 2px solid transparent;
+  .logo-8r {
+    width: 30px;
+    height: 30px;
   }
   
-  nav ul li a:hover, 
-  nav ul li a.active {
-    background-color: var(--primary-color);
-    color: white;
-    border-bottom: none;
-    border-radius: 4px;
+  .logo-8r::before {
+    font-size: 16px; /* 减小字体尺寸 */
+  }
+  
+  .logo-text h1 {
+    font-size: 16px; /* 减小字体尺寸 */
   }
 }
 
@@ -2050,11 +661,16 @@ footer {
     line-height: 1.3;
   }
   
-  .tool-card p, .resource-card p {
+  .tool-card p, .tool-desc, .resource-card p {
     font-size: 0.8rem;
     margin-bottom: 0.6rem;
     /* 确保文字不会溢出 - 修改为2行 */
     -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.4;
   }
   
   .tool-icon, .resource-icon {
@@ -2177,15 +793,16 @@ header.mobile-view .desktop-nav {
     margin-bottom: 0.3rem;
   }
   
-  .tool-card p, .resource-card p {
+  .tool-card p, .tool-desc, .resource-card p {
     font-size: 0.8rem;
     margin-bottom: 0.6rem;
-    /* 确保文字不会溢出 */
+    /* 确保文字不会溢出 - 修改为2行 */
+    -webkit-line-clamp: 2;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+    line-height: 1.4;
   }
   
   /* 修复头部在移动端上滑时只显示一半的问题 */
@@ -2206,61 +823,84 @@ header.mobile-view .desktop-nav {
     padding-top: 80px; /* 调整顶部内边距，确保不被头部遮挡 */
     overflow-x: hidden; /* 防止水平滚动 */
   }
+  
+  header.header-scrolled {
+    padding: 2px 0;
+    min-height: 40px; /* 更小屏幕上进一步减小滚动时的最小高度 */
+  }
+  
+  header.header-scrolled .logo-container {
+    width: 25px; /* 滚动时进一步减小LOGO尺寸 */
+    height: 25px;
+  }
+  
+  header.header-scrolled .logo-8r {
+    width: 25px;
+    height: 25px;
+  }
+  
+  header.header-scrolled .logo-8r::before {
+    font-size: 14px; /* 减小字体尺寸 */
+  }
+  
+  header.header-scrolled .logo-text h1 {
+    font-size: 15px; /* 减小字体尺寸 */
+  }
 }
 
 /* 微信浏览器特定样式 */
 body.wechat-browser {
-  padding-top: 120px; /* 为微信浏览器增加更多的顶部空间 */
+  padding-top: 90px; /* 减少为微信浏览器的顶部空间 */
 }
 
 header.wechat-header {
-  padding-top: 40px; /* 为微信状态栏留出空间 */
-  min-height: 100px; /* 确保头部有足够高度 */
+  padding-top: 25px; /* 减少为微信状态栏留出的空间 */
+  min-height: 85px; /* 减少微信头部的最小高度 */
 }
 
 header.wechat-header.header-scrolled {
-  padding-top: 40px; /* 滚动时也保持顶部间距 */
-  min-height: 90px; /* 滚动时的最小高度 */
+  padding-top: 25px; /* 滚动时保持顶部间距 */
+  min-height: 70px; /* 减少滚动时的最小高度 */
 }
 
 /* iOS微信浏览器特定样式 */
 body.wechat-ios {
-  padding-top: 140px; /* iOS设备上增加更多空间 */
+  padding-top: 100px; /* 减少iOS设备上的空间 */
 }
 
 header.wechat-ios-header {
-  padding-top: 45px; /* iOS微信状态栏通常更高 */
+  padding-top: 30px; /* 减少iOS微信状态栏空间 */
 }
 
 header.wechat-ios-header.header-scrolled {
-  padding-top: 45px;
+  padding-top: 30px;
 }
 
 @media screen and (max-width: 480px) {
   body.wechat-browser {
-    padding-top: 100px;
+    padding-top: 80px; /* 小屏幕上进一步减少微信浏览器的顶部空间 */
   }
   
   header.wechat-header {
-    padding-top: 35px;
-    min-height: 90px;
+    padding-top: 20px; /* 减少小屏幕上微信状态栏的空间 */
+    min-height: 70px; /* 减少最小高度 */
   }
   
   header.wechat-header.header-scrolled {
-    padding-top: 35px;
-    min-height: 80px;
+    padding-top: 20px;
+    min-height: 60px; /* 滚动时进一步减少最小高度 */
   }
   
   body.wechat-ios {
-    padding-top: 120px;
+    padding-top: 90px; /* 减少小屏幕iOS设备的顶部空间 */
   }
   
   header.wechat-ios-header {
-    padding-top: 40px;
+    padding-top: 25px; /* 减少小屏幕上iOS微信状态栏的空间 */
   }
   
   header.wechat-ios-header.header-scrolled {
-    padding-top: 40px;
+    padding-top: 25px;
   }
 }
 
@@ -2404,6 +1044,64 @@ header.wechat-scroll-up {
   
   body {
     overflow-x: hidden;
+  }
+  
+  .tool-card h3, .tool-card h4 {
+    font-size: 0.85rem;
+  }
+  
+  .tool-card p, .tool-desc {
+    font-size: 0.75rem;
+    line-height: 1.3;
+    -webkit-line-clamp: 2;
+  }
+}
+
+@media (max-width: 320px) {
+  html {
+    font-size: 14px;
+  }
+  
+  .container {
+    padding: 0 8px;
+  }
+  
+  .brand-pillars {
+    gap: 0.5rem;
+  }
+  
+  .pillar {
+    padding: 0.6rem;
+    min-height: 90px;
+  }
+  
+  .pillar i {
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+  }
+  
+  .pillar span:first-of-type {
+    font-size: 0.7rem;
+  }
+  
+  .pillar span:last-of-type {
+    font-size: 0.6rem;
+  }
+  
+  /* 工具卡片和资源卡片在极小屏幕上的优化 */
+  .tools-grid, .news-grid, .resources-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  
+  .tool-card, .resource-card, .news-card {
+    padding: 0.7rem;
+  }
+  
+  .tool-card p, .tool-desc, .resource-card p {
+    font-size: 0.7rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
   }
 }
 
