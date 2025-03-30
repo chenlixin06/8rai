@@ -1292,7 +1292,7 @@ header.wechat-scroll-up {
     padding: 0 0.5rem;
   }
   /* ... existing code ... */
-} 
+}
 
 /* 通用响应式优化 */
 html {
@@ -1352,7 +1352,13 @@ img {
   .tool-card, .resource-card, .news-card {
     padding: 0.7rem;
   }
-} 
+  
+  .tool-card p, .tool-desc, .resource-card p {
+    font-size: 0.7rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+}
 
 /* 热门工具部分 */
 .popular-tools {
@@ -1397,8 +1403,45 @@ img {
   .popular-tools .tool-desc {
     -webkit-line-clamp: 3; /* 保持3行文本 */
   }
-} /* 热门工具卡片特定样式 */
-.popular-tools .tool-card { min-height: 180px; }
-.popular-tools .tool-desc { line-height: 1.5; -webkit-line-clamp: 3; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; }
-@media (max-width: 768px) { .popular-tools .tool-card { min-height: 200px; } }
-@media (max-width: 480px) { .popular-tools .tool-card { min-height: 170px; } .popular-tools .tool-desc { -webkit-line-clamp: 3; } }
+}
+
+.tool-icon {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+/* 热门工具的工具头部样式 */
+.tool-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.tool-header .tool-icon {
+  margin-bottom: 0;
+  margin-right: 0.8rem;
+  font-size: 1.8rem;
+}
+
+.tool-header h3 {
+  margin-bottom: 0;
+  font-size: 1.2rem;
+}
+
+.tool-card h3, .tool-card h4 {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.tool-card p, .tool-desc {
+  color: var(--text-light);
+  margin-bottom: 1rem;
+  flex-grow: 1;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
