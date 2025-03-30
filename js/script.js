@@ -44,6 +44,32 @@ document.addEventListener('DOMContentLoaded', function() {
     // 获取所有导航链接
     const navLinks = document.querySelectorAll('nav ul li a');
     
+    // 移动导航引用
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const nav = document.querySelector('nav');
+    
+    // 关闭移动导航
+    function closeMobileNav() {
+        if (window.innerWidth <= 768 && nav) {
+            nav.classList.remove('active');
+        }
+    }
+    
+    // 初始化移动导航事件
+    if (mobileMenuToggle && nav) {
+        mobileMenuToggle.addEventListener('click', (e) => {
+            e.stopPropagation(); // 防止冒泡
+            nav.classList.toggle('active');
+        });
+        
+        // 如果用户点击导航外的区域，关闭导航
+        document.addEventListener('click', function(e) {
+            if (!nav.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                nav.classList.remove('active');
+            }
+        });
+    }
+    
     // 平滑滚动效果
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -65,35 +91,47 @@ document.addEventListener('DOMContentLoaded', function() {
                     behavior: 'smooth'
                 });
             }
+            
+            // 点击导航链接后关闭移动导航
+            closeMobileNav();
         });
     });
     
-    // 添加响应式导航菜单功能
-    const setupMobileNav = () => {
+    // 响应式处理
+    function handleResponsiveLayout() {
         if (window.innerWidth <= 768) {
-            // 如果在移动设备上，可以添加一个汉堡菜单按钮
-            if (!document.querySelector('.mobile-menu-toggle')) {
-                const mobileMenuToggle = document.createElement('button');
-                mobileMenuToggle.className = 'mobile-menu-toggle';
-                mobileMenuToggle.innerHTML = '<i class="bi bi-list"></i>';
-                
-                const headerRight = document.querySelector('.header-right');
-                const nav = document.querySelector('nav');
-                
-                headerRight.insertBefore(mobileMenuToggle, nav);
-                
-                mobileMenuToggle.addEventListener('click', () => {
-                    nav.classList.toggle('active');
-                });
+            // 确保在移动视图下导航是隐藏的
+            if (mobileMenuToggle) {
+                mobileMenuToggle.style.display = 'block';
+            }
+            
+            if (nav) {
+                // 只有当没有active类时才隐藏导航
+                if (!nav.classList.contains('active')) {
+                    nav.style.visibility = 'hidden';
+                    nav.style.maxHeight = '0';
+                    nav.style.height = '0';
+                }
+            }
+        } else {
+            // 在大屏幕上，确保导航是可见的
+            if (mobileMenuToggle) {
+                mobileMenuToggle.style.display = 'none';
+            }
+            
+            if (nav) {
+                nav.style.visibility = 'visible';
+                nav.style.height = 'auto';
+                nav.style.maxHeight = 'none';
             }
         }
-    };
+    }
     
-    // 初始化响应式导航
-    setupMobileNav();
+    // 初始运行一次
+    handleResponsiveLayout();
     
     // 窗口大小改变时重新设置
-    window.addEventListener('resize', setupMobileNav);
+    window.addEventListener('resize', handleResponsiveLayout);
     
     // 滚动监听，更新导航高亮
     function onScroll() {
@@ -125,9 +163,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         });
-        
-        // 如果滚动到顶部或没有找到活动的板块，不需要高亮任何导航项
-        // 因为首页选项已被移除
     }
     
     // 添加滚动事件监听
@@ -147,6 +182,9 @@ document.addEventListener('DOMContentLoaded', function() {
             navLinks.forEach(link => {
                 link.classList.remove('active');
             });
+            
+            // 点击logo后关闭移动导航
+            closeMobileNav();
         });
     }
     
@@ -189,6 +227,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 top: 0,
                 behavior: 'smooth'
             });
+            
+            // 点击返回顶部按钮后关闭移动导航
+            closeMobileNav();
         });
         
         window.addEventListener('scroll', () => {
@@ -201,4 +242,42 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     
     createBackToTopButton();
+    
+    // 新闻标签切换功能
+    const newsTabs = document.querySelectorAll('.news-tab');
+    if (newsTabs.length > 0) {
+        newsTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // 移除所有标签的active类
+                newsTabs.forEach(t => t.classList.remove('active'));
+                // 给当前点击的标签添加active类
+                this.classList.add('active');
+                
+                // 这里可以添加按标签筛选新闻的逻辑
+                const tabCategory = this.dataset.tab;
+                console.log('切换到新闻分类:', tabCategory);
+                
+                // 如果有分类对应的新闻数据，可以在这里更新新闻卡片
+            });
+        });
+    }
+    
+    // AI模型评测分类切换功能
+    const evalCategories = document.querySelectorAll('.eval-category');
+    if (evalCategories.length > 0) {
+        evalCategories.forEach(category => {
+            category.addEventListener('click', function() {
+                // 移除所有分类的active类
+                evalCategories.forEach(c => c.classList.remove('active'));
+                // 给当前点击的分类添加active类
+                this.classList.add('active');
+                
+                // 这里可以添加按分类显示不同模型评测数据的逻辑
+                const modelCategory = this.dataset.category;
+                console.log('切换到模型分类:', modelCategory);
+                
+                // 如果有不同分类的模型数据，可以在这里更新模型比较表格
+            });
+        });
+    }
 }); 
