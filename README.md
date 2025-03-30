@@ -35,14 +35,14 @@ AI导航是一个精选人工智能工具集合的网站，旨在帮助用户快
 
 要在本地运行项目，只需要以下步骤：
 
-1. 克隆仓库：`git clone https://github.com/yourusername/ai-navigation.git`
+1. 克隆仓库：`git clone https://chenlixin06.github.io.git`
 2. 打开`index.html`文件即可
 
 由于项目仅使用HTML、CSS和JavaScript构建，无需安装其他依赖。
 
 ## 在线预览
 
-你可以访问[https://yourusername.github.io/ai-navigation](https://yourusername.github.io/ai-navigation)查看在线演示。
+你可以访问[https://chenlixin06.github.io](https://chenlixin06.github.io)查看在线演示。
 
 ## 许可证
 
@@ -50,7 +50,7 @@ AI导航是一个精选人工智能工具集合的网站，旨在帮助用户快
 
 ## 联系方式
 
-如有任何问题或建议，请发送邮件至contact@example.com或在GitHub上提交Issue。
+如有任何问题或建议，请发送邮件至contact@xiaoma.team或在GitHub上提交Issue。
 
 ---
 
