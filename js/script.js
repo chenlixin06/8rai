@@ -174,6 +174,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 新闻标签切换功能
     const newsTabs = document.querySelectorAll('.news-tab');
+    const newsCards = document.querySelectorAll('.news-card');
+    
     if (newsTabs.length > 0) {
         newsTabs.forEach(tab => {
             tab.addEventListener('click', function() {
@@ -186,14 +188,31 @@ document.addEventListener('DOMContentLoaded', function() {
                 const category = this.getAttribute('data-tab');
                 console.log('切换到新闻类别:', category);
                 
-                // 这里可以添加根据类别筛选新闻的逻辑
-                // TODO: 实现新闻筛选功能
+                // 实现新闻筛选功能
+                if (category === 'latest') {
+                    // 显示所有新闻
+                    newsCards.forEach(card => {
+                        card.style.display = 'block';
+                    });
+                } else {
+                    // 根据类别筛选新闻
+                    newsCards.forEach(card => {
+                        const cardCategory = card.getAttribute('data-category') || 'latest';
+                        if (cardCategory === category) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                }
             });
         });
     }
     
     // AI模型评测类别切换功能
     const evalCategories = document.querySelectorAll('.eval-category');
+    const modelRows = document.querySelectorAll('.model-row');
+    
     if (evalCategories.length > 0) {
         evalCategories.forEach(category => {
             category.addEventListener('click', function() {
@@ -206,8 +225,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 const categoryName = this.getAttribute('data-category');
                 console.log('切换到模型类别:', categoryName);
                 
-                // 这里可以添加根据类别显示不同模型评测的逻辑
-                // TODO: 实现模型类别切换功能
+                // 实现模型类别切换功能
+                if (categoryName === 'llm') {
+                    // 显示所有模型
+                    modelRows.forEach(row => {
+                        row.style.display = 'grid';
+                    });
+                } else {
+                    // 根据类别筛选模型
+                    modelRows.forEach(row => {
+                        const rowCategory = row.getAttribute('data-category') || 'llm';
+                        if (rowCategory === categoryName) {
+                            row.style.display = 'grid';
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    });
+                }
             });
         });
     }
