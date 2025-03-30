@@ -454,13 +454,15 @@ body {
 /* 热门工具部分 */
 .popular-tools {
   padding: 2rem 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .popular-tools h2 {
-  text-align: center;
+  font-size: 2rem;
   margin-bottom: 1.5rem;
-  font-size: 1.8rem;
+  text-align: center;
   color: var(--text-color);
+  transition: color 0.3s ease;
 }
 
 /* 工具分类部分 */
@@ -1705,4 +1707,22 @@ footer {
   background-color: transparent;
   color: var(--primary-color) !important;
   border-bottom: 2px solid var(--primary-color);
+}
+
+/* 移动端下热门工具部分额外顶部内边距 */
+@media (max-width: 768px) {
+  .popular-tools {
+    padding-top: 4rem; /* 增加顶部内边距，避免被导航栏遮挡 */
+  }
+  
+  /* 这里是确保所有section都有足够间距的通用样式 */
+  section {
+    padding-top: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .popular-tools {
+    padding-top: 5rem; /* 在更小的屏幕上增加更多内边距 */
+  }
 } 
