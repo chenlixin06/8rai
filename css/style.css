@@ -321,7 +321,7 @@ header.header-scrolled nav ul li a.active {
   }
   
   header .container {
-    flex-direction: column;
+  flex-direction: column;
     padding: 0.3rem 1rem; /* 减少上下内边距 */
     position: relative;
     align-items: center;
@@ -595,7 +595,7 @@ header.header-scrolled nav ul li a.active {
 
 /* 移动端下热门工具部分额外顶部内边距 */
 @media (max-width: 768px) {
-  .popular-tools {
+.popular-tools {
     padding-top: 2rem; /* 重置顶部内边距，因为整体body已经有足够内边距 */
   }
   
@@ -639,9 +639,9 @@ header.header-scrolled nav ul li a.active {
   
   .popular-tools h2, .tools-category h2, .ai-news h2, .learning-resources h2 {
     font-size: 1.5rem;
-  }
-  
-  .category-section h3 {
+}
+
+.category-section h3 {
     font-size: 1.2rem;
   }
   
@@ -711,8 +711,8 @@ header.mobile-view .desktop-nav {
     padding: 5px 0;
     background-color: rgba(var(--header-bg-rgb), 0.95);
     backdrop-filter: blur(10px);
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
     justify-content: center;
     width: 100%;
     min-height: 60px;
@@ -956,7 +956,7 @@ header.wechat-scroll-up {
   }
   
   .pillar i {
-    font-size: 1.8rem;
+  font-size: 1.8rem;
     margin-bottom: 0.6rem;
   }
   
@@ -1017,14 +1017,14 @@ header.wechat-scroll-up {
   
   .about-section h2 {
     font-size: 1.3rem;
-    margin-bottom: 1rem;
-  }
-  
+  margin-bottom: 1rem;
+}
+
   .brand-story {
     padding: 1rem;
-    margin-bottom: 0.5rem;
-  }
-  
+  margin-bottom: 0.5rem;
+}
+
   .brand-story h3 {
     font-size: 1.1rem;
     margin-bottom: 0.6rem;
@@ -1076,7 +1076,7 @@ header.wechat-scroll-up {
   }
   
   .pillar i {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
     margin-bottom: 0.3rem;
   }
   
@@ -1100,7 +1100,7 @@ header.wechat-scroll-up {
   
   .tool-card p, .tool-desc, .resource-card p {
     font-size: 0.7rem;
-    margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
     line-height: 1.3;
   }
 }
@@ -1126,9 +1126,9 @@ header.wechat-scroll-up {
   .news-tab {
     white-space: nowrap;
     padding: 0.5rem 0.8rem;
-    font-size: 0.9rem;
-  }
-  
+  font-size: 0.9rem;
+}
+
   .news-actions {
     width: 100%;
     justify-content: space-between;
@@ -1353,3 +1353,52 @@ img {
     padding: 0.7rem;
   }
 } 
+
+/* 热门工具部分 */
+.popular-tools {
+  padding: 2rem 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.popular-tools h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: var(--text-color);
+  transition: color 0.3s ease;
+}
+
+/* 热门工具卡片特定样式 */
+.popular-tools .tool-card {
+  min-height: 180px; /* 增加卡片最小高度，比其他卡片高以容纳更多内容 */
+}
+
+.popular-tools .tool-desc {
+  line-height: 1.5; /* 增加行高，提高可读性 */
+  -webkit-line-clamp: 3; /* 显示3行文本 */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .popular-tools .tool-card {
+    min-height: 200px; /* 移动端增加更多高度 */
+  }
+}
+
+@media (max-width: 480px) {
+  .popular-tools .tool-card {
+    min-height: 170px; /* 小屏幕略微减小高度但保持足够空间 */
+  }
+  
+  .popular-tools .tool-desc {
+    -webkit-line-clamp: 3; /* 保持3行文本 */
+  }
+} /* 热门工具卡片特定样式 */
+.popular-tools .tool-card { min-height: 180px; }
+.popular-tools .tool-desc { line-height: 1.5; -webkit-line-clamp: 3; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; }
+@media (max-width: 768px) { .popular-tools .tool-card { min-height: 200px; } }
+@media (max-width: 480px) { .popular-tools .tool-card { min-height: 170px; } .popular-tools .tool-desc { -webkit-line-clamp: 3; } }
