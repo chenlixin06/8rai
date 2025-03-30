@@ -41,10 +41,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
+    // 获取所有导航链接
+    const navLinks = document.querySelectorAll('nav ul li a');
+    
     // 平滑滚动效果
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
+            
+            // 移除所有链接的active类
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            // 给当前点击的链接添加active类
+            this.classList.add('active');
             
             const targetId = this.getAttribute('href');
             if (targetId === '#') return;
@@ -58,6 +67,50 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+    
+    // 滚动监听，更新导航高亮
+    function onScroll() {
+        // 获取所有内容板块
+        const sections = document.querySelectorAll('section[id]');
+        
+        // 获取当前滚动位置
+        let scrollPosition = window.scrollY + 100; // 添加偏移量以提前高亮
+        
+        // 检查每个板块的位置
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute('id');
+            
+            // 如果当前滚动位置在这个板块内
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                // 移除所有导航链接的active类
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+                
+                // 给对应导航链接添加active类
+                const correspondingLink = document.querySelector(`nav ul li a[href="#${sectionId}"]`);
+                if (correspondingLink) {
+                    correspondingLink.classList.add('active');
+                }
+            }
+        });
+        
+        // 如果滚动到顶部，则激活首页链接
+        if (scrollPosition < 300) {
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            document.querySelector('nav ul li a[href="#"]').classList.add('active');
+        }
+    }
+    
+    // 添加滚动事件监听
+    window.addEventListener('scroll', onScroll);
+    
+    // 初始化时执行一次滚动监听
+    onScroll();
     
     // 添加工具卡片悬停动画
     allTools.forEach(tool => {
