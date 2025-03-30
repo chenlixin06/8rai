@@ -176,7 +176,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // 处理头部状态
         const header = document.querySelector('header');
-        const nav = document.querySelector('nav');
         
         if (scrollPosition > 100) {
             header.classList.add('header-scrolled');
@@ -188,11 +187,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 if (logoContainer) logoContainer.style.display = 'none';
                 if (logoText) logoText.style.display = 'none';
-                
-                // 移动端导航跟随滚动 - 使用新的固定导航类
-                if (nav) {
-                    nav.classList.add('nav-fixed');
-                }
             }
         } else {
             header.classList.remove('header-scrolled');
@@ -203,11 +197,6 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (logoContainer) logoContainer.style.display = '';
             if (logoText) logoText.style.display = '';
-            
-            // 移动端下重置导航位置 - 移除固定导航类
-            if (window.innerWidth <= 768 && nav) {
-                nav.classList.remove('nav-fixed');
-            }
         }
         
         // 默认移除所有链接的active类
@@ -242,40 +231,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const header = document.querySelector('header');
         const logoContainer = document.querySelector('.logo-container');
         const logoText = document.querySelector('.logo-text');
-        const nav = document.querySelector('nav');
         
         if (header.classList.contains('header-scrolled')) {
             if (window.innerWidth <= 768) {
                 if (logoContainer) logoContainer.style.display = 'none';
                 if (logoText) logoText.style.display = 'none';
-                
-                // 移动端下固定导航
-                if (nav) {
-                    nav.style.position = 'fixed';
-                    nav.style.top = '0';
-                    nav.style.left = '0';
-                    nav.style.width = '100%';
-                    nav.style.zIndex = '1000';
-                }
             } else {
                 if (logoContainer) logoContainer.style.display = '';
                 if (logoText) logoText.style.display = '';
-                
-                // 重置导航样式
-                if (nav) {
-                    nav.style.position = '';
-                    nav.style.top = '';
-                    nav.style.left = '';
-                    nav.style.width = '';
-                }
-            }
-        } else {
-            // 重置导航样式
-            if (nav) {
-                nav.style.position = '';
-                nav.style.top = '';
-                nav.style.left = '';
-                nav.style.width = '';
             }
         }
         
