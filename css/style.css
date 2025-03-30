@@ -277,14 +277,18 @@ header.header-scrolled nav ul li a.active {
   header {
     padding: 10px 0;
     top: env(safe-area-inset-top);
+    height: auto; /* 确保高度自适应内容 */
+    transform: translateY(0); /* 防止头部上滑时被部分隐藏 */
+    min-height: 70px; /* 确保最小高度，避免内容被截断 */
   }
   
   body {
-    padding-top: 80px; /* 减小顶部内边距，因为没有导航条 */
+    padding-top: 100px; /* 增加顶部内边距，确保内容不被头部覆盖 */
   }
   
   header.header-scrolled {
-    padding: 0;
+    padding: 5px 0;
+    min-height: 60px; /* 滚动时确保最小高度 */
   }
   
   header.header-scrolled .logo-container {
@@ -301,6 +305,8 @@ header.header-scrolled nav ul li a.active {
     padding: 0.5rem 1rem;
     position: relative;
     align-items: center; /* 将LOGO居中 */
+    width: 100%; /* 确保宽度是100% */
+    max-width: 100%; /* 防止溢出 */
   }
   
   .logo {
@@ -340,6 +346,169 @@ header.header-scrolled nav ul li a.active {
   /* 移除固定导航样式 */
   .desktop-nav {
     display: none;
+  }
+  
+  .about-section {
+    padding: 2rem 0; /* 减少上下内边距，与其他部分保持一致 */
+  }
+  
+  .about-section .container {
+    padding: 0 15px; /* 适应移动端的内边距 */
+  }
+  
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 1rem; /* 减少间距 */
+  }
+  
+  .brand-story {
+    padding: 1.5rem; /* 减少内边距 */
+    margin-bottom: 1rem; /* 减少底部间距 */
+  }
+  
+  /* 确保标题尺寸与其他部分一致 */
+  .about-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .brand-story h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* 统一所有部分的容器样式 */
+  .container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 15px;
+    box-sizing: border-box;
+    margin: 0 auto;
+  }
+  
+  /* 统一所有部分的内边距 */
+  section {
+    padding: 2rem 0;
+  }
+  
+  section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* 修复头部可能出现的遮挡问题 */
+  .popular-tools {
+    padding-top: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-text h1 {
+    font-size: 22px;
+  }
+  
+  .logo-container {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .logo-8r {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .logo-8r::before {
+    font-size: 22px;
+  }
+  
+  body {
+    padding-top: 70px; /* 为更小的屏幕减少顶部内边距 */
+  }
+  
+  /* 修复超小屏幕上的行为 */
+  header {
+    padding: 8px 0;
+    min-height: 60px; /* 更小的屏幕上减小最小高度 */
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+  }
+  
+  body {
+    padding-top: 80px; /* 调整为更合适的顶部内边距 */
+  }
+  
+  /* 确保所有部分顶部内边距一致 */
+  section {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+  /* 确保关于8RAI部分与其他部分一致 */
+  .about-section {
+    padding: 2rem 0;
+  }
+  
+  .brand-pillars {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+  }
+  
+  /* 确保所有部分的标题大小一致 */
+  .about-section h2,
+  .popular-tools h2, 
+  .tools-category h2, 
+  .ai-news h2, 
+  .learning-resources h2,
+  .ai-evaluation h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.2rem;
+  }
+  
+  /* 统一所有部分的容器样式 */
+  .container {
+    padding: 0 12px;
+  }
+}
+
+/* 修复移动端上部分可能存在的问题 */
+header.header-scrolled.mobile-view {
+  padding: 5px 0;
+  background-color: rgba(var(--header-bg-rgb), 0.95);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 60px;
+  transform: translateY(0); /* 防止上滑时头部被部分隐藏 */
+  box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* 确保头部容器在所有状态下都正常显示 */
+header.header-scrolled .container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  header.header-scrolled .container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 50px;
+  }
+  
+  /* 统一所有部分在移动端的垂直间距 */
+  .popular-tools,
+  .tools-category,
+  .ai-news,
+  .ai-evaluation,
+  .learning-resources,
+  .about-section {
+    margin-bottom: 1rem;
   }
 }
 
@@ -977,6 +1146,8 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+  width: 100%; /* 确保宽度是100% */
+  box-sizing: border-box; /* 确保内边距不会增加元素总宽度 */
 }
 
 .about-section h2 {
@@ -992,6 +1163,7 @@ body {
   gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  width: 100%; /* 确保宽度是100% */
 }
 
 .brand-story {
@@ -1002,6 +1174,7 @@ body {
   box-shadow: var(--shadow);
   transition: background-color 0.3s ease, color 0.3s ease;
   width: 100%;
+  box-sizing: border-box; /* 确保内边距不会增加元素总宽度 */
 }
 
 .brand-story h3 {
@@ -1700,6 +1873,10 @@ footer {
   
   .tool-card, .resource-card {
     padding: 1rem;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
   }
   
   .tool-card h3, .tool-card h4, .resource-card h3 {
@@ -1710,6 +1887,12 @@ footer {
   .tool-card p, .resource-card p {
     font-size: 0.9rem;
     margin-bottom: 0.8rem;
+    /* 确保文字不会溢出 */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   
   .tool-icon, .resource-icon {
@@ -1730,7 +1913,10 @@ footer {
   .brand-pillars {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
-    max-width: 480px;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 1rem auto;
   }
   
   .about-content {
@@ -1829,15 +2015,20 @@ footer {
   
   .tool-card, .resource-card {
     padding: 0.8rem;
+    border-radius: 8px;
   }
   
   .tool-card h3, .tool-card h4, .resource-card h3 {
     font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+    line-height: 1.3;
   }
   
   .tool-card p, .resource-card p {
     font-size: 0.8rem;
     margin-bottom: 0.6rem;
+    /* 确保文字不会溢出 - 修改为2行 */
+    -webkit-line-clamp: 2;
   }
   
   .tool-icon, .resource-icon {
@@ -1848,11 +2039,14 @@ footer {
   .tool-link, .resource-link {
     padding: 0.3rem 0.6rem;
     font-size: 0.8rem;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
   }
   
   .brand-pillars {
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.8rem;
+    gap: 1rem;
     max-width: 100%;
   }
   
@@ -1948,6 +2142,13 @@ header.mobile-view .desktop-nav {
     padding: 5px 0;
     background-color: rgba(var(--header-bg-rgb), 0.95);
     backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 60px;
+    transform: translateY(0); /* 防止上滑时头部被部分隐藏 */
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15);
   }
   
   header.header-scrolled.mobile-view .logo-container {
@@ -1971,60 +2172,85 @@ header.mobile-view .desktop-nav {
   }
   
   header.header-scrolled.mobile-view .logo-text p {
-    font-size: 12px;
-    transition: all 0.3s ease;
+    font-size: 0.75rem;
+  }
+  
+  /* 修复工具卡片间距使与其他板块保持一致 */
+  .tools-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+  }
+  
+  section.tools-category .category-section {
+    margin-bottom: 1.5rem;
+  }
+  
+  /* 统一所有板块样式 */
+  .popular-tools, 
+  .tools-category, 
+  .ai-news, 
+  .ai-evaluation, 
+  .learning-resources, 
+  .about-section {
+    padding: 2rem 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* 确保所有容器样式一致 */
+  section .container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 15px;
+    box-sizing: border-box;
   }
 }
 
-/* 移动端导航样式优化 */
-@media (max-width: 768px) {
-  header.header-scrolled nav ul li a {
-    font-size: 14px;
-    padding: 6px 10px;
-    font-weight: 700;
-    color: #000000; /* 确保移动端文字清晰可见 */
+/* 超小屏幕优化 */
+@media (max-width: 480px) {
+  /* 修正工具卡片样式以保持一致性 */
+  .tools-grid, .news-grid, .resources-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
   }
-
-  [data-theme="dark"] header.header-scrolled nav ul li a {
-    color: #ffffff !important;
+  
+  .tool-card, .resource-card {
+    padding: 0.8rem;
+    border-radius: 8px;
   }
-
-  header.header-scrolled nav ul {
-    background-color: rgba(248, 250, 252, 0.98);
-    border-radius: 4px;
-    padding: 3px 5px;
+  
+  .tool-card h3, .tool-card h4, .resource-card h3 {
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
   }
-
-  [data-theme="dark"] header.header-scrolled nav ul {
-    background-color: rgba(31, 41, 55, 0.98);
+  
+  .tool-card p, .resource-card p {
+    font-size: 0.8rem;
+    margin-bottom: 0.6rem;
+    /* 确保文字不会溢出 */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
-
-  /* 修复移动视图下的logo样式 */
-  header.header-scrolled.mobile-view {
-    background-color: rgba(var(--header-bg-rgb), 0.97);
+  
+  /* 修复头部在移动端上滑时只显示一半的问题 */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    height: auto;
+    min-height: 60px;
+    transform: translateY(0);
+    background-color: rgba(var(--header-bg-rgb), 0.95);
     backdrop-filter: blur(10px);
-    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15);
   }
-
-  header.header-scrolled.mobile-view .logo-container {
-    width: 36px;
-    height: 36px;
-  }
-
-  header.header-scrolled.mobile-view .logo-8r {
-    width: 36px;
-    height: 36px;
-  }
-
-  header.header-scrolled.mobile-view .logo-8r::before {
-    font-size: 20px;
-  }
-
-  header.header-scrolled.mobile-view .logo-text h1 {
-    font-size: 18px;
-  }
-
-  header.header-scrolled.mobile-view .logo-text p {
-    font-size: 0.75rem;
+  
+  body {
+    padding-top: 80px; /* 调整顶部内边距，确保不被头部遮挡 */
+    overflow-x: hidden; /* 防止水平滚动 */
   }
 } 

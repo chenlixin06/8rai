@@ -105,6 +105,12 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(() => {
         const currentTheme = localStorage.getItem('theme') || 'light';
         refreshElementsStyle(currentTheme);
+        
+        // 初始化调整工具卡片
+        adjustToolCards();
+        
+        // 初始化执行一次滚动监听
+        onScroll();
     }, 100);
     
     // 移除搜索相关代码
@@ -159,9 +165,21 @@ document.addEventListener('DOMContentLoaded', function() {
         if (scrollPosition > 100) {
             header.classList.add('header-scrolled');
             
-            // 移除隐藏LOGO的逻辑，保持LOGO始终可见
+            // 检查是否为移动设备
+            if (window.innerWidth <= 768) {
+                header.classList.add('mobile-view');
+            } else {
+                header.classList.remove('mobile-view');
+            }
         } else {
             header.classList.remove('header-scrolled');
+            
+            // 检查是否为移动设备
+            if (window.innerWidth <= 768) {
+                header.classList.add('mobile-view');
+            } else {
+                header.classList.remove('mobile-view');
+            }
         }
         
         // 默认移除所有链接的active类
@@ -186,6 +204,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         });
+        
+        // 处理回到顶部按钮
+        const backToTopButton = document.getElementById('back-to-top');
+        if (backToTopButton) {
+            if (scrollPosition > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        }
     }
 
     // 添加滚动事件监听
@@ -195,11 +223,26 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', function() {
         const header = document.querySelector('header');
         
-        // 移除隐藏LOGO的逻辑，保持LOGO始终可见
+        // 检查是否为移动设备
+        if (window.innerWidth <= 768) {
+            header.classList.add('mobile-view');
+            
+            // 为移动端优化头部样式
+            optimizeMobileHeader();
+        } else {
+            header.classList.remove('mobile-view');
+            
+            // 恢复桌面样式
+            header.style.height = '';
+            header.style.minHeight = '';
+        }
         
         // 强制刷新一次主题样式
         const currentTheme = localStorage.getItem('theme') || 'light';
         refreshElementsStyle(currentTheme);
+        
+        // 重新检查滚动位置，更新头部样式
+        onScroll();
     });
     
     // 给logo链接添加点击事件
@@ -219,95 +262,178 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // 初始化时执行一次滚动监听
-    onScroll();
+    // 初始化时检查设备类型，设置适当的类
+    function initResponsiveStyles() {
+        const header = document.querySelector('header');
+        
+        // 检查是否为移动设备
+        if (window.innerWidth <= 768) {
+            header.classList.add('mobile-view');
+            
+            // 为移动端优化头部样式
+            optimizeMobileHeader();
+        } else {
+            header.classList.remove('mobile-view');
+        }
+        
+        // 初始检查滚动位置
+        onScroll();
+    }
     
-    // 添加工具卡片悬停动画
-    allTools.forEach(tool => {
-        tool.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-5px)';
+    // 为移动端优化头部样式和行为
+    function optimizeMobileHeader() {
+        const header = document.querySelector('header');
+        
+        if (!header) return;
+        
+        // 确保头部始终完整显示
+        header.style.height = 'auto';
+        header.style.minHeight = '60px';
+        
+        // 更新工具卡片样式以适应移动端尺寸
+        adjustToolCards();
+        
+        // 添加过渡效果，使滚动更平滑
+        header.style.transition = 'all 0.3s ease';
+    }
+    
+    // 调整工具卡片尺寸和内容显示
+    function adjustToolCards() {
+        const toolCards = document.querySelectorAll('.tool-card');
+        const resourceCards = document.querySelectorAll('.resource-card');
+        
+        // 处理工具卡片
+        toolCards.forEach(card => {
+            // 确保卡片高度一致
+            equalizeCardHeight(card);
+            
+            // 限制描述文本长度
+            const description = card.querySelector('p');
+            if (description) {
+                limitTextDisplay(description);
+            }
         });
         
-        tool.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
+        // 处理资源卡片
+        resourceCards.forEach(card => {
+            // 确保卡片高度一致
+            equalizeCardHeight(card);
+            
+            // 限制描述文本长度
+            const description = card.querySelector('p');
+            if (description) {
+                limitTextDisplay(description);
+            }
         });
-    });
+    }
+    
+    // 使卡片高度一致
+    function equalizeCardHeight(card) {
+        if (window.innerWidth <= 480) {
+            // 小屏幕设备上使用较小的固定高度
+            card.style.height = 'auto';
+            card.style.minHeight = '180px';
+        } else if (window.innerWidth <= 768) {
+            // 平板上使用中等固定高度
+            card.style.height = 'auto';
+            card.style.minHeight = '200px';
+        } else {
+            // 桌面设备恢复自适应
+            card.style.height = 'auto';
+            card.style.minHeight = 'auto';
+        }
+    }
+    
+    // 限制文本显示长度
+    function limitTextDisplay(element) {
+        if (!element) return;
+        
+        if (window.innerWidth <= 480) {
+            // 超小屏幕上显示更少的文本
+            element.style.webkitLineClamp = '2';
+            element.style.maxHeight = '2.4em';
+        } else if (window.innerWidth <= 768) {
+            // 平板上显示适中的文本
+            element.style.webkitLineClamp = '3';
+            element.style.maxHeight = '3.6em';
+        } else {
+            // 桌面设备不限制
+            element.style.webkitLineClamp = 'none';
+            element.style.maxHeight = 'none';
+        }
+    }
     
     // 创建回到顶部按钮
     function createBackToTopButton() {
-        const backToTopBtn = document.createElement('button');
-        backToTopBtn.id = 'back-to-top';
-        backToTopBtn.innerHTML = '<i class="bi bi-arrow-up"></i>';
-        backToTopBtn.title = '返回顶部';
+        const backToTopButton = document.createElement('button');
+        backToTopButton.id = 'back-to-top';
+        backToTopButton.innerHTML = '<i class="bi bi-arrow-up"></i>';
+        backToTopButton.title = '回到顶部';
+        document.body.appendChild(backToTopButton);
         
-        document.body.appendChild(backToTopBtn);
-        
-        // 当滚动超过300px显示按钮
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 300) {
-                if (!backToTopBtn.classList.contains('show')) {
-                    backToTopBtn.classList.add('show');
-                }
-            } else {
-                backToTopBtn.classList.remove('show');
-            }
-            
-            // 检查按钮是否超出屏幕边界
-            checkButtonPosition(backToTopBtn);
-        });
-        
-        // 添加悬停效果
-        backToTopBtn.addEventListener('mouseenter', function() {
-            backToTopBtn.classList.add('back-to-top-hover');
-        });
-        
-        backToTopBtn.addEventListener('mouseleave', function() {
-            backToTopBtn.classList.remove('back-to-top-hover');
-        });
-        
-        // 点击返回顶部
-        backToTopBtn.addEventListener('click', function() {
+        backToTopButton.addEventListener('click', function() {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
         });
+        
+        // 鼠标悬停效果
+        backToTopButton.addEventListener('mouseenter', function() {
+            backToTopButton.classList.add('back-to-top-hover');
+        });
+        
+        backToTopButton.addEventListener('mouseleave', function() {
+            backToTopButton.classList.remove('back-to-top-hover');
+        });
     }
     
-    // 检查按钮位置是否超出屏幕边界并修正
-    function checkButtonPosition(button) {
-        if (!button) return;
+    // 显示Toast消息
+    function showToast(message) {
+        // 检查是否已存在toast元素
+        let toast = document.querySelector('.toast-message');
         
-        const rect = button.getBoundingClientRect();
-        const windowWidth = window.innerWidth;
-        
-        // 如果按钮超出右侧边界
-        if (rect.right > windowWidth) {
-            const newRight = Math.max(10, windowWidth - rect.width - 10); // 确保至少有10px的间距
-            button.style.right = newRight + 'px';
+        if (!toast) {
+            // 创建新的toast元素
+            toast = document.createElement('div');
+            toast.className = 'toast-message';
+            document.body.appendChild(toast);
+            
+            // 添加样式
+            toast.style.position = 'fixed';
+            toast.style.bottom = '30px';
+            toast.style.left = '50%';
+            toast.style.transform = 'translateX(-50%)';
+            toast.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+            toast.style.color = 'white';
+            toast.style.padding = '10px 20px';
+            toast.style.borderRadius = '5px';
+            toast.style.zIndex = '9999';
+            toast.style.opacity = '0';
+            toast.style.transition = 'opacity 0.3s ease';
         }
-    }
-    
-    // 在文档加载时创建回到顶部按钮
-    createBackToTopButton();
-    
-    // 确保主题切换按钮位置也不会超出屏幕
-    function adjustThemeTogglePosition() {
-        const themeToggle = document.querySelector('.theme-toggle');
-        if (themeToggle) {
-            checkButtonPosition(themeToggle);
-        }
-    }
-    
-    // 在窗口调整大小时进行位置检查
-    window.addEventListener('resize', function() {
-        const backToTopBtn = document.getElementById('back-to-top');
-        const themeToggle = document.querySelector('.theme-toggle');
         
-        if (backToTopBtn) checkButtonPosition(backToTopBtn);
-        if (themeToggle) checkButtonPosition(themeToggle);
-    });
-    
+        // 设置消息内容
+        toast.textContent = message;
+        
+        // 显示消息
+        setTimeout(() => {
+            toast.style.opacity = '1';
+        }, 10);
+        
+        // 3秒后隐藏
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            
+            // 完全隐藏后从DOM中移除
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    toast.parentNode.removeChild(toast);
+                }
+            }, 300);
+        }, 3000);
+    }
+
     // 新闻标签切换功能
     const newsTabs = document.querySelectorAll('.news-tab');
     const newsCards = document.querySelectorAll('.news-card');
@@ -391,42 +517,57 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // 显示临时提示信息的函数
-    function showToast(message) {
-        const toast = document.createElement('div');
-        toast.textContent = message;
-        toast.style.position = 'fixed';
-        toast.style.bottom = '20px';
-        toast.style.left = '50%';
-        toast.style.transform = 'translateX(-50%)';
-        toast.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
-        toast.style.color = 'white';
-        toast.style.padding = '10px 20px';
-        toast.style.borderRadius = '5px';
-        toast.style.zIndex = '1000';
-        toast.style.fontSize = '14px';
-        
-        document.body.appendChild(toast);
-        
-        // 2秒后移除提示
-        setTimeout(() => {
-            document.body.removeChild(toast);
-        }, 2000);
-    }
-
-    // 响应式检测 - 处理移动端和桌面端切换
-    function handleResponsiveLayout() {
-        const isMobile = window.innerWidth <= 768;
-        const header = document.querySelector('header');
-        
-        if (isMobile) {
-            header.classList.add('mobile-view');
-        } else {
-            header.classList.remove('mobile-view');
-        }
-    }
+    // 页面加载完成后初始化
+    createBackToTopButton();
+    initResponsiveStyles();
     
-    // 页面加载和调整大小时检查
-    handleResponsiveLayout();
-    window.addEventListener('resize', handleResponsiveLayout);
-}); 
+    // 处理新闻标签切换功能
+    initNewsTabSwitching();
+    
+    // 处理AI模型评测分类切换功能
+    initEvaluationCategorySwitching();
+});
+
+// 初始化新闻标签切换功能
+function initNewsTabSwitching() {
+    const newsTabs = document.querySelectorAll('.news-tab');
+    if (!newsTabs.length) return;
+    
+    newsTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            // 移除所有标签的active类
+            newsTabs.forEach(t => t.classList.remove('active'));
+            
+            // 给当前点击的标签添加active类
+            this.classList.add('active');
+            
+            // 此处可以添加过滤新闻内容的逻辑
+            const category = this.getAttribute('data-category');
+            console.log('选择的新闻类别:', category);
+            
+            // TODO: 根据类别筛选新闻内容
+        });
+    });
+}
+
+// 初始化AI模型评测分类切换功能
+function initEvaluationCategorySwitching() {
+    const evalCategories = document.querySelectorAll('.eval-category');
+    if (!evalCategories.length) return;
+    
+    evalCategories.forEach(category => {
+        category.addEventListener('click', function() {
+            // 移除所有分类的active类
+            evalCategories.forEach(c => c.classList.remove('active'));
+            
+            // 给当前点击的分类添加active类
+            this.classList.add('active');
+            
+            // 此处可以添加过滤评测内容的逻辑
+            const categoryType = this.getAttribute('data-category');
+            console.log('选择的评测类别:', categoryType);
+            
+            // TODO: 根据类别筛选评测内容
+        });
+    });
+} 
