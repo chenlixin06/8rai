@@ -21,14 +21,14 @@
   --background-color: #111827;
   --card-color: #1f2937;
   --text-color: #f9fafb;
-  --text-light: #9ca3af;
+  --text-light: #d1d5db;
   --border-color: #374151;
   --hover-color: #2d3748;
   --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
   --header-bg: #1f2937;
   --footer-bg: #111827;
   --footer-text: #f9fafb;
-  --footer-text-light: #9ca3af;
+  --footer-text-light: #d1d5db;
 }
 
 * {
@@ -214,7 +214,7 @@ nav ul {
 
 nav ul li a {
   text-decoration: none;
-  color: #333;
+  color: var(--text-color);
   font-weight: 500;
   font-size: 14px;
   padding: 5px 10px;
@@ -224,8 +224,8 @@ nav ul li a {
 
 nav ul li a:hover, 
 nav ul li a.active {
-  background-color: #f0f0ff;
-  color: #5a46ff;
+  background-color: var(--primary-color);
+  color: white;
 }
 
 /* 滚动时的导航栏样式 */
@@ -258,8 +258,16 @@ header.header-scrolled .logo-text p {
   font-size: 12px;
 }
 
-/* 移动端滚动时隐藏LOGO */
+/* 移动端导航优化 */
 @media (max-width: 768px) {
+  header {
+    padding: 10px 0;
+  }
+  
+  header.header-scrolled {
+    padding: 5px 0;
+  }
+  
   header.header-scrolled .logo-container {
     display: none;
   }
@@ -269,14 +277,13 @@ header.header-scrolled .logo-text p {
   }
   
   header .container {
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 0.8rem 1rem;
+    flex-direction: column;
+    padding: 0.5rem 1rem;
     position: relative;
   }
   
   .logo {
-    margin-bottom: 0;
+    margin-bottom: 0.5rem;
   }
 
   .logo-container {
@@ -302,10 +309,8 @@ header.header-scrolled .logo-text p {
   }
   
   .header-right {
-    width: auto;
+    width: 100%;
     align-items: center;
-    flex-direction: row;
-    margin-top: 0;
   }
   
   .search-box {
@@ -313,40 +318,44 @@ header.header-scrolled .logo-text p {
   }
   
   nav {
-    width: auto;
-    height: auto;
-    visibility: visible;
-    max-height: none;
-    overflow: visible;
-    margin-top: 0;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 990;
   }
   
   nav ul {
-    flex-direction: row;
-    justify-content: flex-end;
-    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background-color: var(--header-bg);
     margin: 0;
-    width: auto;
-    flex-wrap: nowrap;
+    padding: 8px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 0;
   }
   
   nav ul li {
-    margin: 0 0.3rem;
-    width: auto;
+    flex: 1;
     text-align: center;
   }
   
   nav ul li a {
     display: block;
-    padding: 0.3rem 0.5rem;
+    padding: 8px 5px;
     font-size: 0.9rem;
+    border-radius: 0;
+    background-color: transparent;
+    border-bottom: 2px solid transparent;
     white-space: nowrap;
+    color: var(--text-color);
   }
   
   nav ul li a:hover, 
   nav ul li a.active {
-    background-color: var(--primary-color);
-    color: white;
+    background-color: transparent;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
   }
   
   body {
@@ -354,10 +363,11 @@ header.header-scrolled .logo-text p {
   }
 }
 
+/* 移动端导航响应式微调 */
 @media (max-width: 480px) {
   nav ul li a {
     font-size: 0.8rem;
-    padding: 0.2rem 0.4rem;
+    padding: 6px 2px;
   }
   
   .logo-text h1 {
@@ -702,7 +712,7 @@ body {
 
 /* 模型比较表格 */
 .models-comparison {
-  background-color: white;
+  background-color: var(--card-color);
   border-radius: 10px;
   overflow: hidden;
   box-shadow: var(--shadow);
@@ -778,6 +788,7 @@ body {
   text-align: center;
   margin-bottom: 1.5rem;
   font-size: 1.5rem;
+  color: var(--text-color);
 }
 
 .benchmark-items {
@@ -787,7 +798,7 @@ body {
 }
 
 .benchmark-item {
-  background-color: white;
+  background-color: var(--card-color);
   border-radius: 10px;
   padding: 1.5rem;
   text-align: center;
@@ -814,6 +825,12 @@ body {
 .benchmark-desc {
   font-size: 0.9rem;
   color: var(--text-light);
+}
+
+.benchmark-detail {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  margin-top: 0.5rem;
 }
 
 /* 响应式调整 */
@@ -964,6 +981,7 @@ body {
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+  color: var(--text-color);
 }
 
 .brand-values, .brand-slogan {
@@ -997,13 +1015,14 @@ body {
 .pillar {
   text-align: center;
   padding: 1.2rem;
-  background-color: var(--hover-color);
+  background-color: var(--card-color);
   border-radius: 8px;
   transition: transform 0.3s, background-color 0.3s ease, color 0.3s ease;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 1px solid var(--border-color);
 }
 
 .pillar:hover {
@@ -1432,32 +1451,35 @@ footer {
   
   nav ul {
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 0;
     margin: 0;
     width: 100%;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
   }
   
   nav ul li {
-    margin: 0.3rem 0;
+    margin: 0;
     width: auto;
     text-align: center;
+    flex: 1;
   }
   
   nav ul li a {
     display: block;
-    padding: 0.3rem 0.5rem;
+    padding: 8px 5px;
     font-size: 0.9rem;
     white-space: nowrap;
-    background-color: var(--hover-color);
-    border-radius: 4px;
+    background-color: transparent;
+    border-radius: 0;
+    border-bottom: 2px solid transparent;
   }
   
   nav ul li a:hover, 
   nav ul li a.active {
-    background-color: var(--primary-color);
-    color: white;
+    background-color: transparent;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
   }
 }
 
@@ -1568,4 +1590,93 @@ footer {
     bottom: 15px;
     right: 15px;
   }
+}
+
+/* 夜间模式下特别优化 */
+[data-theme="dark"] nav ul li a {
+  color: #f9fafb !important;
+}
+
+[data-theme="dark"] nav ul li a:hover, 
+[data-theme="dark"] nav ul li a.active {
+  background-color: var(--primary-color);
+  color: white !important;
+}
+
+[data-theme="dark"] .search-box {
+  background-color: #2d3748;
+}
+
+[data-theme="dark"] .search-box input {
+  background-color: #2d3748;
+  color: #f9fafb;
+}
+
+[data-theme="dark"] .search-box button {
+  color: var(--primary-color);
+}
+
+[data-theme="dark"] .models-comparison {
+  background-color: #1f2937;
+  border: 1px solid #374151;
+}
+
+[data-theme="dark"] .model-row {
+  border-bottom: 1px solid #374151;
+}
+
+[data-theme="dark"] .model-name {
+  color: #f9fafb;
+}
+
+[data-theme="dark"] .model-company {
+  color: #d1d5db;
+}
+
+[data-theme="dark"] .view-details {
+  background-color: #374151;
+  color: #f9fafb;
+}
+
+[data-theme="dark"] .benchmark-item {
+  background-color: #1f2937;
+  border: 1px solid #374151;
+}
+
+[data-theme="dark"] .benchmark-name {
+  color: #f9fafb;
+}
+
+[data-theme="dark"] .benchmark-desc,
+[data-theme="dark"] .benchmark-detail {
+  color: #d1d5db;
+}
+
+[data-theme="dark"] .pillar {
+  background-color: #1f2937;
+  border: 1px solid #374151;
+}
+
+[data-theme="dark"] .pillar h4 {
+  color: #f9fafb;
+}
+
+[data-theme="dark"] .pillar p {
+  color: #d1d5db;
+}
+
+/* 夜间模式下导航样式优化 */
+[data-theme="dark"] nav ul {
+  background-color: var(--header-bg);
+}
+
+[data-theme="dark"] nav ul li a {
+  color: #f9fafb !important;
+}
+
+[data-theme="dark"] nav ul li a:hover, 
+[data-theme="dark"] nav ul li a.active {
+  background-color: transparent;
+  color: var(--primary-color) !important;
+  border-bottom: 2px solid var(--primary-color);
 } 

@@ -29,16 +29,66 @@ document.addEventListener('DOMContentLoaded', function() {
                 localStorage.setItem('theme', 'light');
                 themeToggle.innerHTML = '<i class="bi bi-sun"></i>';
                 showToast('已切换到白天模式');
+                // 额外刷新特定元素的样式
+                refreshElementsStyle('light');
             } else {
                 document.documentElement.setAttribute('data-theme', 'dark');
                 localStorage.setItem('theme', 'dark');
                 themeToggle.innerHTML = '<i class="bi bi-moon"></i>';
                 showToast('已切换到夜间模式');
+                // 额外刷新特定元素的样式
+                refreshElementsStyle('dark');
             }
         });
     }
     
+    // 刷新特定元素的样式以确保主题正确应用
+    function refreshElementsStyle(theme) {
+        // 修复导航菜单颜色
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            // 重新应用样式
+            link.style.color = '';
+            setTimeout(() => {
+                link.style.color = getComputedStyle(document.documentElement).getPropertyValue('--text-color');
+            }, 10);
+        });
+        
+        // 强制刷新AI模型评测区域
+        const modelsComparison = document.querySelector('.models-comparison');
+        if (modelsComparison) {
+            modelsComparison.style.backgroundColor = '';
+            setTimeout(() => {
+                modelsComparison.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--card-color');
+            }, 10);
+        }
+        
+        // 刷新评测基准卡片
+        const benchmarkItems = document.querySelectorAll('.benchmark-item');
+        benchmarkItems.forEach(item => {
+            item.style.backgroundColor = '';
+            setTimeout(() => {
+                item.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--card-color');
+            }, 10);
+        });
+        
+        // 刷新品牌展示部分
+        const pillars = document.querySelectorAll('.pillar');
+        pillars.forEach(pillar => {
+            pillar.style.backgroundColor = '';
+            setTimeout(() => {
+                pillar.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--card-color');
+            }, 10);
+        });
+    }
+    
     createThemeToggle();
+    
+    // 初始化时执行一次样式刷新
+    setTimeout(() => {
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        refreshElementsStyle(currentTheme);
+    }, 100);
     
     // 获取搜索框元素 - 从新位置获取
     const searchInput = document.querySelector('.header-right .search-box input');
@@ -126,22 +176,45 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // 处理头部状态
         const header = document.querySelector('header');
+        const nav = document.querySelector('nav');
+        
         if (scrollPosition > 100) {
             header.classList.add('header-scrolled');
+            
             // 检查是否是移动端
             if (window.innerWidth <= 768) {
                 const logoContainer = document.querySelector('.logo-container');
                 const logoText = document.querySelector('.logo-text');
+                
                 if (logoContainer) logoContainer.style.display = 'none';
                 if (logoText) logoText.style.display = 'none';
+                
+                // 移动端导航跟随滚动
+                if (nav) {
+                    nav.style.position = 'fixed';
+                    nav.style.top = '0';
+                    nav.style.left = '0';
+                    nav.style.width = '100%';
+                    nav.style.zIndex = '1000';
+                }
             }
         } else {
             header.classList.remove('header-scrolled');
+            
             // 恢复LOGO显示
             const logoContainer = document.querySelector('.logo-container');
             const logoText = document.querySelector('.logo-text');
+            
             if (logoContainer) logoContainer.style.display = '';
             if (logoText) logoText.style.display = '';
+            
+            // 移动端下重置导航位置
+            if (window.innerWidth <= 768 && nav) {
+                nav.style.position = '';
+                nav.style.top = '';
+                nav.style.left = '';
+                nav.style.width = '';
+            }
         }
         
         // 默认移除所有链接的active类
@@ -176,16 +249,46 @@ document.addEventListener('DOMContentLoaded', function() {
         const header = document.querySelector('header');
         const logoContainer = document.querySelector('.logo-container');
         const logoText = document.querySelector('.logo-text');
+        const nav = document.querySelector('nav');
         
         if (header.classList.contains('header-scrolled')) {
             if (window.innerWidth <= 768) {
                 if (logoContainer) logoContainer.style.display = 'none';
                 if (logoText) logoText.style.display = 'none';
+                
+                // 移动端下固定导航
+                if (nav) {
+                    nav.style.position = 'fixed';
+                    nav.style.top = '0';
+                    nav.style.left = '0';
+                    nav.style.width = '100%';
+                    nav.style.zIndex = '1000';
+                }
             } else {
                 if (logoContainer) logoContainer.style.display = '';
                 if (logoText) logoText.style.display = '';
+                
+                // 重置导航样式
+                if (nav) {
+                    nav.style.position = '';
+                    nav.style.top = '';
+                    nav.style.left = '';
+                    nav.style.width = '';
+                }
+            }
+        } else {
+            // 重置导航样式
+            if (nav) {
+                nav.style.position = '';
+                nav.style.top = '';
+                nav.style.left = '';
+                nav.style.width = '';
             }
         }
+        
+        // 强制刷新一次主题样式
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        refreshElementsStyle(currentTheme);
     });
     
     // 给logo链接添加点击事件
