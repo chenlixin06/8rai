@@ -209,6 +209,17 @@ header .container {
   color: #5a46ff;
 }
 
+/* 修改搜索框展开状态样式 */
+.search-box.expanded {
+  width: 200px; /* 与正常状态一致 */
+}
+
+.search-box.expanded input {
+  width: 100%;
+  padding: 8px 40px 8px 15px;
+  opacity: 1;
+}
+
 /* 导航菜单 */
 nav ul {
   display: flex;

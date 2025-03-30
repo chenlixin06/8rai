@@ -35,24 +35,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 搜索框展开/收起功能
     searchButton.addEventListener('click', function(e) {
-        // 如果搜索框已收起，点击按钮时展开
-        if (header.classList.contains('header-scrolled') && !searchBox.classList.contains('expanded')) {
-            e.preventDefault(); // 阻止默认搜索行为
-            searchBox.classList.add('expanded');
-            searchInput.focus(); // 自动聚焦到输入框
-            return;
-        }
-        
-        // 已展开且有输入内容时，执行搜索
+        // 如果有输入内容，直接执行搜索
         if (searchInput.value.trim() !== '') {
             performSearch();
-        }
-    });
-    
-    // 当点击页面其他区域时，如果搜索框展开，则收起
-    document.addEventListener('click', function(e) {
-        if (!searchBox.contains(e.target) && searchBox.classList.contains('expanded')) {
-            searchBox.classList.remove('expanded');
         }
     });
     
@@ -98,16 +83,12 @@ document.addEventListener('DOMContentLoaded', function() {
         // 获取当前滚动位置
         let scrollPosition = window.scrollY + 100; // 添加偏移量以提前高亮
         
-        // 处理头部搜索框状态
+        // 处理头部状态
         if (scrollPosition > 100) {
             header.classList.add('header-scrolled');
-            // 如果搜索框展开，则不改变状态
-            if (!searchBox.classList.contains('expanded')) {
-                searchBox.classList.remove('expanded');
-            }
+            // 移除搜索框收缩相关代码，保持搜索框始终展开状态
         } else {
             header.classList.remove('header-scrolled');
-            searchBox.classList.remove('expanded');
         }
         
         // 默认移除所有链接的active类
