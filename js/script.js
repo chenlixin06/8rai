@@ -613,11 +613,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         const rowCategory = row.getAttribute('data-category') || 'llm';
                         if (rowCategory === categoryName) {
                             row.style.display = 'grid';
-                        } else {
+            } else {
                             row.style.display = 'none';
                         }
                     });
-                }
+            }
             });
         });
     }

@@ -309,7 +309,7 @@ header.header-scrolled nav ul li a.active {
   header .container {
     flex-direction: column;
     padding: 0.5rem 1rem;
-    position: relative;
+  position: relative;
     align-items: center; /* 将LOGO居中 */
     width: 100%; /* 确保宽度是100% */
     max-width: 100%; /* 防止溢出 */
@@ -360,7 +360,7 @@ header.header-scrolled nav ul li a.active {
   
   .about-section .container {
     padding: 0 15px; /* 适应移动端的内边距 */
-    width: 100%;
+  width: 100%;
     max-width: 100%;
   }
   
@@ -405,7 +405,7 @@ header.header-scrolled nav ul li a.active {
     max-width: 100%;
     padding: 0 15px;
     box-sizing: border-box;
-    margin: 0 auto;
+  margin: 0 auto;
   }
   
   /* 统一所有部分的内边距 */
@@ -492,7 +492,7 @@ header.header-scrolled nav ul li a.active {
   }
   
   .brand-story h3 {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
     margin-bottom: 0.8rem;
   }
   
@@ -562,7 +562,7 @@ header.header-scrolled nav ul li a.active {
   .pillar span:first-of-type {
     font-size: 0.8rem;
     margin-bottom: 0.1rem;
-    color: var(--primary-color);
+  color: var(--primary-color);
   }
   
   .pillar span:last-of-type {
