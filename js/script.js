@@ -585,43 +585,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000);
     }
 
-    // 新闻标签切换功能
-    const newsTabs = document.querySelectorAll('.news-tab');
-    const newsCards = document.querySelectorAll('.news-card');
-    
-    if (newsTabs.length > 0) {
-        newsTabs.forEach(tab => {
-            tab.addEventListener('click', function() {
-                // 移除所有标签的active类
-                newsTabs.forEach(t => t.classList.remove('active'));
-                // 给当前点击的标签添加active类
-                this.classList.add('active');
-                
-                // 获取标签类别
-                const category = this.getAttribute('data-tab');
-                console.log('切换到新闻类别:', category);
-                
-                // 实现新闻筛选功能
-                if (category === 'latest') {
-                    // 显示所有新闻
-                    newsCards.forEach(card => {
-                        card.style.display = 'block';
-                    });
-                } else {
-                    // 根据类别筛选新闻
-                    newsCards.forEach(card => {
-                        const cardCategory = card.getAttribute('data-category') || 'latest';
-                        if (cardCategory === category) {
-                            card.style.display = 'block';
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
-                }
-            });
-        });
-    }
-    
     // AI模型评测类别切换功能
     const evalCategories = document.querySelectorAll('.eval-category');
     const modelRows = document.querySelectorAll('.model-row');
@@ -650,7 +613,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         const rowCategory = row.getAttribute('data-category') || 'llm';
                         if (rowCategory === categoryName) {
                             row.style.display = 'grid';
-            } else {
+                        } else {
                             row.style.display = 'none';
                         }
                     });
@@ -659,48 +622,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // 添加RSS订阅功能
-    const rssLink = document.querySelector('.rss-feed');
-    if (rssLink) {
-        rssLink.addEventListener('click', function(e) {
-            // 创建并显示一个临时提示
-            showToast('已打开RSS订阅源: 36kr.com/feed-ai');
-        });
-    }
-    
     // 页面加载完成后初始化
     createBackToTopButton();
     initResponsiveStyles();
     detectWechatBrowser(); // 添加微信浏览器检测
     
-    // 处理新闻标签切换功能
-    initNewsTabSwitching();
-    
     // 处理AI模型评测分类切换功能
     initEvaluationCategorySwitching();
 });
-
-// 初始化新闻标签切换功能
-function initNewsTabSwitching() {
-    const newsTabs = document.querySelectorAll('.news-tab');
-    if (!newsTabs.length) return;
-    
-    newsTabs.forEach(tab => {
-        tab.addEventListener('click', function() {
-            // 移除所有标签的active类
-            newsTabs.forEach(t => t.classList.remove('active'));
-            
-            // 给当前点击的标签添加active类
-            this.classList.add('active');
-            
-            // 此处可以添加过滤新闻内容的逻辑
-            const category = this.getAttribute('data-category');
-            console.log('选择的新闻类别:', category);
-            
-            // TODO: 根据类别筛选新闻内容
-        });
-    });
-}
 
 // 初始化AI模型评测分类切换功能
 function initEvaluationCategorySwitching() {

@@ -58,6 +58,7 @@ body {
 }
 
 /* 工具卡片网格布局 */
+.tools-grid, .news-grid, .resources-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
@@ -137,6 +138,7 @@ body {
 
 .popular-tools,
 .tools-category,
+.ai-news,
 .ai-evaluation,
 .learning-resources,
 .about-section {
@@ -615,6 +617,7 @@ header.header-scrolled nav ul li a.active {
   .about-section h2,
   .popular-tools h2, 
   .tools-category h2, 
+  .ai-news h2, 
   .learning-resources h2,
   .ai-evaluation h2 {
     font-size: 1.5rem;
@@ -684,6 +687,7 @@ header.header-scrolled .container {
   /* 统一所有部分在移动端的垂直间距 */
   .popular-tools,
   .tools-category,
+  .ai-news,
   .ai-evaluation,
   .learning-resources,
   .about-section {
@@ -763,12 +767,14 @@ body {
 }
 
 /* 每周精选 */
+.weekly-digest {
   margin-top: 3rem;
   background-color: var(--hover-color);
   border-radius: 10px;
   padding: 2rem;
 }
 
+.weekly-digest h3 {
   display: flex;
   align-items: center;
   gap: 0.8rem;
@@ -776,11 +782,13 @@ body {
   color: var(--text-color);
 }
 
+.digest-content {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
 }
 
+.digest-item {
   background-color: var(--card-color);
   border-radius: 8px;
   padding: 1.5rem;
@@ -788,6 +796,7 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.digest-date {
   display: inline-block;
   background-color: var(--primary-color);
   color: white;
@@ -797,10 +806,12 @@ body {
   margin-bottom: 1rem;
 }
 
+.digest-item p {
   margin-bottom: 1rem;
   color: var(--text-color);
 }
 
+.digest-link {
   display: inline-block;
   color: var(--primary-color);
   font-weight: 500;
@@ -1721,6 +1732,7 @@ footer {
     right: 12px;
   }
   
+  .popular-tools h2, .tools-category h2, .ai-news h2, .learning-resources h2 {
     font-size: 1.5rem;
   }
   
@@ -1728,6 +1740,7 @@ footer {
     font-size: 1.2rem;
   }
   
+  .tools-grid, .news-grid, .resources-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.6rem;
   }
@@ -1839,6 +1852,7 @@ header.mobile-view .desktop-nav {
   /* 统一所有板块样式 */
   .popular-tools, 
   .tools-category, 
+  .ai-news, 
   .ai-evaluation, 
   .learning-resources, 
   .about-section {
@@ -1859,6 +1873,7 @@ header.mobile-view .desktop-nav {
 /* 超小屏幕优化 */
 @media (max-width: 480px) {
   /* 修正工具卡片样式以保持一致性 */
+  .tools-grid, .news-grid, .resources-grid {
     grid-template-columns: 1fr;
     gap: 0.6rem;
   }
@@ -2147,10 +2162,12 @@ header.wechat-scroll-up {
   }
   
   /* 工具卡片和资源卡片在极小屏幕上的优化 */
+  .tools-grid, .news-grid, .resources-grid {
     grid-template-columns: 1fr;
     gap: 0.5rem;
   }
   
+  .tool-card, .resource-card, .news-card {
     padding: 0.7rem;
   }
   
@@ -2165,11 +2182,13 @@ header.wechat-scroll-up {
   /* ... existing code ... */
   
   /* 新闻资讯部分优化 */
+  .news-controls {
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
   }
   
+  .news-tabs {
     width: 100%;
     overflow-x: auto;
     padding-bottom: 0.5rem;
@@ -2177,30 +2196,37 @@ header.wechat-scroll-up {
     -webkit-overflow-scrolling: touch;
   }
   
+  .news-tab {
     white-space: nowrap;
     padding: 0.5rem 0.8rem;
     font-size: 0.9rem;
   }
   
+  .news-actions {
     width: 100%;
     justify-content: space-between;
   }
   
+  .news-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
   }
   
+  .news-card {
     padding: 0.8rem;
   }
   
+  .news-card h3 {
     font-size: 1rem;
     margin-bottom: 0.3rem;
   }
   
+  .weekly-digest h3 {
     font-size: 1.1rem;
     margin-bottom: 0.8rem;
   }
   
+  .digest-content {
     grid-template-columns: repeat(3, 1fr);
     gap: 0.8rem;
   }
@@ -2211,25 +2237,31 @@ header.wechat-scroll-up {
   /* ... existing code ... */
   
   /* 新闻资讯部分小屏幕优化 */
+  .news-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
   
+  .digest-content {
     grid-template-columns: 1fr;
     gap: 0.8rem;
   }
   
+  .digest-item {
     padding: 0.8rem;
   }
   
+  .news-tab {
     padding: 0.4rem 0.6rem;
     font-size: 0.8rem;
   }
   
+  .news-card .news-date {
     font-size: 0.7rem;
     margin-bottom: 0.3rem;
   }
   
+  .news-card p {
     -webkit-line-clamp: 2;
     font-size: 0.8rem;
   }
@@ -2385,10 +2417,12 @@ img {
   }
   
   /* 工具卡片和资源卡片在极小屏幕上的优化 */
+  .tools-grid, .news-grid, .resources-grid {
     grid-template-columns: 1fr;
     gap: 0.5rem;
   }
   
+  .tool-card, .resource-card, .news-card {
     padding: 0.7rem;
   }
 } 
@@ -2425,11 +2459,13 @@ img {
 
 /* 移动设备适配 */
 @media (max-width: 992px) {
+  .tools-grid, .news-grid, .resources-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 768px) {
+  .tools-grid, .news-grid, .resources-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
   }
@@ -2462,6 +2498,7 @@ img {
 }
 
 @media (max-width: 480px) {
+  .tools-grid, .news-grid, .resources-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
   }
@@ -2500,6 +2537,7 @@ img {
 }
 
 @media (max-width: 320px) {
+  .tools-grid, .news-grid, .resources-grid {
     grid-template-columns: 1fr;
   }
   
@@ -2509,7 +2547,7 @@ img {
   }
 }
 
-/* ... existing code ... */
+// ... existing code ...
 
 .footer-logo-horizontal {
   display: flex;
