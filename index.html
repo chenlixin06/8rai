@@ -34,7 +34,7 @@
                 <nav class="desktop-nav">
                     <ul>
                         <li><a href="#" class="active">首页</a></li>
-                        <li><a href="#tools">AI工具</a></li>
+                        <li><a href="#ai-tools">AI工具</a></li>
                         <li><a href="#ai-evaluation">模型评测</a></li>
                         <li><a href="#ai-learning">学习资源</a></li>
                         <li><a href="#about">关于我们</a></li>
@@ -561,5 +561,61 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 获取所有导航链接
+        const navLinks = document.querySelectorAll('.desktop-nav a');
+        
+        // 为每个链接添加点击事件
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // 移除所有active类
+                navLinks.forEach(l => l.classList.remove('active'));
+                
+                // 添加active类到当前点击的链接
+                this.classList.add('active');
+                
+                // 获取目标section的id
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                
+                if (targetSection) {
+                    // 计算滚动位置，考虑固定导航栏的高度
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = targetSection.offsetTop - headerHeight;
+                    
+                    // 平滑滚动到目标位置
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // 监听滚动事件，更新导航链接的active状态
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.offsetHeight;
+                const scrollPosition = window.scrollY;
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    const id = section.getAttribute('id');
+                    const correspondingLink = document.querySelector(`.desktop-nav a[href="#${id}"]`);
+                    
+                    if (correspondingLink) {
+                        navLinks.forEach(link => link.classList.remove('active'));
+                        correspondingLink.classList.add('active');
+                    }
+                }
+            });
+        });
+    });
+    </script>
 </body>
 </html> 

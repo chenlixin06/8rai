@@ -1074,6 +1074,7 @@ header.wechat-scroll-up {
 /* 通用响应式优化 */
 html {
   -webkit-text-size-adjust: 100%; /* 防止iOS在横屏时自动调整字体大小 */
+  scroll-behavior: smooth; /* 添加平滑滚动效果 */
 }
 
 body {
@@ -2317,6 +2318,45 @@ footer {
   
   .tools-category {
     padding: 1.2rem 0 1rem 0;
+  }
+}
+
+/* 修复导航链接的滚动位置 */
+section[id] {
+  scroll-margin-top: 100px; /* 为固定导航栏预留空间 */
+}
+
+/* 确保导航链接正确高亮 */
+.desktop-nav a.active,
+.desktop-nav a:hover {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+/* 修复导航栏固定定位 */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: var(--header-bg);
+  transition: background-color 0.3s ease;
+}
+
+/* 确保内容不被固定导航栏遮挡 */
+main {
+  padding-top: 80px;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  section[id] {
+    scroll-margin-top: 70px; /* 移动端减少预留空间 */
+  }
+  
+  main {
+    padding-top: 60px;
   }
 }
 
