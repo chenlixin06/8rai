@@ -40,6 +40,14 @@
                         <li><a href="#about">关于我们</a></li>
                     </ul>
                 </nav>
+                <div class="header-actions">
+                    <button id="theme-toggle" class="theme-toggle">
+                        <i class="bi bi-moon-fill"></i>
+                    </button>
+                    <button id="back-to-top" class="back-to-top">
+                        <i class="bi bi-arrow-up"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </header>
@@ -614,6 +622,51 @@
                     }
                 }
             });
+            
+            // 控制回到顶部按钮的显示
+            const backToTopButton = document.getElementById('back-to-top');
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        // 回到顶部功能
+        const backToTopButton = document.getElementById('back-to-top');
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // 切换主题功能
+        const themeToggleButton = document.getElementById('theme-toggle');
+        const themeIcon = themeToggleButton.querySelector('i');
+        
+        // 检查本地存储中的主题设置
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeIcon.classList.remove('bi-moon-fill');
+            themeIcon.classList.add('bi-sun-fill');
+        }
+        
+        themeToggleButton.addEventListener('click', function() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            
+            if (currentTheme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                themeIcon.classList.remove('bi-sun-fill');
+                themeIcon.classList.add('bi-moon-fill');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeIcon.classList.remove('bi-moon-fill');
+                themeIcon.classList.add('bi-sun-fill');
+                localStorage.setItem('theme', 'dark');
+            }
         });
     });
     </script>

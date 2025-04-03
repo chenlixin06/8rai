@@ -2360,4 +2360,151 @@ main {
   }
 }
 
+/* 头部操作按钮样式 */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 20px;
+}
+
+.theme-toggle, .back-to-top {
+  background: transparent;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover, .back-to-top:hover {
+  background-color: var(--hover-color);
+  color: var(--primary-color);
+}
+
+.back-to-top {
+  display: none; /* 默认隐藏，通过JavaScript控制显示 */
+}
+
+.back-to-top.visible {
+  display: flex;
+}
+
+/* 暗色主题下的按钮样式 */
+[data-theme="dark"] .theme-toggle,
+[data-theme="dark"] .back-to-top {
+  color: var(--text-color);
+}
+
+[data-theme="dark"] .theme-toggle:hover,
+[data-theme="dark"] .back-to-top:hover {
+  background-color: var(--hover-color);
+  color: var(--primary-color);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .header-actions {
+    margin-left: 10px;
+  }
+  
+  .theme-toggle, .back-to-top {
+    font-size: 1rem;
+    padding: 6px;
+  }
+}
+
+/* AI模型评测部分夜间模式样式 */
+[data-theme="dark"] .models-comparison {
+  background-color: var(--card-color);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .model-row {
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .model-row:hover {
+  background-color: var(--hover-color);
+}
+
+[data-theme="dark"] .model-company {
+  color: var(--text-light);
+}
+
+[data-theme="dark"] .score {
+  color: var(--primary-color);
+}
+
+[data-theme="dark"] .view-details {
+  background-color: var(--hover-color);
+  color: var(--text-color);
+}
+
+[data-theme="dark"] .view-details:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+[data-theme="dark"] .benchmark-note {
+  color: var(--text-light);
+}
+
+/* 关于8rai部分夜间模式样式 */
+[data-theme="dark"] .brand-story {
+  background-color: var(--card-color);
+  border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .pillar {
+  background-color: var(--card-color);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .pillar:hover {
+  background-color: var(--hover-color);
+}
+
+[data-theme="dark"] .pillar i {
+  color: var(--primary-color);
+}
+
+[data-theme="dark"] .pillar span {
+  color: var(--text-color);
+}
+
+[data-theme="dark"] .pillar span:first-of-type {
+  color: var(--primary-color);
+}
+
+[data-theme="dark"] .pillar span:last-of-type {
+  color: var(--text-light);
+}
+
+/* 修复评测分类标签样式 */
+[data-theme="dark"] .eval-category {
+  background-color: var(--card-color);
+  border-color: var(--border-color);
+  color: var(--text-color);
+}
+
+[data-theme="dark"] .eval-category.active,
+[data-theme="dark"] .eval-category:hover {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+/* 修复评测表格头部样式 */
+[data-theme="dark"] .comparison-header {
+  background-color: var(--primary-color);
+  color: white;
+  border-bottom: 1px solid var(--border-color);
+}
+
 
