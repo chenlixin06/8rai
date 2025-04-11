@@ -2426,18 +2426,42 @@ main {
 @media (max-width: 768px) {
   .header-actions {
     margin-left: 10px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
   }
   
   .theme-toggle, .back-to-top {
     font-size: 1rem;
-    padding: 6px;
-    width: 32px;
-    height: 32px;
+    padding: 8px;
+    width: 40px;
+    height: 40px;
+    background-color: var(--card-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
   }
   
   .back-to-top {
+    bottom: auto;
+    right: auto;
+    position: relative;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-actions {
     bottom: 15px;
     right: 15px;
+  }
+  
+  .theme-toggle, .back-to-top {
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
   }
 }
 
