@@ -1,0 +1,213 @@
+/* AI模型评测部分 */
+.ai-evaluation {
+  padding: 2rem 0;
+  background-color: var(--background-color);
+}
+
+.ai-evaluation h2 {
+  text-align: center;
+  margin-bottom: 0.8rem;
+  font-size: 1.8rem;
+}
+
+.section-desc {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 1.5rem;
+  color: var(--text-light);
+  font-size: 0.9rem;
+}
+
+.eval-categories {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.eval-category {
+  padding: 0.5rem 1rem;
+  background-color: var(--card-color);
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow);
+  font-size: 0.95rem;
+  border: 1px solid var(--border-color);
+}
+
+.eval-category.active, .eval-category:hover {
+  background-color: var(--primary-color);
+  color: white;
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+}
+
+/* 模型比较表格 */
+.models-comparison {
+  background-color: var(--card-color);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  width: 100%;
+  margin-top: 1.5rem;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+.comparison-header {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  padding: 0.8rem 1rem;
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.model-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+  align-items: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.model-row:last-child {
+  border-bottom: none;
+}
+
+.model-row:hover {
+  background-color: var(--hover-color);
+}
+
+.model-name {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.model-company {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  margin-top: 0.2rem;
+}
+
+.score {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  margin-bottom: 0.3rem;
+}
+
+.score-bar {
+  height: 4px;
+  background-color: var(--primary-color);
+  border-radius: 2px;
+}
+
+.view-details {
+  display: inline-block;
+  padding: 0.3rem 0.7rem;
+  background-color: var(--hover-color);
+  border-radius: 4px;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.view-details:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.benchmark-note {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-light);
+  margin: 1rem 0;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .eval-categories {
+    gap: 0.7rem;
+    margin-bottom: 1.2rem;
+  }
+  
+  .eval-category {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+  
+  .comparison-header, .model-row {
+    grid-template-columns: 1.5fr 1fr 0.8fr;
+    padding: 0.7rem;
+    font-size: 0.85rem;
+  }
+  
+  .model-name {
+    font-size: 0.9rem;
+  }
+  
+  .score {
+    font-size: 1rem;
+  }
+  
+  .view-details {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.75rem;
+  }
+  
+  .benchmark-note {
+    margin-bottom: 0.5rem;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ai-evaluation h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .section-desc {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  .eval-categories {
+    gap: 0.5rem 0.7rem;
+    margin-bottom: 1rem;
+  }
+  
+  .eval-category {
+    padding: 0.3rem 0.7rem;
+    font-size: 0.8rem;
+  }
+  
+  .comparison-header, .model-row {
+    grid-template-columns: 1.3fr 0.8fr 0.8fr;
+    padding: 0.6rem;
+    font-size: 0.75rem;
+  }
+  
+  .model-name {
+    font-size: 0.8rem;
+    line-height: 1.2;
+  }
+  
+  .model-company {
+    font-size: 0.7rem;
+    margin-top: 0.1rem;
+  }
+  
+  .score {
+    font-size: 0.9rem;
+    margin-bottom: 0.2rem;
+  }
+  
+  .view-details {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.7rem;
+  }
+} 

@@ -4,11 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>8Rai - 精选AI服务</title>
-    <meta name="description" content="精选AI服务导航平台">
-    <meta name="theme-color" content="#4F46E5">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
-    <link rel="stylesheet" href="css/style_final.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
 <body>
@@ -37,21 +33,13 @@
             <div class="header-right">
                 <nav class="desktop-nav">
                     <ul>
-                        <li><a href="#" class="active">首页</a></li>
                         <li><a href="#ai-tools">AI工具</a></li>
-                        <li><a href="#ai-evaluation">模型评测</a></li>
+                        <li><a href="#ai-evaluation">AI模型评测</a></li>
                         <li><a href="#ai-learning">学习资源</a></li>
+                        <li><a href="#ai-news">新闻资讯</a></li>
                         <li><a href="#about">关于我们</a></li>
                     </ul>
                 </nav>
-                <div class="header-actions">
-                    <button id="theme-toggle" class="theme-toggle">
-                        <i class="bi bi-moon-fill"></i>
-                    </button>
-                    <button id="back-to-top" class="back-to-top">
-                        <i class="bi bi-arrow-up"></i>
-                    </button>
-                </div>
             </div>
         </div>
     </header>
@@ -61,66 +49,50 @@
             <h2>热门工具</h2>
             <div class="tools-grid">
                 <div class="tool-card">
-                    <div class="tool-header">
-                        <div class="tool-icon"><i class="bi bi-chat-dots"></i></div>
-                        <h3>文心一言</h3>
-                    </div>
+                    <div class="tool-icon"><i class="bi bi-chat-dots"></i></div>
+                    <h3>文心一言</h3>
                     <p>百度推出的大语言模型，提供对话和创作服务</p>
                     <a href="https://yiyan.baidu.com/" target="_blank" class="tool-link">免费访问</a>
                 </div>
                 <div class="tool-card">
-                    <div class="tool-header">
-                        <div class="tool-icon"><i class="bi bi-image"></i></div>
-                        <h3>文心一格</h3>
-                    </div>
+                    <div class="tool-icon"><i class="bi bi-image"></i></div>
+                    <h3>文心一格</h3>
                     <p>百度AI绘画平台，可创建高质量艺术作品</p>
                     <a href="https://yige.baidu.com/" target="_blank" class="tool-link">免费访问</a>
                 </div>
                 <div class="tool-card">
-                    <div class="tool-header">
-                        <div class="tool-icon"><i class="bi bi-code-square"></i></div>
-                        <h3>讯飞星火</h3>
-                    </div>
+                    <div class="tool-icon"><i class="bi bi-code-square"></i></div>
+                    <h3>讯飞星火</h3>
                     <p>科大讯飞推出的大语言模型，支持编程辅助</p>
                     <a href="https://xinghuo.xfyun.cn/" target="_blank" class="tool-link">免费访问</a>
                 </div>
                 <div class="tool-card">
-                    <div class="tool-header">
-                        <div class="tool-icon"><i class="bi bi-music-note-beamed"></i></div>
-                        <h3>MusicGPT</h3>
-                    </div>
+                    <div class="tool-icon"><i class="bi bi-music-note-beamed"></i></div>
+                    <h3>MusicGPT</h3>
                     <p>腾讯音乐旗下AI音乐创作工具，生成各种风格的音乐</p>
                     <a href="https://y.qq.com/" target="_blank" class="tool-link">免费访问</a>
                 </div>
                 <div class="tool-card">
-                    <div class="tool-header">
-                        <div class="tool-icon"><i class="bi bi-card-text"></i></div>
-                        <h3>幕布AI</h3>
-                    </div>
+                    <div class="tool-icon"><i class="bi bi-card-text"></i></div>
+                    <h3>幕布AI</h3>
                     <p>结合幕布笔记功能的AI内容创作助手</p>
                     <a href="https://mubu.com/ai" target="_blank" class="tool-link">免费访问</a>
                 </div>
                 <div class="tool-card">
-                    <div class="tool-header">
-                        <div class="tool-icon"><i class="bi bi-translate"></i></div>
-                        <h3>百度翻译</h3>
-                    </div>
+                    <div class="tool-icon"><i class="bi bi-translate"></i></div>
+                    <h3>百度翻译</h3>
                     <p>AI驱动的高质量翻译工具</p>
                     <a href="https://fanyi.baidu.com/" target="_blank" class="tool-link">免费访问</a>
                 </div>
                 <div class="tool-card">
-                    <div class="tool-header">
-                        <div class="tool-icon"><i class="bi bi-camera"></i></div>
-                        <h3>通义万相</h3>
-                    </div>
+                    <div class="tool-icon"><i class="bi bi-camera"></i></div>
+                    <h3>通义万相</h3>
                     <p>阿里云推出的AI图像生成工具</p>
                     <a href="https://wanxiang.aliyun.com/" target="_blank" class="tool-link">免费访问</a>
                 </div>
                 <div class="tool-card">
-                    <div class="tool-header">
-                        <div class="tool-icon"><i class="bi bi-robot"></i></div>
-                        <h3>智谱AI</h3>
-                    </div>
+                    <div class="tool-icon"><i class="bi bi-robot"></i></div>
+                    <h3>智谱AI</h3>
                     <p>清华大学背景的大模型技术公司</p>
                     <a href="https://zhipuai.cn/" target="_blank" class="tool-link">免费访问</a>
                 </div>
@@ -336,6 +308,81 @@
                         <h4>智谱清言搜索</h4>
                         <p>智谱AI推出的搜索功能</p>
                         <a href="https://qingyan.zhipuai.cn/" target="_blank" class="tool-link">免费访问</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ai-news" class="ai-news">
+        <div class="container">
+            <h2>AI资讯</h2>
+            <div class="news-controls">
+                <div class="news-tabs">
+                    <button class="news-tab active" data-tab="latest">最新动态</button>
+                    <button class="news-tab" data-tab="industry">行业趋势</button>
+                    <button class="news-tab" data-tab="product">产品更新</button>
+                </div>
+                <div class="news-actions">
+                    <a href="#more-news" class="more-news">查看更多 <i class="bi bi-arrow-right"></i></a>
+                    <a href="https://36kr.com/feed-ai" class="rss-feed" target="_blank" title="订阅AI资讯RSS"><i class="bi bi-rss"></i> RSS订阅</a>
+                </div>
+            </div>
+            <div class="news-grid">
+                <div class="news-card" data-category="product">
+                    <div class="news-img">
+                        <img src="https://via.placeholder.com/400x200?text=AI新闻" alt="讯飞星火4.0发布">
+                    </div>
+                    <h3>讯飞星火4.0全面发布</h3>
+                    <p class="news-date">2024-06-27</p>
+                    <p>科大讯飞发布星火大模型V4.0，全面对标GPT-4 Turbo，在文本生成、语言理解、知识问答、逻辑推理和数学等能力上实现超越，并推出智能批阅机、企业智能体平台等多项应用</p>
+                    <a href="#" class="read-more">阅读更多</a>
+                </div>
+                <div class="news-card" data-category="product">
+                    <div class="news-img">
+                        <img src="https://via.placeholder.com/400x200?text=AI新闻" alt="AI新闻图片">
+                    </div>
+                    <h3>文心一言4.0发布</h3>
+                    <p class="news-date">2023-11-10</p>
+                    <p>百度宣布最新模型文心一言4.0全面升级，性能大幅提升，新增图像理解功能和知识库查询能力...</p>
+                    <a href="#" class="read-more">阅读更多</a>
+                </div>
+                <div class="news-card" data-category="industry">
+                    <div class="news-img">
+                        <img src="https://via.placeholder.com/400x200?text=AI新闻" alt="AI新闻图片">
+                    </div>
+                    <h3>腾讯发布混元大模型</h3>
+                    <p class="news-date">2023-11-08</p>
+                    <p>腾讯最新发布的混元大模型支持多种交互方式，大幅提升用户体验，新增视频生成和语音交互功能...</p>
+                    <a href="#" class="read-more">阅读更多</a>
+                </div>
+                <div class="news-card">
+                    <div class="news-img">
+                        <img src="https://via.placeholder.com/400x200?text=AI新闻" alt="AI新闻图片">
+                    </div>
+                    <h3>阿里云通义千问升级</h3>
+                    <p class="news-date">2023-11-05</p>
+                    <p>阿里云推出其最强大的大语言模型通义千问升级版，在多项基准测试中展现强大能力，支持更长上下文...</p>
+                    <a href="#" class="read-more">阅读更多</a>
+                </div>
+            </div>
+            <div class="weekly-digest">
+                <h3><i class="bi bi-journal"></i> 每周AI精选</h3>
+                <div class="digest-content">
+                    <div class="digest-item">
+                        <span class="digest-date">11月第1期</span>
+                        <p>本期汇总11月1日至11月10日的AI行业重要新闻和技术突破</p>
+                        <a href="#" class="digest-link">查看详情</a>
+                    </div>
+                    <div class="digest-item">
+                        <span class="digest-date">10月第3期</span>
+                        <p>本期汇总10月21日至10月31日的AI行业重要新闻和技术突破</p>
+                        <a href="#" class="digest-link">查看详情</a>
+                    </div>
+                    <div class="digest-item">
+                        <span class="digest-date">10月第2期</span>
+                        <p>本期汇总10月11日至10月20日的AI行业重要新闻和技术突破</p>
+                        <a href="#" class="digest-link">查看详情</a>
                     </div>
                 </div>
             </div>
@@ -573,119 +620,5 @@
     </footer>
 
     <script src="js/script.js"></script>
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // 获取所有导航链接
-        const navLinks = document.querySelectorAll('.desktop-nav a');
-        
-        // 为每个链接添加点击事件
-        navLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // 移除所有active类
-                navLinks.forEach(l => l.classList.remove('active'));
-                
-                // 添加active类到当前点击的链接
-                this.classList.add('active');
-                
-                // 获取目标section的id
-                const targetId = this.getAttribute('href').substring(1);
-                const targetSection = document.getElementById(targetId);
-                
-                if (targetSection) {
-                    // 计算滚动位置，考虑固定导航栏的高度
-                    const headerHeight = document.querySelector('header').offsetHeight;
-                    const targetPosition = targetSection.offsetTop - headerHeight;
-                    
-                    // 平滑滚动到目标位置
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        
-        // 监听滚动事件，更新导航链接的active状态
-        window.addEventListener('scroll', function() {
-            const sections = document.querySelectorAll('section[id]');
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                const sectionHeight = section.offsetHeight;
-                const scrollPosition = window.scrollY;
-                
-                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                    const id = section.getAttribute('id');
-                    const correspondingLink = document.querySelector(`.desktop-nav a[href="#${id}"]`);
-                    
-                    if (correspondingLink) {
-                        navLinks.forEach(link => link.classList.remove('active'));
-                        correspondingLink.classList.add('active');
-                    }
-                }
-            });
-            
-            // 控制回到顶部按钮的显示
-            const backToTopButton = document.getElementById('back-to-top');
-            if (window.scrollY > 300) {
-                backToTopButton.classList.add('visible');
-            } else {
-                backToTopButton.classList.remove('visible');
-            }
-        });
-        
-        // 回到顶部功能
-        const backToTopButton = document.getElementById('back-to-top');
-        backToTopButton.addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        
-        // 切换主题功能
-        const themeToggleButton = document.getElementById('theme-toggle');
-        const themeIcon = themeToggleButton.querySelector('i');
-        
-        // 检查本地存储中的主题设置
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            themeIcon.classList.remove('bi-moon-fill');
-            themeIcon.classList.add('bi-sun-fill');
-        }
-        
-        themeToggleButton.addEventListener('click', function() {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            
-            if (currentTheme === 'dark') {
-                document.documentElement.removeAttribute('data-theme');
-                themeIcon.classList.remove('bi-sun-fill');
-                themeIcon.classList.add('bi-moon-fill');
-                localStorage.setItem('theme', 'light');
-            } else {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                themeIcon.classList.remove('bi-moon-fill');
-                themeIcon.classList.add('bi-sun-fill');
-                localStorage.setItem('theme', 'dark');
-            }
-        });
-    });
-    </script>
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(registration => {
-                        console.log('ServiceWorker registration successful');
-                    })
-                    .catch(err => {
-                        console.log('ServiceWorker registration failed: ', err);
-                    });
-            });
-        }
-    </script>
 </body>
 </html> 
