@@ -2366,6 +2366,7 @@ main {
   align-items: center;
   gap: 10px;
   margin-left: 20px;
+  position: relative;
 }
 
 .theme-toggle, .back-to-top {
@@ -2380,15 +2381,24 @@ main {
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
+  width: 36px;
+  height: 36px;
 }
 
 .theme-toggle:hover, .back-to-top:hover {
   background-color: var(--hover-color);
   color: var(--primary-color);
+  transform: scale(1.1);
 }
 
 .back-to-top {
   display: none; /* 默认隐藏，通过JavaScript控制显示 */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  background-color: var(--card-color);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .back-to-top.visible {
@@ -2407,6 +2417,11 @@ main {
   color: var(--primary-color);
 }
 
+[data-theme="dark"] .back-to-top {
+  background-color: var(--card-color);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
 /* 响应式调整 */
 @media (max-width: 768px) {
   .header-actions {
@@ -2416,6 +2431,13 @@ main {
   .theme-toggle, .back-to-top {
     font-size: 1rem;
     padding: 6px;
+    width: 32px;
+    height: 32px;
+  }
+  
+  .back-to-top {
+    bottom: 15px;
+    right: 15px;
   }
 }
 
