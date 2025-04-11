@@ -14,8 +14,22 @@ jobs:
       
       - name: Check PWA Files
         run: |
-          if [ -f "manifest.json" ] && [ -f "sw.js" ]; then
-            echo "PWA files exist"
+          echo "Checking PWA files..."
+          ls -la
+          if [ -f "manifest.json" ]; then
+            echo "✓ manifest.json exists"
+            cat manifest.json
           else
-            echo "Missing PWA files"
-            exit 1 
+            echo "✗ manifest.json missing"
+            exit 1
+          fi
+          
+          if [ -f "sw.js" ]; then
+            echo "✓ sw.js exists"
+            cat sw.js
+          else
+            echo "✗ sw.js missing"
+            exit 1
+          fi
+          
+          echo "All PWA files check passed!" 
