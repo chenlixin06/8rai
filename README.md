@@ -1,5 +1,7 @@
 # 8Rai - AI导航
 
+[![Workers Build](https://github.com/amylixing/8rai/actions/workflows/workers-build.yml/badge.svg)](https://github.com/amylixing/8rai/actions/workflows/workers-build.yml)
+
 ![AI导航](img/preview.png)
 
 8Rai 是一个精选国内人工智能工具集合的网站，旨在帮助用户快速找到各类中国AI工具，提高工作效率，并跟上国内AI技术发展。
