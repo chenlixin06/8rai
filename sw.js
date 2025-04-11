@@ -2,10 +2,18 @@ const CACHE_NAME = '8rai-v1';
 const urlsToCache = [
   '/',
   '/index.html',
-  '/css/style_final.css',
+  '/css/style.css',
+  '/css/about.css',
+  '/css/learning_resources.css',
+  '/css/model_evaluation.css',
   '/js/script.js',
-  '/img/icon-192.png',
-  '/img/icon-512.png'
+  '/img/android-chrome-192x192.png',
+  '/img/android-chrome-512x512.png',
+  '/img/apple-touch-icon.png',
+  '/img/favicon-16x16.png',
+  '/img/favicon-32x32.png',
+  '/img/favicon.ico',
+  '/img/site.webmanifest'
 ];
 
 self.addEventListener('install', event => {
