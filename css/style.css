@@ -2425,7 +2425,6 @@ main {
 /* 响应式调整 */
 @media (max-width: 768px) {
   .header-actions {
-    margin-left: 10px;
     position: fixed;
     bottom: 20px;
     right: 20px;
@@ -2433,22 +2432,26 @@ main {
     flex-direction: column;
     gap: 10px;
     z-index: 1000;
+    margin: 0;
   }
   
   .theme-toggle, .back-to-top {
-    font-size: 1rem;
-    padding: 8px;
     width: 40px;
     height: 40px;
+    padding: 8px;
+    font-size: 1rem;
     background-color: var(--card-color);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .back-to-top {
+    position: relative;
     bottom: auto;
     right: auto;
-    position: relative;
   }
 }
 
