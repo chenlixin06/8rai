@@ -2,9 +2,9 @@ name: Workers Build
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, develop ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, develop ]
 
 jobs:
   build:
@@ -12,19 +12,24 @@ jobs:
     name: Build Workers
     steps:
       - uses: actions/checkout@v3
-      
+        with:
+          fetch-depth: 0  # 获取完整的git历史
+          
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
           
       - name: Install Dependencies
-        run: npm install
-        
+        run: |
+          npm install
+          npm install -g wrangler
+          
       - name: Build
         run: npm run build
         
       - name: Deploy to Cloudflare Workers
+        if: github.ref == 'refs/heads/main'  # 只在main分支部署
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
